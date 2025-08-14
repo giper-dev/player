@@ -12,26 +12,20 @@ $hyoo_play $mol_drop
 		pages <= pages /
 			<= Queue $mol_page
 				title @ \Hyper Player
-				tools /
+				head /
 					- <= Playing $mol_check_icon
 						checked?next <=> playing?next
 						Icon <= Playing_icon $mol_icon_play
-					<= Support $mol_link_support
-						uri \https://t.me/hd4ru/2
-					<= Donate $mol_link_donate
-						uri \https://boosty.to/hyoo
+					<= Movie_search $mol_search
+						hint @ \Movie search...
+						query? <=> movie_search? \
 					<= Open $mol_button_open
 						hint @ \Open files
 						files?next <=> files_add?next /
-					<= Sources $mol_link_source
-						uri \https://github.com/hyoo-ru/play.hyoo.ru
 					- <= Chat $mol_chat
 						seed <= play_title \
 						pages => chat_pages
 				body <= queue_body /
-					<= Movie_search $mol_search
-						hint @ \Movie search...
-						query? <=> movie_search? \
 					<= Queue_files $mol_list
 						rows <= queue_items /
 							^ queue_movies /
@@ -58,6 +52,13 @@ $hyoo_play $mol_drop
 											sub /
 												<= File_drop_icon* $mol_icon_close
 				foot /
+					<= Sources $mol_link_source
+						uri \https://github.com/hyoo-ru/play.hyoo.ru
+					<= Donate $mol_link_donate
+						uri \https://boosty.to/hyoo
+					<= Support $mol_link_support
+						uri \https://t.me/hd4ru/2
+				- foot /
 					<= Water $mol_link
 						hint @ \Relaxing
 						arg *
@@ -114,11 +115,30 @@ $hyoo_play $mol_drop
 						arg * movie null
 						sub /
 							<= Moview_close_icon $mol_icon_close
-				body_content <= movie_content* /
+				body <= movie_content* /
 					<= Player_ext* $mol_frame
 						uri <= player_uri \
 					<= Movie_info* $mol_list rows /
 						<= Movie_descr* $mol_text text <= movie_descr* \
+						<= Movie_links* $mol_row sub /
+							<= Movie_kp* $mol_link_iconed
+								title \Kinopoisk
+								uri <= movie_uri_kp \
+							<= Movie_imdb* $mol_link_iconed
+								title \IMDB
+								uri <= movie_uri_imdb \
+						<= Members_block $mol_expander
+							title @ \Staff
+							content / <= Members $mol_row sub <= members /
+								<= Member*0 $mol_link
+									uri <= member_link* \
+									sub /
+										<= Member_name* $mol_paragraph
+											title <= member_name* \
+										<= Member_photo* $mol_image
+											uri <= member_photo* \
+										<= Member_role* $mol_paragraph
+											title <= member_role* \
 						<= Similars_block $mol_expander
 							title @ \Similars
 							content / <= Similars $mol_row sub <= similars /
@@ -131,13 +151,6 @@ $hyoo_play $mol_drop
 											title <= similar_title* \
 										<= Similar_poster* $mol_image
 											uri <= similar_poster* \
-						<= Movie_links* $mol_row sub /
-							<= Movie_kp* $mol_link_iconed
-								title \Kinopoisk
-								uri <= movie_uri_kp \
-							<= Movie_imdb* $mol_link_iconed
-								title \IMDB
-								uri <= movie_uri_imdb \
 				foot /
 					<= Thanks $mol_text
 						text @ \Thanks to \\ReYohoho\https://github.com/reyohoho/reyohoho\\ project for content.

@@ -24,9 +24,6 @@
 	flex: 1 1 auto;
 }
 
-[hyoo_play_queue_foot] {
-	justify-content: flex-start;
-}
 
 [hyoo_play_player] {
 	flex: 1 0 calc( 100% - 25rem );
@@ -40,7 +37,6 @@
 
 [hyoo_play_movie] {
 	flex-direction: column;
-	padding: var(--mol_gap_block);
 	gap: 0;
 	text-align: center;
 }
@@ -70,6 +66,11 @@
 	flex: 1 0 max( 50rem, calc( 100% - 35rem ) );
 }
 
+[hyoo_play_movie_page_head] {
+	flex-wrap: nowrap;
+	align-items: flex-start;
+}
+
 [hyoo_play_player_ext] {
 	justify-self: stretch;
 }
@@ -87,17 +88,14 @@
 	text-align: center;
 }
 
-[hyoo_play_movie_descr] {
-	padding: var(--mol_gap_block);
-}
-
 [hyoo_play_similars] {
 	align-items: flex-end;
+	padding: 0;
 }
 
 [hyoo_play_similar] {
 	flex-direction: column;
-	width: 12rem;
+	width: 10rem;
 	text-align: center;
 	padding: var(--mol_gap_block);
 }
@@ -108,6 +106,35 @@
 
 [hyoo_play_similar_poster] {
 	width: auto;
+	aspect-ratio: .67;
+	max-height: 50vh;
+    align-self: center;
+	box-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;
+}
+
+[hyoo_play_members] {
+	padding: 0;
+}
+
+[hyoo_play_member] {
+	flex-direction: column;
+	width: 10.5rem;
+	text-align: center;
+}
+
+[hyoo_play_member_name] {
+	justify-content: center;
+    height: 3rem;
+    align-items: flex-end;
+}
+
+[hyoo_play_member_role] {
+	justify-content: center;
+	color: var(--mol_theme_shade);
+}
+
+[hyoo_play_member_photo] {
+	width: 10rem;
 	aspect-ratio: .67;
 	max-height: 50vh;
     align-self: center;
