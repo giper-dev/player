@@ -1,0 +1,5 @@
+deploy \/hd/player/logo/logo.svg
+deploy \/hd/player/logo/logo_512.png
+deploy \/hd/player/manifest.json
+
+include \/mol/offline/install

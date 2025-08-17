@@ -1,0 +1,128 @@
+$hd_player $mol_drop
+	playlist? \
+	files?next /
+	file_current?val null
+	attr *
+		^
+		mol_theme \$mol_theme_dark
+	style *
+		^
+		backgroundImage <= cover \
+	Sub <= Book $mol_book2
+		pages <= pages /
+			<= Queue $mol_page
+				title @ \Hyper Player
+				head /
+					- <= Playing $mol_check_icon
+						checked?next <=> playing?next
+						Icon <= Playing_icon $mol_icon_play
+					<= Movie_search $mol_search
+						hint @ \Movie search...
+						query? <=> movie_search? \
+					<= Open $mol_button_open
+						hint @ \Open files
+						files?next <=> files_add?next /
+					- <= Chat $mol_chat
+						seed <= play_title \
+						pages => chat_pages
+				body <= queue_body /
+					<= Queue_files $mol_list
+						rows <= queue_items /
+							^ queue_movies /
+								<= Movie*0 $mol_link
+									hint <= movie_title* \
+									arg * movie <= movie_id* \
+									sub /
+										<= Movie_title* $mol_paragraph
+											title <= movie_title*
+										<= Movie_poster* $mol_image
+											minimal_height 190
+											uri <= movie_poster* \
+										<= Movie_genres* $mol_text
+											text <= movie_genres* \
+							^ queue_files /
+								<= File*0 $mol_view
+									sub /
+										<= File_play* $mol_button_minor
+											title <= file_title* \
+											enabled <= file_enabled* true
+											click? <=> file_play*? null
+										<= File_drop* $mol_button_minor
+											click? <=> file_drop*? null
+											sub /
+												<= File_drop_icon* $mol_icon_close
+				foot /
+					<= Sources $mol_link_source
+						uri \https://github.com/hyoo-ru/play.hyoo.ru
+					<= Donate $mol_link_donate
+						uri \https://boosty.to/hyoo
+					<= Support $mol_link_support
+						uri \https://t.me/hd4ru/2
+			<= Player $mol_video_player
+				title <= play_title \
+				uri <= play_uri \
+				poster \https://www.koolmusic.com/img/equalizer.gif
+				playing?next => playing?next
+			<= Movie_page* $mol_page
+				title <= movie_current_title \
+				Title => Moview_page_title*
+				Tools => Moview_page_tools*
+				head /
+					<= Movie_bookmark* $mol_check_icon
+						hint @ \Bookmarked
+						checked? <=> movie_bookmark*? false
+						Icon <= Movie_bookmark_icon* $mol_icon_bookmark
+					<= Moview_page_title*
+					<= Moview_page_tools*
+				tools /
+					<= Movie_close $mol_link
+						arg * movie null
+						sub /
+							<= Moview_close_icon $mol_icon_close
+				body_content <= movie_content* /
+					<= Player_ext* $mol_frame
+						uri <= player_uri \
+					<= Movie_info* $mol_list rows /
+						<= Movie_descr* $mol_text text <= movie_descr* \
+						<= Movie_links* $mol_row sub /
+							<= Movie_kp* $mol_link_iconed
+								title \Kinopoisk
+								uri <= movie_uri_kp \
+							<= Movie_imdb* $mol_link_iconed
+								title \IMDB
+								uri <= movie_uri_imdb \
+						<= Members_block $mol_expander
+							title @ \Staff
+							content / <= Members $mol_row sub <= members /
+								<= Member*0 $mol_link
+									uri <= member_link* \
+									sub /
+										<= Member_name* $mol_paragraph
+											title <= member_name* \
+										<= Member_photo* $mol_image
+											uri <= member_photo* \
+										<= Member_role* $mol_paragraph
+											title <= member_role* \
+						<= Similars_block $mol_expander
+							title @ \Similars
+							content / <= Similars $mol_row sub <= similars /
+								<= Similar*0 $mol_link
+									arg *
+										search null
+										movie <= similar_id* \
+									sub /
+										<= Similar_title* $mol_paragraph
+											title <= similar_title* \
+										<= Similar_poster* $mol_image
+											uri <= similar_poster* \
+		placeholders <= sidebars /
+			<= Source*0 $mol_page
+				title @ \Watch
+				body /
+					<= Player_id $mol_switch
+						value? <=> player_id? \
+						keys <= player_options /
+						option_title* <= player_name* <= player_name_none @ \Information
+				foot /
+					<= Thanks $mol_text
+						text \\\DataSource\https://github.com/reyohoho/reyohoho\\
