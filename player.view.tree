@@ -58,6 +58,7 @@ $hd_player $mol_drop
 						uri \https://boosty.to/hyoo
 					<= Support $mol_link_support
 						uri \https://t.me/hd4ru/2
+					<= Share $mol_button_share
 			<= Player $mol_video_player
 				title <= play_title \
 				uri <= play_uri \
