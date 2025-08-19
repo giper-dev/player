@@ -684,6 +684,18 @@ $mol_link_support $mol_link
 	sub /
 		<= Icon $mol_icon_face_agent
 
+$mol_icon_share $mol_icon path \M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z
+
+$mol_icon_share_variant $mol_icon path \M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z
+
+$mol_button_share $mol_button_minor
+	uri \
+	capture null
+	hint @ \Share
+	sub /
+		<= Icon $mol_icon_share_variant
+		<= title \
+
 $mol_page $mol_view
 	dom_name \article
 	attr *
@@ -781,7 +793,7 @@ $mol_text_list_item $mol_paragraph
 		^
 		mol_text_list_item_index <= index 0
 
-$hyoo_play $mol_drop
+$hd_player $mol_drop
 	playlist? \
 	files?next /
 	file_current?val null
@@ -836,47 +848,12 @@ $hyoo_play $mol_drop
 												<= File_drop_icon* $mol_icon_close
 				foot /
 					<= Sources $mol_link_source
-						uri \https://github.com/hyoo-ru/play.hyoo.ru
+						uri \https://github.com/hd4ru/player
 					<= Donate $mol_link_donate
 						uri \https://boosty.to/hyoo
 					<= Support $mol_link_support
 						uri \https://t.me/hd4ru/2
-				- foot /
-					<= Water $mol_link
-						hint @ \Relaxing
-						arg *
-							playlist \./hyoo/play/lib/water.m3u8
-							search null
-						sub /
-							<= Water_icon $mol_icon_waves
-					<= Wind $mol_link
-						hint @ \Touching
-						arg *
-							playlist \./hyoo/play/lib/wind.m3u8
-							search null
-						sub /
-							<= Wind_icon $mol_icon_weather_windy
-					<= Light $mol_link
-						hint @ \Inspiring
-						arg *
-							playlist \./hyoo/play/lib/light.m3u8
-							search null
-						sub /
-							<= Light_icon $mol_icon_flash_outline
-					<= Fire $mol_link
-						hint @ \Aggressive
-						arg *
-							playlist \./hyoo/play/lib/fire.m3u8
-							search null
-						sub /
-							<= Fire_icon $mol_icon_fire
-					<= Movies $mol_link
-						hint @ \Movies
-						arg *
-							playlist \./hyoo/play/lib/movie.m3u8
-							search null
-						sub /
-							<= Movie_icon $mol_icon_filmstrip
+					<= Share $mol_button_share
 			<= Player $mol_video_player
 				title <= play_title \
 				uri <= play_uri \

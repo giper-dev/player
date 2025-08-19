@@ -30,9 +30,6 @@ $.$$ = $
 
 ;
 "use strict";
-
-;
-"use strict";
 var $;
 (function ($) {
     $.$mol_ambient_ref = Symbol('$mol_ambient_ref');
@@ -2255,6 +2252,9 @@ var $;
         postfix() { return ')'; }
         static linear_gradient(value) {
             return new $mol_style_func('linear-gradient', value);
+        }
+        static radial_gradient(value) {
+            return new $mol_style_func('radial-gradient', value);
         }
         static calc(value) {
             return new $mol_style_func('calc', value);
@@ -5440,7 +5440,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("mol/button/button.view.css", "[mol_button] {\n\tborder: none;\n\tfont: inherit;\n\tdisplay: inline-flex;\n\tflex-shrink: 0;\n\ttext-decoration: inherit;\n\tcursor: inherit;\n\tposition: relative;\n\tbox-sizing: border-box;\n\tword-break: normal;\n\tcursor: default;\n\tuser-select: none;\n\tborder-radius: var(--mol_gap_round);\n\tbackground: transparent;\n\tcolor: inherit;\n}\n\n[mol_button]:where(:not(:disabled)):hover {\n\tz-index: var(--mol_layer_hover);\n}\n\n[mol_button]:focus {\n\toutline: none;\n\tz-index: var(--mol_layer_focus);\n}\n");
+    $mol_style_attach("mol/button/button.view.css", "[mol_button] {\n\tborder: none;\n\tfont: inherit;\n\tdisplay: inline-flex;\n\tflex-shrink: 0;\n\ttext-decoration: inherit;\n\tcursor: inherit;\n\tposition: relative;\n\tbox-sizing: border-box;\n\tword-break: normal;\n\tcursor: default;\n\tuser-select: none;\n\t-webkit-user-select: none;\n\tborder-radius: var(--mol_gap_round);\n\tbackground: transparent;\n\tcolor: inherit;\n}\n\n[mol_button]:where(:not(:disabled)):hover {\n\tz-index: var(--mol_layer_hover);\n}\n\n[mol_button]:focus {\n\toutline: none;\n\tz-index: var(--mol_layer_focus);\n}\n");
 })($ || ($ = {}));
 
 ;
@@ -9622,6 +9622,308 @@ var $;
 "use strict";
 
 ;
+	($.$mol_icon_share) = class $mol_icon_share extends ($.$mol_icon) {
+		path(){
+			return "M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z";
+		}
+	};
+
+
+;
+"use strict";
+
+;
+	($.$mol_icon_share_variant) = class $mol_icon_share_variant extends ($.$mol_icon) {
+		path(){
+			return "M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z";
+		}
+	};
+
+
+;
+"use strict";
+
+;
+	($.$mol_button_share) = class $mol_button_share extends ($.$mol_button_minor) {
+		Icon(){
+			const obj = new this.$.$mol_icon_share_variant();
+			return obj;
+		}
+		title(){
+			return "";
+		}
+		uri(){
+			return "";
+		}
+		capture(){
+			return null;
+		}
+		hint(){
+			return (this.$.$mol_locale.text("$mol_button_share_hint"));
+		}
+		sub(){
+			return [(this.Icon()), (this.title())];
+		}
+	};
+	($mol_mem(($.$mol_button_share.prototype), "Icon"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_jsx_prefix = '';
+    $.$mol_jsx_crumbs = '';
+    $.$mol_jsx_booked = null;
+    $.$mol_jsx_document = {
+        getElementById: () => null,
+        createElementNS: (space, name) => $mol_dom_context.document.createElementNS(space, name),
+        createDocumentFragment: () => $mol_dom_context.document.createDocumentFragment(),
+    };
+    $.$mol_jsx_frag = '';
+    function $mol_jsx(Elem, props, ...childNodes) {
+        const id = props && props.id || '';
+        const guid = id ? $.$mol_jsx_prefix ? $.$mol_jsx_prefix + '/' + id : id : $.$mol_jsx_prefix;
+        const crumbs_self = id ? $.$mol_jsx_crumbs.replace(/(\S+)/g, `$1_${id.replace(/\/.*/i, '')}`) : $.$mol_jsx_crumbs;
+        if (Elem && $.$mol_jsx_booked) {
+            if ($.$mol_jsx_booked.has(id)) {
+                $mol_fail(new Error(`JSX already has tag with id ${JSON.stringify(guid)}`));
+            }
+            else {
+                $.$mol_jsx_booked.add(id);
+            }
+        }
+        let node = guid ? $.$mol_jsx_document.getElementById(guid) : null;
+        if ($.$mol_jsx_prefix) {
+            const prefix_ext = $.$mol_jsx_prefix;
+            const booked_ext = $.$mol_jsx_booked;
+            const crumbs_ext = $.$mol_jsx_crumbs;
+            for (const field in props) {
+                const func = props[field];
+                if (typeof func !== 'function')
+                    continue;
+                const wrapper = function (...args) {
+                    const prefix = $.$mol_jsx_prefix;
+                    const booked = $.$mol_jsx_booked;
+                    const crumbs = $.$mol_jsx_crumbs;
+                    try {
+                        $.$mol_jsx_prefix = prefix_ext;
+                        $.$mol_jsx_booked = booked_ext;
+                        $.$mol_jsx_crumbs = crumbs_ext;
+                        return func.call(this, ...args);
+                    }
+                    finally {
+                        $.$mol_jsx_prefix = prefix;
+                        $.$mol_jsx_booked = booked;
+                        $.$mol_jsx_crumbs = crumbs;
+                    }
+                };
+                $mol_func_name_from(wrapper, func);
+                props[field] = wrapper;
+            }
+        }
+        if (typeof Elem !== 'string') {
+            if ('prototype' in Elem) {
+                const view = node && node[String(Elem)] || new Elem;
+                Object.assign(view, props);
+                view[Symbol.toStringTag] = guid;
+                view.childNodes = childNodes;
+                if (!view.ownerDocument)
+                    view.ownerDocument = $.$mol_jsx_document;
+                view.className = (crumbs_self ? crumbs_self + ' ' : '') + (Elem['name'] || Elem);
+                node = view.valueOf();
+                node[String(Elem)] = view;
+                return node;
+            }
+            else {
+                const prefix = $.$mol_jsx_prefix;
+                const booked = $.$mol_jsx_booked;
+                const crumbs = $.$mol_jsx_crumbs;
+                try {
+                    $.$mol_jsx_prefix = guid;
+                    $.$mol_jsx_booked = new Set;
+                    $.$mol_jsx_crumbs = (crumbs_self ? crumbs_self + ' ' : '') + (Elem['name'] || Elem);
+                    return Elem(props, ...childNodes);
+                }
+                finally {
+                    $.$mol_jsx_prefix = prefix;
+                    $.$mol_jsx_booked = booked;
+                    $.$mol_jsx_crumbs = crumbs;
+                }
+            }
+        }
+        if (!node) {
+            node = Elem
+                ? $.$mol_jsx_document.createElementNS(props?.xmlns ?? 'http://www.w3.org/1999/xhtml', Elem)
+                : $.$mol_jsx_document.createDocumentFragment();
+        }
+        $mol_dom_render_children(node, [].concat(...childNodes));
+        if (!Elem)
+            return node;
+        if (guid)
+            node.id = guid;
+        for (const key in props) {
+            if (key === 'id')
+                continue;
+            if (typeof props[key] === 'string') {
+                if (typeof node[key] === 'string')
+                    node[key] = props[key];
+                node.setAttribute(key, props[key]);
+            }
+            else if (props[key] &&
+                typeof props[key] === 'object' &&
+                Reflect.getPrototypeOf(props[key]) === Reflect.getPrototypeOf({})) {
+                if (typeof node[key] === 'object') {
+                    Object.assign(node[key], props[key]);
+                    continue;
+                }
+            }
+            else {
+                node[key] = props[key];
+            }
+        }
+        if ($.$mol_jsx_crumbs)
+            node.className = (props?.['class'] ? props['class'] + ' ' : '') + crumbs_self;
+        return node;
+    }
+    $.$mol_jsx = $mol_jsx;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_dom_serialize(node) {
+        const serializer = new $mol_dom_context.XMLSerializer;
+        return serializer.serializeToString(node);
+    }
+    $.$mol_dom_serialize = $mol_dom_serialize;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    async function $mol_dom_capture_svg(el) {
+        function restyle(el, styles) {
+            for (let i = 0; i < styles.length; ++i) {
+                const prop = styles[i];
+                el.style[prop] = styles[prop];
+            }
+        }
+        function clone(el) {
+            const re = el.cloneNode();
+            if (el instanceof HTMLImageElement && !/^(data|blob):/.test(el.src)) {
+                const canvas = $mol_jsx("canvas", { width: el.naturalWidth, height: el.naturalHeight });
+                const context = canvas.getContext('2d');
+                context.drawImage(el, 0, 0);
+                try {
+                    ;
+                    re.src = canvas.toDataURL();
+                }
+                catch (error) {
+                    $mol_fail_log(error);
+                }
+            }
+            if (re instanceof HTMLInputElement) {
+                re.setAttribute('value', el.value);
+                if (el.checked)
+                    re.setAttribute('checked', '');
+            }
+            if (re instanceof HTMLTextAreaElement) {
+                re.setAttribute('value', el.value);
+            }
+            const styles = $mol_dom_context.getComputedStyle(el);
+            restyle(re, styles);
+            const before = $mol_dom_context.getComputedStyle(el, ':before');
+            if (before.content[0] === '"') {
+                const kid = $mol_jsx("span", null, JSON.parse(before.content));
+                restyle(kid, before);
+                re.appendChild(kid);
+            }
+            for (const kid of el.childNodes) {
+                const dup = (kid.nodeType === kid.ELEMENT_NODE)
+                    ? clone(kid)
+                    : kid.cloneNode();
+                re.appendChild(dup);
+            }
+            const after = $mol_dom_context.getComputedStyle(el, ':after');
+            if (after.content[0] === '"') {
+                const kid = $mol_jsx("span", null, JSON.parse(after.content));
+                restyle(kid, after);
+                re.appendChild(kid);
+            }
+            return re;
+        }
+        const { width, height } = el.getBoundingClientRect();
+        return $mol_jsx("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: `0 0 ${width} ${height}`, width: String(width), height: String(height) },
+            $mol_jsx("foreignObject", { xmlns: "http://www.w3.org/2000/svg", width: String(width), height: String(height) }, clone(el)));
+    }
+    $.$mol_dom_capture_svg = $mol_dom_capture_svg;
+    async function $mol_dom_capture_image(el) {
+        const xml = $mol_dom_serialize(await $mol_dom_capture_svg(el));
+        const uri = 'data:image/svg+xml,' + encodeURIComponent(xml);
+        const image = $mol_jsx("img", { src: uri });
+        await wait_load(image);
+        return image;
+    }
+    $.$mol_dom_capture_image = $mol_dom_capture_image;
+    async function $mol_dom_capture_canvas(el) {
+        const image = await $mol_dom_capture_image(el);
+        const canvas = $mol_jsx("canvas", { width: image.width, height: image.height });
+        const context = canvas.getContext('2d');
+        context.drawImage(image, 0, 0);
+        return canvas;
+    }
+    $.$mol_dom_capture_canvas = $mol_dom_capture_canvas;
+    function wait_load(el) {
+        return new Promise((done, fail) => {
+            el.onload = () => done(el);
+            el.onerror = fail;
+        });
+    }
+})($ || ($ = {}));
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_button_share extends $.$mol_button_share {
+            capture() {
+                return this.$.$mol_dom_context.document.body;
+            }
+            uri() {
+                return this.$.$mol_state_arg.href();
+            }
+            async click() {
+                const title = this.title();
+                const url = this.uri() ?? undefined;
+                const files = [];
+                let el = this.capture();
+                if (el) {
+                    if (el instanceof $mol_view)
+                        el = el.dom_tree();
+                    const canvas = await $mol_dom_capture_canvas(el);
+                    const blob = await new Promise(done => canvas.toBlob(done));
+                    const file = new File([blob], title + '.png', { type: blob.type });
+                    files.push(file);
+                }
+                await this.$.$mol_dom_context.navigator.share({ title, files, url });
+            }
+        }
+        $$.$mol_button_share = $mol_button_share;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
 	($.$mol_page) = class $mol_page extends ($.$mol_view) {
 		tabindex(){
 			return -1;
@@ -10357,7 +10659,7 @@ var $;
 "use strict";
 
 ;
-	($.$hyoo_play) = class $hyoo_play extends ($.$mol_drop) {
+	($.$hd_player) = class $hd_player extends ($.$mol_drop) {
 		cover(){
 			return "";
 		}
@@ -10367,7 +10669,7 @@ var $;
 		}
 		Movie_search(){
 			const obj = new this.$.$mol_search();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$hyoo_play_Movie_search_hint")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$hd_player_Movie_search_hint")));
 			(obj.query) = (next) => ((this.movie_search(next)));
 			return obj;
 		}
@@ -10377,7 +10679,7 @@ var $;
 		}
 		Open(){
 			const obj = new this.$.$mol_button_open();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$hyoo_play_Open_hint")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$hd_player_Open_hint")));
 			(obj.files) = (next) => ((this.files_add(next)));
 			return obj;
 		}
@@ -10475,7 +10777,7 @@ var $;
 		}
 		Sources(){
 			const obj = new this.$.$mol_link_source();
-			(obj.uri) = () => ("https://github.com/hyoo-ru/play.hyoo.ru");
+			(obj.uri) = () => ("https://github.com/hd4ru/player");
 			return obj;
 		}
 		Donate(){
@@ -10488,15 +10790,20 @@ var $;
 			(obj.uri) = () => ("https://t.me/hd4ru/2");
 			return obj;
 		}
+		Share(){
+			const obj = new this.$.$mol_button_share();
+			return obj;
+		}
 		Queue(){
 			const obj = new this.$.$mol_page();
-			(obj.title) = () => ((this.$.$mol_locale.text("$hyoo_play_Queue_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$hd_player_Queue_title")));
 			(obj.head) = () => ([(this.Movie_search()), (this.Open())]);
 			(obj.body) = () => ((this.queue_body()));
 			(obj.foot) = () => ([
 				(this.Sources()), 
 				(this.Donate()), 
-				(this.Support())
+				(this.Support()), 
+				(this.Share())
 			]);
 			return obj;
 		}
@@ -10535,7 +10842,7 @@ var $;
 		}
 		Movie_bookmark(id){
 			const obj = new this.$.$mol_check_icon();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$hyoo_play_Movie_bookmark_hint")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$hd_player_Movie_bookmark_hint")));
 			(obj.checked) = (next) => ((this.movie_bookmark(id, next)));
 			(obj.Icon) = () => ((this.Movie_bookmark_icon(id)));
 			return obj;
@@ -10636,7 +10943,7 @@ var $;
 		}
 		Members_block(){
 			const obj = new this.$.$mol_expander();
-			(obj.title) = () => ((this.$.$mol_locale.text("$hyoo_play_Members_block_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$hd_player_Members_block_title")));
 			(obj.content) = () => ([(this.Members())]);
 			return obj;
 		}
@@ -10675,7 +10982,7 @@ var $;
 		}
 		Similars_block(){
 			const obj = new this.$.$mol_expander();
-			(obj.title) = () => ((this.$.$mol_locale.text("$hyoo_play_Similars_block_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$hd_player_Similars_block_title")));
 			(obj.content) = () => ([(this.Similars())]);
 			return obj;
 		}
@@ -10719,7 +11026,7 @@ var $;
 			return [];
 		}
 		player_name_none(){
-			return (this.$.$mol_locale.text("$hyoo_play_player_name_none"));
+			return (this.$.$mol_locale.text("$hd_player_player_name_none"));
 		}
 		player_name(id){
 			return (this.player_name_none());
@@ -10738,7 +11045,7 @@ var $;
 		}
 		Source(id){
 			const obj = new this.$.$mol_page();
-			(obj.title) = () => ((this.$.$mol_locale.text("$hyoo_play_Source_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$hd_player_Source_title")));
 			(obj.body) = () => ([(this.Player_id())]);
 			(obj.foot) = () => ([(this.Thanks())]);
 			return obj;
@@ -10774,58 +11081,123 @@ var $;
 			return (this.Book());
 		}
 	};
-	($mol_mem(($.$hyoo_play.prototype), "movie_search"));
-	($mol_mem(($.$hyoo_play.prototype), "Movie_search"));
-	($mol_mem(($.$hyoo_play.prototype), "files_add"));
-	($mol_mem(($.$hyoo_play.prototype), "Open"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_title"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_poster"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_genres"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie"));
-	($mol_mem_key(($.$hyoo_play.prototype), "file_play"));
-	($mol_mem_key(($.$hyoo_play.prototype), "File_play"));
-	($mol_mem_key(($.$hyoo_play.prototype), "file_drop"));
-	($mol_mem_key(($.$hyoo_play.prototype), "File_drop_icon"));
-	($mol_mem_key(($.$hyoo_play.prototype), "File_drop"));
-	($mol_mem_key(($.$hyoo_play.prototype), "File"));
-	($mol_mem(($.$hyoo_play.prototype), "Queue_files"));
-	($mol_mem(($.$hyoo_play.prototype), "Sources"));
-	($mol_mem(($.$hyoo_play.prototype), "Donate"));
-	($mol_mem(($.$hyoo_play.prototype), "Support"));
-	($mol_mem(($.$hyoo_play.prototype), "Queue"));
-	($mol_mem(($.$hyoo_play.prototype), "Player"));
-	($mol_mem_key(($.$hyoo_play.prototype), "movie_bookmark"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_bookmark_icon"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_bookmark"));
-	($mol_mem(($.$hyoo_play.prototype), "Moview_close_icon"));
-	($mol_mem(($.$hyoo_play.prototype), "Movie_close"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Player_ext"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_descr"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_kp"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_imdb"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_links"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Member_name"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Member_photo"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Member_role"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Member"));
-	($mol_mem(($.$hyoo_play.prototype), "Members"));
-	($mol_mem(($.$hyoo_play.prototype), "Members_block"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Similar_title"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Similar_poster"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Similar"));
-	($mol_mem(($.$hyoo_play.prototype), "Similars"));
-	($mol_mem(($.$hyoo_play.prototype), "Similars_block"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_info"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Movie_page"));
-	($mol_mem(($.$hyoo_play.prototype), "player_id"));
-	($mol_mem(($.$hyoo_play.prototype), "Player_id"));
-	($mol_mem(($.$hyoo_play.prototype), "Thanks"));
-	($mol_mem_key(($.$hyoo_play.prototype), "Source"));
-	($mol_mem(($.$hyoo_play.prototype), "Book"));
-	($mol_mem(($.$hyoo_play.prototype), "playlist"));
-	($mol_mem(($.$hyoo_play.prototype), "files"));
-	($mol_mem(($.$hyoo_play.prototype), "file_current"));
+	($mol_mem(($.$hd_player.prototype), "movie_search"));
+	($mol_mem(($.$hd_player.prototype), "Movie_search"));
+	($mol_mem(($.$hd_player.prototype), "files_add"));
+	($mol_mem(($.$hd_player.prototype), "Open"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_title"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_poster"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_genres"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie"));
+	($mol_mem_key(($.$hd_player.prototype), "file_play"));
+	($mol_mem_key(($.$hd_player.prototype), "File_play"));
+	($mol_mem_key(($.$hd_player.prototype), "file_drop"));
+	($mol_mem_key(($.$hd_player.prototype), "File_drop_icon"));
+	($mol_mem_key(($.$hd_player.prototype), "File_drop"));
+	($mol_mem_key(($.$hd_player.prototype), "File"));
+	($mol_mem(($.$hd_player.prototype), "Queue_files"));
+	($mol_mem(($.$hd_player.prototype), "Sources"));
+	($mol_mem(($.$hd_player.prototype), "Donate"));
+	($mol_mem(($.$hd_player.prototype), "Support"));
+	($mol_mem(($.$hd_player.prototype), "Share"));
+	($mol_mem(($.$hd_player.prototype), "Queue"));
+	($mol_mem(($.$hd_player.prototype), "Player"));
+	($mol_mem_key(($.$hd_player.prototype), "movie_bookmark"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_bookmark_icon"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_bookmark"));
+	($mol_mem(($.$hd_player.prototype), "Moview_close_icon"));
+	($mol_mem(($.$hd_player.prototype), "Movie_close"));
+	($mol_mem_key(($.$hd_player.prototype), "Player_ext"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_descr"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_kp"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_imdb"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_links"));
+	($mol_mem_key(($.$hd_player.prototype), "Member_name"));
+	($mol_mem_key(($.$hd_player.prototype), "Member_photo"));
+	($mol_mem_key(($.$hd_player.prototype), "Member_role"));
+	($mol_mem_key(($.$hd_player.prototype), "Member"));
+	($mol_mem(($.$hd_player.prototype), "Members"));
+	($mol_mem(($.$hd_player.prototype), "Members_block"));
+	($mol_mem_key(($.$hd_player.prototype), "Similar_title"));
+	($mol_mem_key(($.$hd_player.prototype), "Similar_poster"));
+	($mol_mem_key(($.$hd_player.prototype), "Similar"));
+	($mol_mem(($.$hd_player.prototype), "Similars"));
+	($mol_mem(($.$hd_player.prototype), "Similars_block"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_info"));
+	($mol_mem_key(($.$hd_player.prototype), "Movie_page"));
+	($mol_mem(($.$hd_player.prototype), "player_id"));
+	($mol_mem(($.$hd_player.prototype), "Player_id"));
+	($mol_mem(($.$hd_player.prototype), "Thanks"));
+	($mol_mem_key(($.$hd_player.prototype), "Source"));
+	($mol_mem(($.$hd_player.prototype), "Book"));
+	($mol_mem(($.$hd_player.prototype), "playlist"));
+	($mol_mem(($.$hd_player.prototype), "files"));
+	($mol_mem(($.$hd_player.prototype), "file_current"));
 
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { begin, end, from, line_end, decimal_only, char_any, repeat, repeat_greedy } = $mol_regexp;
+    $.$hd_player_m3u_prolog = from([
+        '#EXTM3U',
+        repeat_greedy(line_end),
+    ]);
+    $.$hd_player_m3u_entry = from([
+        '#EXTINF:',
+        { duration: repeat(decimal_only) },
+        ',',
+        { title: repeat(char_any) },
+        line_end,
+        { uri: repeat(char_any) },
+        repeat_greedy(line_end, 1),
+    ]);
+    $.$hd_player_m3u = from([
+        begin,
+        $.$hd_player_m3u_prolog,
+        repeat_greedy($.$hd_player_m3u_entry),
+        end,
+    ]);
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_guard_defined(value) {
+        return value !== null && value !== undefined;
+    }
+    $.$mol_guard_defined = $mol_guard_defined;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_compare_text(item = (item) => String(item)) {
+        return (a, b) => {
+            const text_a = item(a).trim().toLowerCase();
+            const text_b = item(b).trim().toLowerCase();
+            const parts_a = text_a.split(/(\d+)/);
+            const parts_b = text_b.split(/(\d+)/);
+            const count = Math.max(parts_a.length, parts_b.length);
+            for (let i = 0; i < count; ++i) {
+                const part_a = parts_a[i] || '';
+                const part_b = parts_b[i] || '';
+                const diff = Number(part_a) - Number(part_b);
+                if (diff)
+                    return diff;
+                if (part_a > part_b)
+                    return 1;
+                if (part_a < part_b)
+                    return -1;
+            }
+            return parts_a.length - parts_b.length;
+        };
+    }
+    $.$mol_compare_text = $mol_compare_text;
+})($ || ($ = {}));
 
 ;
 "use strict";
@@ -11055,35 +11427,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    function $mol_compare_text(item = (item) => String(item)) {
-        return (a, b) => {
-            const text_a = item(a).trim().toLowerCase();
-            const text_b = item(b).trim().toLowerCase();
-            const parts_a = text_a.split(/(\d+)/);
-            const parts_b = text_b.split(/(\d+)/);
-            const count = Math.max(parts_a.length, parts_b.length);
-            for (let i = 0; i < count; ++i) {
-                const part_a = parts_a[i] || '';
-                const part_b = parts_b[i] || '';
-                const diff = Number(part_a) - Number(part_b);
-                if (diff)
-                    return diff;
-                if (part_a > part_b)
-                    return 1;
-                if (part_a < part_b)
-                    return -1;
-            }
-            return parts_a.length - parts_b.length;
-        };
-    }
-    $.$mol_compare_text = $mol_compare_text;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$hyoo_play_api_search_movie_data = $mol_data_record({
+    $.$hd_player_api_search_movie_data = $mol_data_record({
         id: $mol_data_integer,
         year: $mol_data_pipe($mol_data_string, Number),
         poster: $mol_data_string,
@@ -11097,17 +11441,17 @@ var $;
             }))
         })
     });
-    $.$hyoo_play_api_movie_data_short = $mol_data_record({
+    $.$hd_player_api_movie_data_short = $mol_data_record({
         name_original: $mol_data_nullable($mol_data_string),
         name_en: $mol_data_nullable($mol_data_string),
         name_ru: $mol_data_nullable($mol_data_string),
         poster_url_preview: $mol_data_string,
     });
-    $.$hyoo_play_api_similar_data = $mol_data_record({
-        ...$.$hyoo_play_api_movie_data_short.config,
+    $.$hd_player_api_similar_data = $mol_data_record({
+        ...$.$hd_player_api_movie_data_short.config,
         film_id: $mol_data_integer,
     });
-    $.$hyoo_play_api_member = $mol_data_record({
+    $.$hd_player_api_member = $mol_data_record({
         description: $mol_data_nullable($mol_data_string),
         name_en: $mol_data_string,
         name_ru: $mol_data_string,
@@ -11116,8 +11460,8 @@ var $;
         profession_text: $mol_data_string,
         staff_id: $mol_data_integer,
     });
-    $.$hyoo_play_api_movie_data_full = $mol_data_record({
-        ...$.$hyoo_play_api_movie_data_short.config,
+    $.$hd_player_api_movie_data_full = $mol_data_record({
+        ...$.$hd_player_api_movie_data_short.config,
         imdb_id: $mol_data_nullable($mol_data_string),
         year: $mol_data_integer,
         description: $mol_data_nullable($mol_data_string),
@@ -11125,20 +11469,21 @@ var $;
         genres: $mol_data_array($mol_data_record({
             genre: $mol_data_string,
         })),
-        similars: $mol_data_array($.$hyoo_play_api_similar_data),
-        staff: $mol_data_array($.$hyoo_play_api_member),
+        sequels_and_prequels: $mol_data_array($.$hd_player_api_similar_data),
+        similars: $mol_data_array($.$hd_player_api_similar_data),
+        staff: $mol_data_array($.$hd_player_api_member),
     });
-    $.$hyoo_play_api_player_data = $mol_data_record({
+    $.$hd_player_api_player_data = $mol_data_record({
         name: $mol_data_string,
         iframe: $mol_data_string,
     });
-    class $hyoo_play_api extends $mol_object {
+    class $hd_player_api extends $mol_object {
         static search(query) {
             if (!query.trim())
                 return new Map;
             const resp = this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/search/${encodeURIComponent(query)}`)
-                .map($.$hyoo_play_api_search_movie_data);
-            return new Map(resp.map(data => [data.id, $hyoo_play_api_movie.make({
+                .map($.$hd_player_api_search_movie_data);
+            return new Map(resp.map(data => [data.id, $hd_player_api_movie.make({
                     id: $mol_const(data.id),
                     title: $mol_const(data.raw_data.nameRu || data.raw_data.nameEn || data.raw_data.nameOriginal),
                     poster: $mol_const(data.poster),
@@ -11150,9 +11495,9 @@ var $;
     }
     __decorate([
         $mol_mem_key
-    ], $hyoo_play_api, "search", null);
-    $.$hyoo_play_api = $hyoo_play_api;
-    class $hyoo_play_api_movie extends $mol_object {
+    ], $hd_player_api, "search", null);
+    $.$hd_player_api = $hd_player_api;
+    class $hd_player_api_movie extends $mol_object {
         id() {
             return 0;
         }
@@ -11163,7 +11508,7 @@ var $;
             return this.data().imdb_id && `https://imdb.com/title/${this.data().imdb_id}/`;
         }
         data() {
-            return $.$hyoo_play_api_movie_data_full(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/kp_info2/${this.id()}`));
+            return $.$hd_player_api_movie_data_full(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/kp_info2/${this.id()}`));
         }
         title() {
             return this.data().name_ru || this.data().name_en || this.data().name_original || '???';
@@ -11184,7 +11529,8 @@ var $;
             return this.data().genres.map(g => g.genre);
         }
         similars() {
-            return new Map(this.data().similars.map(sim => [sim.film_id, $hyoo_play_api_movie.make({
+            return new Map([...this.data().sequels_and_prequels, ...this.data().similars]
+                .map(sim => [sim.film_id, $hd_player_api_movie.make({
                     id: $mol_const(sim.film_id),
                     title: $mol_const(sim.name_ru || sim.name_en || sim.name_original || '???'),
                     poster: $mol_const(sim.poster_url_preview),
@@ -11220,27 +11566,27 @@ var $;
                     type: 'movie',
                     kinopoisk: String(this.id()),
                 }).toString(),
-            }).map($.$hyoo_play_api_player_data).sort($mol_compare_text(data => data.name));
-            return new Map(resp.map(data => [data.name, $hyoo_play_api_player.make({ data: $mol_const(data) })]));
+            }).map($.$hd_player_api_player_data).sort($mol_compare_text(data => data.name));
+            return new Map(resp.map(data => [data.name, $hd_player_api_player.make({ data: $mol_const(data) })]));
         }
     }
     __decorate([
         $mol_mem
-    ], $hyoo_play_api_movie.prototype, "data", null);
+    ], $hd_player_api_movie.prototype, "data", null);
     __decorate([
         $mol_mem
-    ], $hyoo_play_api_movie.prototype, "genres", null);
+    ], $hd_player_api_movie.prototype, "genres", null);
     __decorate([
         $mol_mem
-    ], $hyoo_play_api_movie.prototype, "similars", null);
+    ], $hd_player_api_movie.prototype, "similars", null);
     __decorate([
         $mol_mem
-    ], $hyoo_play_api_movie.prototype, "members", null);
+    ], $hd_player_api_movie.prototype, "members", null);
     __decorate([
         $mol_mem
-    ], $hyoo_play_api_movie.prototype, "players", null);
-    $.$hyoo_play_api_movie = $hyoo_play_api_movie;
-    class $hyoo_play_api_player extends $mol_object {
+    ], $hd_player_api_movie.prototype, "players", null);
+    $.$hd_player_api_movie = $hd_player_api_movie;
+    class $hd_player_api_player extends $mol_object {
         data() {
             return null;
         }
@@ -11251,43 +11597,7 @@ var $;
             return this.data().iframe;
         }
     }
-    $.$hyoo_play_api_player = $hyoo_play_api_player;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    const { begin, end, from, line_end, decimal_only, char_any, repeat, repeat_greedy } = $mol_regexp;
-    $.$hyoo_play_m3u_prolog = from([
-        '#EXTM3U',
-        repeat_greedy(line_end),
-    ]);
-    $.$hyoo_play_m3u_entry = from([
-        '#EXTINF:',
-        { duration: repeat(decimal_only) },
-        ',',
-        { title: repeat(char_any) },
-        line_end,
-        { uri: repeat(char_any) },
-        repeat_greedy(line_end, 1),
-    ]);
-    $.$hyoo_play_m3u = from([
-        begin,
-        $.$hyoo_play_m3u_prolog,
-        repeat_greedy($.$hyoo_play_m3u_entry),
-        end,
-    ]);
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_guard_defined(value) {
-        return value !== null && value !== undefined;
-    }
-    $.$mol_guard_defined = $mol_guard_defined;
+    $.$hd_player_api_player = $hd_player_api_player;
 })($ || ($ = {}));
 
 ;
@@ -11405,6 +11715,13 @@ var $;
 
 ;
 "use strict";
+var $;
+(function ($) {
+    $mol_style_attach("hd/player/player.view.css", "[hd_player] {\n\tbackground-size: cover;\n\tbackground-position: center;;\n}\n\n[hd_player_queue_body_content] {\n\tgap: var(--mol_gap_block);\n}\n\n[hd_player_queue],\n[hd_player_chat_page] {\n\tflex: 0 0 25rem;\n}\n\n[hd_player_file] {\n\talign-items: flex-start;\n}\n\n[hd_player_file_play][disabled=\"true\"] {\n\tcolor: var(--mol_theme_current);\n}\n\n[hd_player_file_play] {\n\tflex: 1 1 auto;\n}\n\n\n[hd_player_player] {\n\tflex: 1 0 calc( 100% - 25rem );\n\tobject-position: top;\n}\n\n[hd_player_movie_search] {\n\talign-self: stretch;\n\tjustify-self: flex-start;\n}\n\n[hd_player_movie] {\n\tflex-direction: column;\n\tgap: 0;\n\ttext-align: center;\n}\n\n[hd_player_movie_title] {\n\tflex: 1 1 auto;\n\tpadding: var(--mol_gap_text);\n\tjustify-content: center;\n}\n\n[hd_player_movie_poster] {\n\twidth: auto;\n\tmax-height: 50vh;\n\talign-self: center;\n\taspect-ratio: .67;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n[hd_player_movie][mol_link_current] [hd_player_movie_poster] {\n\tbox-shadow: 0 0 0 2px var(--mol_theme_current), 0 0 1rem black;\n}\n\n[hd_player_source] {\n\tflex: 0 0 10rem;\n}\n\n[hd_player_movie_page] {\n\tflex: 1 0 max( 50rem, calc( 100% - 35rem ) );\n}\n\n[hd_player_movie_page_head] {\n\tflex-wrap: nowrap;\n\talign-items: flex-start;\n}\n\n[hd_player_player_ext] {\n\tjustify-self: stretch;\n}\n\n[hd_player_player_id] {\n\tflex-direction: column;\n}\n\n[hd_player_player_id_option] {\n\ttext-transform: capitalize;\n}\n\n[hd_player_movie_genres] {\n\tcolor: var(--mol_theme_shade);\n\ttext-align: center;\n}\n\n[hd_player_movie_info] {\n\tpadding: var(--mol_gap_block);\n}\n\n[hd_player_similars] {\n\talign-items: flex-end;\n\tpadding: 0;\n}\n\n[hd_player_similar] {\n\tflex-direction: column;\n\twidth: 10rem;\n\ttext-align: center;\n\tpadding: var(--mol_gap_block);\n}\n\n[hd_player_similar_title] {\n\tjustify-content: center;\n}\n\n[hd_player_similar_poster] {\n\twidth: auto;\n\taspect-ratio: .67;\n\tmax-height: 50vh;\n    align-self: center;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n\n[hd_player_members] {\n\tpadding: 0;\n}\n\n[hd_player_member] {\n\tflex-direction: column;\n\twidth: 10.5rem;\n\ttext-align: center;\n}\n\n[hd_player_member_name] {\n\tjustify-content: center;\n    height: 3rem;\n    align-items: flex-end;\n}\n\n[hd_player_member_role] {\n\tjustify-content: center;\n\tcolor: var(--mol_theme_shade);\n}\n\n[hd_player_member_photo] {\n\twidth: 10rem;\n\taspect-ratio: .67;\n\tmax-height: 50vh;\n    align-self: center;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n\n");
+})($ || ($ = {}));
+
+;
+"use strict";
 
 ;
 "use strict";
@@ -11412,8 +11729,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        $hyoo_play_api;
-        class $hyoo_play extends $.$hyoo_play {
+        class $hd_player extends $.$hd_player {
             playlist(next) {
                 return this.$.$mol_state_arg.value('playlist', next) ?? super.playlist();
             }
@@ -11422,7 +11738,7 @@ var $;
                 if (!uri)
                     return [];
                 const text = this.$.$mol_fetch.text(uri);
-                const files = [...text.matchAll($hyoo_play_m3u_entry)]
+                const files = [...text.matchAll($hd_player_m3u_entry)]
                     .map(cap => cap.groups)
                     .filter($mol_guard_defined)
                     .map(({ title, uri }) => ({ title, uri }));
@@ -11506,13 +11822,13 @@ var $;
                 const current = this.movie_current_id();
                 if (!current)
                     return null;
-                return $hyoo_play_api_movie.make({ id: $mol_const(current) });
+                return $hd_player_api_movie.make({ id: $mol_const(current) });
             }
             movies_found() {
                 if (!this.movie_search())
-                    return new Map(this.bookmarks().toReversed().map(id => [id, this.$.$hyoo_play_api_movie.make({ id: $mol_const(id) })]));
+                    return new Map(this.bookmarks().toReversed().map(id => [id, this.$.$hd_player_api_movie.make({ id: $mol_const(id) })]));
                 this.$.$mol_wait_timeout(500);
-                return this.$.$hyoo_play_api.search(this.movie_search());
+                return this.$.$hd_player_api.search(this.movie_search());
             }
             queue_movies() {
                 return [...this.movies().keys()].map(id => this.Movie(id));
@@ -11667,103 +11983,96 @@ var $;
         }
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "playlist", null);
+        ], $hd_player.prototype, "playlist", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "playlist_files", null);
+        ], $hd_player.prototype, "playlist_files", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "files", null);
+        ], $hd_player.prototype, "files", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "queue_files", null);
+        ], $hd_player.prototype, "queue_files", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "player_uri", null);
+        ], $hd_player.prototype, "player_uri", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "player_id", null);
+        ], $hd_player.prototype, "player_id", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "player_options", null);
+        ], $hd_player.prototype, "player_options", null);
         __decorate([
             $mol_mem_key
-        ], $hyoo_play.prototype, "player_name", null);
+        ], $hd_player.prototype, "player_name", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "movies", null);
+        ], $hd_player.prototype, "movies", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "movie_current", null);
+        ], $hd_player.prototype, "movie_current", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "movies_found", null);
+        ], $hd_player.prototype, "movies_found", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "queue_movies", null);
+        ], $hd_player.prototype, "queue_movies", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "queue_items", null);
+        ], $hd_player.prototype, "queue_items", null);
         __decorate([
             $mol_mem_key
-        ], $hyoo_play.prototype, "movie_title", null);
+        ], $hd_player.prototype, "movie_title", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "sidebars", null);
+        ], $hd_player.prototype, "sidebars", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "pages", null);
+        ], $hd_player.prototype, "pages", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "play_title", null);
+        ], $hd_player.prototype, "play_title", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "play_uri", null);
+        ], $hd_player.prototype, "play_uri", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "auto_switch", null);
+        ], $hd_player.prototype, "auto_switch", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "handle_files", null);
+        ], $hd_player.prototype, "handle_files", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "handle_actions", null);
+        ], $hd_player.prototype, "handle_actions", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "bookmarks", null);
+        ], $hd_player.prototype, "bookmarks", null);
         __decorate([
             $mol_mem_key
-        ], $hyoo_play.prototype, "movie_bookmark", null);
+        ], $hd_player.prototype, "movie_bookmark", null);
         __decorate([
             $mol_mem_key
-        ], $hyoo_play.prototype, "movie_content", null);
+        ], $hd_player.prototype, "movie_content", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "movie_uri_kp", null);
+        ], $hd_player.prototype, "movie_uri_kp", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "movie_uri_imdb", null);
+        ], $hd_player.prototype, "movie_uri_imdb", null);
         __decorate([
             $mol_mem_key
-        ], $hyoo_play.prototype, "movie_descr", null);
+        ], $hd_player.prototype, "movie_descr", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "cover", null);
+        ], $hd_player.prototype, "cover", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "similars", null);
+        ], $hd_player.prototype, "similars", null);
         __decorate([
             $mol_mem
-        ], $hyoo_play.prototype, "members", null);
-        $$.$hyoo_play = $hyoo_play;
+        ], $hd_player.prototype, "members", null);
+        $$.$hd_player = $hd_player;
     })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_style_attach("hyoo/play/play.view.css", "[hyoo_play] {\n\tbackground-size: cover;\n\tbackground-position: center;;\n}\n\n[hyoo_play_queue_body_content] {\n\tgap: var(--mol_gap_block);\n}\n\n[hyoo_play_queue],\n[hyoo_play_chat_page] {\n\tflex: 0 0 25rem;\n}\n\n[hyoo_play_file] {\n\talign-items: flex-start;\n}\n\n[hyoo_play_file_play][disabled=\"true\"] {\n\tcolor: var(--mol_theme_current);\n}\n\n[hyoo_play_file_play] {\n\tflex: 1 1 auto;\n}\n\n\n[hyoo_play_player] {\n\tflex: 1 0 calc( 100% - 25rem );\n\tobject-position: top;\n}\n\n[hyoo_play_movie_search] {\n\talign-self: stretch;\n\tjustify-self: flex-start;\n}\n\n[hyoo_play_movie] {\n\tflex-direction: column;\n\tgap: 0;\n\ttext-align: center;\n}\n\n[hyoo_play_movie_title] {\n\tflex: 1 1 auto;\n\tpadding: var(--mol_gap_text);\n\tjustify-content: center;\n}\n\n[hyoo_play_movie_poster] {\n\twidth: auto;\n\tmax-height: 50vh;\n\talign-self: center;\n\taspect-ratio: .67;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n[hyoo_play_movie][mol_link_current] [hyoo_play_movie_poster] {\n\tbox-shadow: 0 0 0 2px var(--mol_theme_current), 0 0 1rem black;\n}\n\n[hyoo_play_source] {\n\tflex: 0 0 10rem;\n}\n\n[hyoo_play_movie_page] {\n\tflex: 1 0 max( 50rem, calc( 100% - 35rem ) );\n}\n\n[hyoo_play_movie_page_head] {\n\tflex-wrap: nowrap;\n\talign-items: flex-start;\n}\n\n[hyoo_play_player_ext] {\n\tjustify-self: stretch;\n}\n\n[hyoo_play_player_id] {\n\tflex-direction: column;\n}\n\n[hyoo_play_player_id_option] {\n\ttext-transform: capitalize;\n}\n\n[hyoo_play_movie_genres] {\n\tcolor: var(--mol_theme_shade);\n\ttext-align: center;\n}\n\n[hyoo_play_movie_info] {\n\tpadding: var(--mol_gap_block);\n}\n\n[hyoo_play_similars] {\n\talign-items: flex-end;\n\tpadding: 0;\n}\n\n[hyoo_play_similar] {\n\tflex-direction: column;\n\twidth: 10rem;\n\ttext-align: center;\n\tpadding: var(--mol_gap_block);\n}\n\n[hyoo_play_similar_title] {\n\tjustify-content: center;\n}\n\n[hyoo_play_similar_poster] {\n\twidth: auto;\n\taspect-ratio: .67;\n\tmax-height: 50vh;\n    align-self: center;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n\n[hyoo_play_members] {\n\tpadding: 0;\n}\n\n[hyoo_play_member] {\n\tflex-direction: column;\n\twidth: 10.5rem;\n\ttext-align: center;\n}\n\n[hyoo_play_member_name] {\n\tjustify-content: center;\n    height: 3rem;\n    align-items: flex-end;\n}\n\n[hyoo_play_member_role] {\n\tjustify-content: center;\n\tcolor: var(--mol_theme_shade);\n}\n\n[hyoo_play_member_photo] {\n\twidth: 10rem;\n\taspect-ratio: .67;\n\tmax-height: 50vh;\n    align-self: center;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n\n");
 })($ || ($ = {}));
 
 
