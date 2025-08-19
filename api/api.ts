@@ -46,6 +46,7 @@ namespace $ {
 		genres: $mol_data_array( $mol_data_record({
 			genre: $mol_data_string,
 		}) ),
+		sequels_and_prequels: $mol_data_array( $hd_player_api_similar_data ),
 		similars: $mol_data_array( $hd_player_api_similar_data ),
 		staff: $mol_data_array( $hd_player_api_member ),
 	})
@@ -129,7 +130,8 @@ namespace $ {
 		@ $mol_mem
 		similars() {
 			return new Map(
-				this.data().similars.map( sim => [ sim.film_id, $hd_player_api_movie.make({
+				[ ... this.data().sequels_and_prequels, ... this.data().similars ]
+				.map( sim => [ sim.film_id, $hd_player_api_movie.make({
 					id: $mol_const( sim.film_id ),
 					title: $mol_const( sim.name_ru || sim.name_en || sim.name_original || '???' ),
 					poster: $mol_const( sim.poster_url_preview ),
