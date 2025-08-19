@@ -3,7 +3,7 @@ namespace $.$$ {
 	declare var launchQueue: {
 		setConsumer: ( consumer: ( params: { files: any[] } )=> void )=> void
 	}
-	$hd_player_api
+	
 	type Entry = {
 		title: string
 		uri: string
