@@ -1,4 +1,4 @@
-name: $h_player
+name: $hd_player
 
 on:
   workflow_dispatch:
