@@ -218,6 +218,7 @@ namespace $.$$ {
 		@ $mol_mem
 		pages() {
 			return [
+				this.Space(),
 				this.Queue(),
 				... this.file_current() ? [ this.Player() ] : [
 					... this.movie_current_id() ? [ this.Movie_page( this.movie_current_id() ) ] : [],
@@ -349,7 +350,7 @@ namespace $.$$ {
 		@ $mol_mem
 		cover() {
 			const poster = this.movie_current()?.poster() || 'https://habrastorage.org/webt/6l/sw/vg/6lswvg5cbp8-_-xuhg-aeuehsb4.jpeg'
-			return `linear-gradient( #000000DF ), url( ${JSON.stringify( poster )} )`
+			return `linear-gradient( var(--mol_theme_spirit) ), url( ${JSON.stringify( poster )} )`
 		}
 		
 		@ $mol_mem

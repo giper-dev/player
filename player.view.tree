@@ -2,14 +2,14 @@ $hd_player $mol_drop
 	playlist? \
 	files?next /
 	file_current?val null
-	attr *
-		^
-		mol_theme \$mol_theme_dark
 	style *
 		^
 		backgroundImage <= cover \
 	Sub <= Book $mol_book2
+		plugins /
+			<= Theme $mol_theme_auto
 		pages <= pages /
+			<= Space $hd_space_frame
 			<= Queue $mol_page
 				title @ \Hyper Player
 				head /
