@@ -9,7 +9,7 @@ namespace $.$$ {
 		uri: string
 	}
 	
-	export class $hd_player extends $.$hd_player {
+	export class $gd_player extends $.$gd_player {
 		
 		@ $mol_mem
 		playlist( next?: string | null ) {
@@ -24,7 +24,7 @@ namespace $.$$ {
 			
 			const text = this.$.$mol_fetch.text( uri )
 			
-			const files = [ ... text.matchAll( $hd_player_m3u_entry ) ]
+			const files = [ ... text.matchAll( $gd_player_m3u_entry ) ]
 				.map( cap => cap.groups )
 				.filter( $mol_guard_defined )
 				.map( ({ title, uri })=> ({ title, uri }) )
@@ -168,19 +168,19 @@ namespace $.$$ {
 		movie_current() {
 			const current = this.movie_current_id()
 			if( !current ) return null
-			return $hd_player_api_movie.make({ id: $mol_const( current ) })
+			return $gd_player_api_movie.make({ id: $mol_const( current ) })
 		}
 		
 		@ $mol_mem
 		movies_found() {
 			
-			if( !this.movie_search() ) return new Map< number, $hd_player_api_movie >(
-				this.bookmarks().toReversed().map( id => [ id, this.$.$hd_player_api_movie.make({ id: $mol_const( id ) }) ] )
+			if( !this.movie_search() ) return new Map< number, $gd_player_api_movie >(
+				this.bookmarks().toReversed().map( id => [ id, this.$.$gd_player_api_movie.make({ id: $mol_const( id ) }) ] )
 			)
 			
 			this.$.$mol_wait_timeout( 500 )
 			
-			return this.$.$hd_player_api.search( this.movie_search() )
+			return this.$.$gd_player_api.search( this.movie_search() )
 			
 		}
 		

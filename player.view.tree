@@ -1,4 +1,4 @@
-$hd_player $mol_drop
+$gd_player $mol_drop
 	playlist? \
 	files?next /
 	file_current?val null
@@ -9,7 +9,7 @@ $hd_player $mol_drop
 		plugins /
 			<= Theme $mol_theme_auto
 		pages <= pages /
-			<= Space $hd_space_frame
+			<= Space $gd_web_frame
 			<= Queue $mol_page
 				title @ \Hyper Player
 				head /
@@ -53,11 +53,11 @@ $hd_player $mol_drop
 												<= File_drop_icon* $mol_icon_close
 				foot /
 					<= Sources $mol_link_source
-						uri \https://github.com/hd4ru/player
+						uri \https://github.com/giper-dev/player
 					<= Donate $mol_link_donate
 						uri \https://boosty.to/hyoo
 					<= Support $mol_link_support
-						uri \https://t.me/hd4ru/2
+						uri \https://t.me/giper-dev/2
 					<= Share $mol_button_share
 			<= Player $mol_video_player
 				title <= play_title \

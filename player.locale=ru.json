@@ -1,15 +1,15 @@
 {
-	"$hd_player_Queue_title": "Гипер Плеер",
-	"$hd_player_Source_title": "Смотреть",
-	"$hd_player_Open_hint": "Открыть файлы",
-	"$hd_player_Water_hint": "Расслабляющее",
-	"$hd_player_Wind_hint": "Трогательное",
-	"$hd_player_Light_hint": "Воодушевляющее",
-	"$hd_player_Fire_hint": "Агрессивное",
-	"$hd_player_Movies_hint": "Ролики",
-	"$hd_player_Movie_search_hint": "Поиск кино...",
-	"$hd_player_Movie_bookmark_hint": "Закладка",
-	"$hd_player_player_name_none": "Информация",
-	"$hd_player_Similars_block_title": "Похожее кино",
-	"$hd_player_Members_block_title": "Личный состав"
+	"$gd_player_Queue_title": "Гипер Плеер",
+	"$gd_player_Source_title": "Смотреть",
+	"$gd_player_Open_hint": "Открыть файлы",
+	"$gd_player_Water_hint": "Расслабляющее",
+	"$gd_player_Wind_hint": "Трогательное",
+	"$gd_player_Light_hint": "Воодушевляющее",
+	"$gd_player_Fire_hint": "Агрессивное",
+	"$gd_player_Movies_hint": "Ролики",
+	"$gd_player_Movie_search_hint": "Поиск кино...",
+	"$gd_player_Movie_bookmark_hint": "Закладка",
+	"$gd_player_player_name_none": "Информация",
+	"$gd_player_Similars_block_title": "Похожее кино",
+	"$gd_player_Members_block_title": "Личный состав"
 }
