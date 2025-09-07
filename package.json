@@ -1,5 +1,5 @@
 {
-  "name": "hd_player",
+  "name": "gd_player",
   "version": "0.0.1",
   "exports": {
     "node": {
@@ -15,8 +15,8 @@
   "browser": "./web.js",
   "types": "./web.d.ts",
   "keywords": [
-    "$hd_player",
-    "$hd",
+    "$gd_player",
+    "$gd",
     "$mol_drop",
     "$mol",
     "$mol_ghost",
@@ -139,8 +139,8 @@
     "$mol_type_keys_extract",
     "$mol_type_keys",
     "$mol_theme_auto",
-    "$hd_space_frame",
-    "$hd_space",
+    "$gd_web_frame",
+    "$gd_web",
     "$mol_frame",
     "$mol_embed_native",
     "$mol_embed",
@@ -241,9 +241,9 @@
     "$mol_book2",
     "$mol_fetch",
     "$mol_dom_parse",
-    "$hd_player_m3u",
+    "$gd_player_m3u",
     "$mol_compare_text",
-    "$hd_player_api",
+    "$gd_player_api",
     "$mol_data_record",
     "$mol_data",
     "$mol_data_value",
