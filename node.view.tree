@@ -814,7 +814,7 @@ $gd_player $mol_drop
 		pages <= pages /
 			<= Space $gd_web_frame
 			<= Queue $mol_page
-				title @ \Hyper Player
+				title @ \Giper Player
 				head /
 					- <= Playing $mol_check_icon
 						checked?next <=> playing?next
