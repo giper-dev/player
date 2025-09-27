@@ -1650,6 +1650,7 @@ declare namespace $ {
 
 	export class $gd_web_frame extends $mol_frame {
 		uri( ): string
+		query( ): string
 	}
 	
 }
