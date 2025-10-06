@@ -11593,7 +11593,7 @@ var $;
 		}
 		Support(){
 			const obj = new this.$.$mol_link_support();
-			(obj.uri) = () => ("https://t.me/giper-dev/2");
+			(obj.uri) = () => ("https://t.me/giper_web/2");
 			return obj;
 		}
 		Share(){

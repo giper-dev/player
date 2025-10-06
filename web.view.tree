@@ -862,7 +862,7 @@ $gd_player $mol_drop
 					<= Donate $mol_link_donate
 						uri \https://boosty.to/hyoo
 					<= Support $mol_link_support
-						uri \https://t.me/giper-dev/2
+						uri \https://t.me/giper_web/2
 					<= Share $mol_button_share
 			<= Player $mol_video_player
 				title <= play_title \
