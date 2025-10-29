@@ -215,6 +215,7 @@
     "$mol_embed_service",
     "$mol_icon_youtube",
     "$mol_embed_rutube",
+    "$mol_embed_vklive",
     "$mol_expander",
     "$mol_link_source",
     "$mol_icon_script_text",
