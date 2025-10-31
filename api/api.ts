@@ -5,7 +5,7 @@ namespace $ {
 		year: $mol_data_pipe( $mol_data_string, Number ),
 		poster: $mol_data_string,
 		raw_data: $mol_data_record({
-			name_en: $mol_data_string,
+			name_en: $mol_data_nullable( $mol_data_string ),
 			name_ru: $mol_data_nullable( $mol_data_string ),
 			description: $mol_data_nullable( $mol_data_string ),
 			genres: $mol_data_array( $mol_data_record({
@@ -69,7 +69,7 @@ namespace $ {
 			return new Map(
 				resp.map( data => [ data.id, $gd_player_api_movie.make({
 					id: $mol_const( data.id ),
-					title: $mol_const( data.raw_data.name_ru || data.raw_data.name_en ),
+					title: $mol_const( data.raw_data.name_ru || data.raw_data.name_en || `#${data.id}` ),
 					poster: $mol_const( data.poster ),
 					year: $mol_const( data.year ),
 					descr: $mol_const( data.raw_data.description ?? '' ),
