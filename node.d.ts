@@ -4712,7 +4712,7 @@ declare namespace $ {
             genres: readonly {
                 genre: string;
             }[];
-            name_en: string;
+            name_en: string | null;
             name_ru: string | null;
             description: string | null;
         };
@@ -4724,7 +4724,7 @@ declare namespace $ {
             genres: readonly Readonly<{
                 genre: string;
             }>[];
-            name_en: string;
+            name_en: string | null;
             name_ru: string | null;
             description: string | null;
         }>;
@@ -4737,7 +4737,7 @@ declare namespace $ {
                 genres: readonly {
                     genre: string;
                 }[];
-                name_en: string;
+                name_en: string | null;
                 name_ru: string | null;
                 description: string | null;
             };
@@ -4749,7 +4749,7 @@ declare namespace $ {
                 genres: readonly Readonly<{
                     genre: string;
                 }>[];
-                name_en: string;
+                name_en: string | null;
                 name_ru: string | null;
                 description: string | null;
             }>;
@@ -4767,19 +4767,22 @@ declare namespace $ {
                     genres: readonly {
                         genre: string;
                     }[];
-                    name_en: string;
+                    name_en: string | null;
                     name_ru: string | null;
                     description: string | null;
                 }) => Readonly<{
                     genres: readonly Readonly<{
                         genre: string;
                     }>[];
-                    name_en: string;
+                    name_en: string | null;
                     name_ru: string | null;
                     description: string | null;
                 }>) & {
                     config: {
-                        name_en: (val: string) => string;
+                        name_en: ((val: string | null) => string | null) & {
+                            config: (val: string) => string;
+                            Value: string | null;
+                        };
                         name_ru: ((val: string | null) => string | null) & {
                             config: (val: string) => string;
                             Value: string | null;
@@ -4814,7 +4817,7 @@ declare namespace $ {
                         genres: readonly Readonly<{
                             genre: string;
                         }>[];
-                        name_en: string;
+                        name_en: string | null;
                         name_ru: string | null;
                         description: string | null;
                     }>;
@@ -4828,7 +4831,7 @@ declare namespace $ {
                     genres: readonly Readonly<{
                         genre: string;
                     }>[];
-                    name_en: string;
+                    name_en: string | null;
                     name_ru: string | null;
                     description: string | null;
                 }>;
@@ -4842,7 +4845,7 @@ declare namespace $ {
                 genres: readonly Readonly<{
                     genre: string;
                 }>[];
-                name_en: string;
+                name_en: string | null;
                 name_ru: string | null;
                 description: string | null;
             }>;
