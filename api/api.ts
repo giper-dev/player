@@ -1,19 +1,18 @@
 namespace $ {
 	
-	export const $gd_player_api_search_movie_data = $mol_data_record({
+	export const $gd_player_api_search_movie_data = $mol_data_array( $mol_data_record({
 		id: $mol_data_integer,
 		year: $mol_data_pipe( $mol_data_string, Number ),
 		poster: $mol_data_string,
 		raw_data: $mol_data_record({
-			nameOriginal: $mol_data_string,
-			nameEn: $mol_data_string,
-			nameRu: $mol_data_string,
-			description: $mol_data_string,
+			name_en: $mol_data_string,
+			name_ru: $mol_data_nullable( $mol_data_string ),
+			description: $mol_data_nullable( $mol_data_string ),
 			genres: $mol_data_array( $mol_data_record({
 				genre: $mol_data_string,
 			}) )
 		})
-	})
+	}) )
 	
 	export const $gd_player_api_movie_data_short = $mol_data_record({
 		name_original: $mol_data_nullable( $mol_data_string ),
@@ -51,10 +50,10 @@ namespace $ {
 		staff: $mol_data_array( $gd_player_api_member ),
 	})
 	
-	export const $gd_player_api_player_data = $mol_data_record({
+	export const $gd_player_api_player_data = $mol_data_array( $mol_data_record({
 		name: $mol_data_string,
 		iframe: $mol_data_string,
-	})
+	}) )
 	
 	export class $gd_player_api extends $mol_object {
 		
@@ -63,16 +62,17 @@ namespace $ {
 			
 			if( !query.trim() ) return new Map
 			
-			const resp = ( this.$.$mol_fetch.json( `https://api4.rhhhhhhh.live/search/${ encodeURIComponent( query ) }` ) as any[] )
-				.map( $gd_player_api_search_movie_data )
+			const resp = $gd_player_api_search_movie_data(
+				this.$.$mol_fetch.json( `https://api4.rhhhhhhh.live/search/${ encodeURIComponent( query ) }` ) as any[]
+			)
 			
 			return new Map(
 				resp.map( data => [ data.id, $gd_player_api_movie.make({
 					id: $mol_const( data.id ),
-					title: $mol_const( data.raw_data.nameRu || data.raw_data.nameEn || data.raw_data.nameOriginal ),
+					title: $mol_const( data.raw_data.name_ru || data.raw_data.name_en ),
 					poster: $mol_const( data.poster ),
 					year: $mol_const( data.year ),
-					descr: $mol_const( data.raw_data.description ),
+					descr: $mol_const( data.raw_data.description ?? '' ),
 					genres: $mol_const( data.raw_data.genres.map( g => g.genre ) ),
 				}) ] )
 			)
@@ -166,7 +166,7 @@ namespace $ {
 		@ $mol_mem
 		players() {
 			
-			const resp = ( this.$.$mol_fetch.json( `https://api4.rhhhhhhh.live/cache`, {
+			const resp = $gd_player_api_player_data( this.$.$mol_fetch.json( `https://api4.rhhhhhhh.live/cache`, {
 					method: 'POST',
 					headers: {
 						'content-type': 'application/x-www-form-urlencoded',
@@ -176,7 +176,7 @@ namespace $ {
 						kinopoisk: String( this.id() ),
 					}).toString(),
 				} ) as any[]
-			).map( $gd_player_api_player_data ).sort( $mol_compare_text(  data => data.name ) )
+			).toSorted( $mol_compare_text(  data => data.name ) )
 			
 			return new Map( resp.map( data => [ data.name, $gd_player_api_player.make({ data: $mol_const( data ) }) ] ) )
 		}
@@ -186,7 +186,7 @@ namespace $ {
 	export class $gd_player_api_player extends $mol_object {
 		
 		data() {
-			return null as any as typeof $gd_player_api_player_data.Value
+			return null as any as ( typeof $gd_player_api_player_data.Value )[ number ]
 		}
 		
 		title() {
