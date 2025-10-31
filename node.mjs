@@ -12295,9 +12295,6 @@ var $;
 
 ;
 "use strict";
-
-;
-"use strict";
 var $;
 (function ($) {
     function $mol_data_setup(value, config) {
@@ -12308,6 +12305,42 @@ var $;
     }
     $.$mol_data_setup = $mol_data_setup;
 })($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_data_error extends $mol_error_mix {
+    }
+    $.$mol_data_error = $mol_data_error;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_data_array(sub) {
+        return $mol_data_setup((val) => {
+            if (!Array.isArray(val))
+                return $mol_fail(new $mol_data_error(`${val} is not an array`));
+            return val.map((item, index) => {
+                try {
+                    return sub(item);
+                }
+                catch (error) {
+                    if (error instanceof Promise)
+                        return $mol_fail_hidden(error);
+                    error.message = `[${index}] ${error.message}`;
+                    return $mol_fail(error);
+                }
+            });
+        }, sub);
+    }
+    $.$mol_data_array = $mol_data_array;
+})($ || ($ = {}));
+
+;
+"use strict";
 
 ;
 "use strict";
@@ -12332,15 +12365,6 @@ var $;
         }, sub);
     }
     $.$mol_data_record = $mol_data_record;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_data_error extends $mol_error_mix {
-    }
-    $.$mol_data_error = $mol_data_error;
 })($ || ($ = {}));
 
 ;
@@ -12416,30 +12440,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    function $mol_data_array(sub) {
-        return $mol_data_setup((val) => {
-            if (!Array.isArray(val))
-                return $mol_fail(new $mol_data_error(`${val} is not an array`));
-            return val.map((item, index) => {
-                try {
-                    return sub(item);
-                }
-                catch (error) {
-                    if (error instanceof Promise)
-                        return $mol_fail_hidden(error);
-                    error.message = `[${index}] ${error.message}`;
-                    return $mol_fail(error);
-                }
-            });
-        }, sub);
-    }
-    $.$mol_data_array = $mol_data_array;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
     function $mol_data_nullable(sub) {
         return $mol_data_setup((val) => {
             if (val === null)
@@ -12469,20 +12469,19 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$gd_player_api_search_movie_data = $mol_data_record({
+    $.$gd_player_api_search_movie_data = $mol_data_array($mol_data_record({
         id: $mol_data_integer,
         year: $mol_data_pipe($mol_data_string, Number),
         poster: $mol_data_string,
         raw_data: $mol_data_record({
-            nameOriginal: $mol_data_string,
-            nameEn: $mol_data_string,
-            nameRu: $mol_data_string,
-            description: $mol_data_string,
+            name_en: $mol_data_string,
+            name_ru: $mol_data_nullable($mol_data_string),
+            description: $mol_data_nullable($mol_data_string),
             genres: $mol_data_array($mol_data_record({
                 genre: $mol_data_string,
             }))
         })
-    });
+    }));
     $.$gd_player_api_movie_data_short = $mol_data_record({
         name_original: $mol_data_nullable($mol_data_string),
         name_en: $mol_data_nullable($mol_data_string),
@@ -12515,22 +12514,21 @@ var $;
         similars: $mol_data_array($.$gd_player_api_similar_data),
         staff: $mol_data_array($.$gd_player_api_member),
     });
-    $.$gd_player_api_player_data = $mol_data_record({
+    $.$gd_player_api_player_data = $mol_data_array($mol_data_record({
         name: $mol_data_string,
         iframe: $mol_data_string,
-    });
+    }));
     class $gd_player_api extends $mol_object {
         static search(query) {
             if (!query.trim())
                 return new Map;
-            const resp = this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/search/${encodeURIComponent(query)}`)
-                .map($.$gd_player_api_search_movie_data);
+            const resp = $.$gd_player_api_search_movie_data(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/search/${encodeURIComponent(query)}`));
             return new Map(resp.map(data => [data.id, $gd_player_api_movie.make({
                     id: $mol_const(data.id),
-                    title: $mol_const(data.raw_data.nameRu || data.raw_data.nameEn || data.raw_data.nameOriginal),
+                    title: $mol_const(data.raw_data.name_ru || data.raw_data.name_en),
                     poster: $mol_const(data.poster),
                     year: $mol_const(data.year),
-                    descr: $mol_const(data.raw_data.description),
+                    descr: $mol_const(data.raw_data.description ?? ''),
                     genres: $mol_const(data.raw_data.genres.map(g => g.genre)),
                 })]));
         }
@@ -12599,7 +12597,7 @@ var $;
             ]));
         }
         players() {
-            const resp = this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/cache`, {
+            const resp = $.$gd_player_api_player_data(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/cache`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
@@ -12608,7 +12606,7 @@ var $;
                     type: 'movie',
                     kinopoisk: String(this.id()),
                 }).toString(),
-            }).map($.$gd_player_api_player_data).sort($mol_compare_text(data => data.name));
+            })).toSorted($mol_compare_text(data => data.name));
             return new Map(resp.map(data => [data.name, $gd_player_api_player.make({ data: $mol_const(data) })]));
         }
     }

@@ -4463,22 +4463,9 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    type $mol_type_partial_undefined<Val> = $mol_type_merge<$mol_type_override<Partial<Val>, Pick<Val, {
-        [Field in keyof Val]: undefined extends Val[Field] ? never : Field;
-    }[keyof Val]>>>;
-}
-
-declare namespace $ {
     function $mol_data_setup<Value extends $mol_data_value, Config = never>(value: Value, config: Config): Value & {
         config: Config;
         Value: ReturnType<Value>;
-    };
-}
-
-declare namespace $ {
-    function $mol_data_record<Sub extends Record<string, $mol_data_value>>(sub: Sub): ((val: $mol_type_merge<$mol_type_override<Partial<{ [key in keyof Sub]: Parameters<Sub[key]>[0]; }>, Pick<{ [key in keyof Sub]: Parameters<Sub[key]>[0]; }, { [Field in keyof { [key in keyof Sub]: Parameters<Sub[key]>[0]; }]: undefined extends { [key in keyof Sub]: Parameters<Sub[key]>[0]; }[Field] ? never : Field; }[keyof Sub]>>>) => Readonly<$mol_type_merge<$mol_type_override<Partial<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }>, Pick<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }, { [Field_1 in keyof { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }]: undefined extends { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }[Field_1] ? never : Field_1; }[keyof Sub]>>>>) & {
-        config: Sub;
-        Value: Readonly<$mol_type_merge<$mol_type_override<Partial<{ [key in keyof Sub]: ReturnType<Sub[key]>; }>, Pick<{ [key in keyof Sub]: ReturnType<Sub[key]>; }, { [Field in keyof { [key in keyof Sub]: ReturnType<Sub[key]>; }]: undefined extends { [key in keyof Sub]: ReturnType<Sub[key]>; }[Field] ? never : Field; }[keyof Sub]>>>>;
     };
 }
 
@@ -4496,6 +4483,26 @@ declare namespace $ {
 declare namespace $ {
     class $mol_data_error extends $mol_error_mix {
     }
+}
+
+declare namespace $ {
+    function $mol_data_array<Sub extends $mol_data_value>(sub: Sub): ((val: readonly Parameters<Sub>[0][]) => readonly ReturnType<Sub>[]) & {
+        config: Sub;
+        Value: readonly ReturnType<Sub>[];
+    };
+}
+
+declare namespace $ {
+    type $mol_type_partial_undefined<Val> = $mol_type_merge<$mol_type_override<Partial<Val>, Pick<Val, {
+        [Field in keyof Val]: undefined extends Val[Field] ? never : Field;
+    }[keyof Val]>>>;
+}
+
+declare namespace $ {
+    function $mol_data_record<Sub extends Record<string, $mol_data_value>>(sub: Sub): ((val: $mol_type_merge<$mol_type_override<Partial<{ [key in keyof Sub]: Parameters<Sub[key]>[0]; }>, Pick<{ [key in keyof Sub]: Parameters<Sub[key]>[0]; }, { [Field in keyof { [key in keyof Sub]: Parameters<Sub[key]>[0]; }]: undefined extends { [key in keyof Sub]: Parameters<Sub[key]>[0]; }[Field] ? never : Field; }[keyof Sub]>>>) => Readonly<$mol_type_merge<$mol_type_override<Partial<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }>, Pick<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }, { [Field_1 in keyof { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }]: undefined extends { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }[Field_1] ? never : Field_1; }[keyof Sub]>>>>) & {
+        config: Sub;
+        Value: Readonly<$mol_type_merge<$mol_type_override<Partial<{ [key in keyof Sub]: ReturnType<Sub[key]>; }>, Pick<{ [key in keyof Sub]: ReturnType<Sub[key]>; }, { [Field in keyof { [key in keyof Sub]: ReturnType<Sub[key]>; }]: undefined extends { [key in keyof Sub]: ReturnType<Sub[key]>; }[Field] ? never : Field; }[keyof Sub]>>>>;
+    };
 }
 
 declare namespace $ {
@@ -4543,13 +4550,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    function $mol_data_array<Sub extends $mol_data_value>(sub: Sub): ((val: readonly Parameters<Sub>[0][]) => readonly ReturnType<Sub>[]) & {
-        config: Sub;
-        Value: readonly ReturnType<Sub>[];
-    };
-}
-
-declare namespace $ {
     function $mol_data_nullable<Sub extends $mol_data_value>(sub: Sub): ((val: Parameters<Sub>[0] | null) => ReturnType<Sub> | null) & {
         config: Sub;
         Value: ReturnType<Sub> | null;
@@ -4561,7 +4561,7 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    const $gd_player_api_search_movie_data: ((val: {
+    const $gd_player_api_search_movie_data: ((val: readonly {
         id: number;
         year: string;
         poster: string;
@@ -4569,12 +4569,11 @@ declare namespace $ {
             genres: readonly {
                 genre: string;
             }[];
-            description: string;
-            nameOriginal: string;
-            nameEn: string;
-            nameRu: string;
+            name_en: string;
+            name_ru: string | null;
+            description: string | null;
         };
-    }) => Readonly<{
+    }[]) => readonly Readonly<{
         id: number;
         year: number;
         poster: string;
@@ -4582,77 +4581,24 @@ declare namespace $ {
             genres: readonly Readonly<{
                 genre: string;
             }>[];
-            description: string;
-            nameOriginal: string;
-            nameEn: string;
-            nameRu: string;
+            name_en: string;
+            name_ru: string | null;
+            description: string | null;
         }>;
-    }>) & {
-        config: {
-            id: typeof $mol_data_integer;
-            year: ((this: any, input: string) => number) & {
-                config: {
-                    funcs: [(val: string) => string, NumberConstructor] & [(input: string) => any, (input: any) => unknown];
-                };
-                Value: number;
-            };
-            poster: (val: string) => string;
-            raw_data: ((val: {
+    }>[]) & {
+        config: ((val: {
+            id: number;
+            year: string;
+            poster: string;
+            raw_data: {
                 genres: readonly {
                     genre: string;
                 }[];
-                description: string;
-                nameOriginal: string;
-                nameEn: string;
-                nameRu: string;
-            }) => Readonly<{
-                genres: readonly Readonly<{
-                    genre: string;
-                }>[];
-                description: string;
-                nameOriginal: string;
-                nameEn: string;
-                nameRu: string;
-            }>) & {
-                config: {
-                    nameOriginal: (val: string) => string;
-                    nameEn: (val: string) => string;
-                    nameRu: (val: string) => string;
-                    description: (val: string) => string;
-                    genres: ((val: readonly {
-                        genre: string;
-                    }[]) => readonly Readonly<{
-                        genre: string;
-                    }>[]) & {
-                        config: ((val: {
-                            genre: string;
-                        }) => Readonly<{
-                            genre: string;
-                        }>) & {
-                            config: {
-                                genre: (val: string) => string;
-                            };
-                            Value: Readonly<{
-                                genre: string;
-                            }>;
-                        };
-                        Value: readonly Readonly<{
-                            genre: string;
-                        }>[];
-                    };
-                };
-                Value: Readonly<{
-                    genres: readonly Readonly<{
-                        genre: string;
-                    }>[];
-                    description: string;
-                    nameOriginal: string;
-                    nameEn: string;
-                    nameRu: string;
-                }>;
+                name_en: string;
+                name_ru: string | null;
+                description: string | null;
             };
-        };
-        Value: Readonly<{
+        }) => Readonly<{
             id: number;
             year: number;
             poster: string;
@@ -4660,12 +4606,104 @@ declare namespace $ {
                 genres: readonly Readonly<{
                     genre: string;
                 }>[];
-                description: string;
-                nameOriginal: string;
-                nameEn: string;
-                nameRu: string;
+                name_en: string;
+                name_ru: string | null;
+                description: string | null;
             }>;
-        }>;
+        }>) & {
+            config: {
+                id: typeof $mol_data_integer;
+                year: ((this: any, input: string) => number) & {
+                    config: {
+                        funcs: [(val: string) => string, NumberConstructor] & [(input: string) => any, (input: any) => unknown];
+                    };
+                    Value: number;
+                };
+                poster: (val: string) => string;
+                raw_data: ((val: {
+                    genres: readonly {
+                        genre: string;
+                    }[];
+                    name_en: string;
+                    name_ru: string | null;
+                    description: string | null;
+                }) => Readonly<{
+                    genres: readonly Readonly<{
+                        genre: string;
+                    }>[];
+                    name_en: string;
+                    name_ru: string | null;
+                    description: string | null;
+                }>) & {
+                    config: {
+                        name_en: (val: string) => string;
+                        name_ru: ((val: string | null) => string | null) & {
+                            config: (val: string) => string;
+                            Value: string | null;
+                        };
+                        description: ((val: string | null) => string | null) & {
+                            config: (val: string) => string;
+                            Value: string | null;
+                        };
+                        genres: ((val: readonly {
+                            genre: string;
+                        }[]) => readonly Readonly<{
+                            genre: string;
+                        }>[]) & {
+                            config: ((val: {
+                                genre: string;
+                            }) => Readonly<{
+                                genre: string;
+                            }>) & {
+                                config: {
+                                    genre: (val: string) => string;
+                                };
+                                Value: Readonly<{
+                                    genre: string;
+                                }>;
+                            };
+                            Value: readonly Readonly<{
+                                genre: string;
+                            }>[];
+                        };
+                    };
+                    Value: Readonly<{
+                        genres: readonly Readonly<{
+                            genre: string;
+                        }>[];
+                        name_en: string;
+                        name_ru: string | null;
+                        description: string | null;
+                    }>;
+                };
+            };
+            Value: Readonly<{
+                id: number;
+                year: number;
+                poster: string;
+                raw_data: Readonly<{
+                    genres: readonly Readonly<{
+                        genre: string;
+                    }>[];
+                    name_en: string;
+                    name_ru: string | null;
+                    description: string | null;
+                }>;
+            }>;
+        };
+        Value: readonly Readonly<{
+            id: number;
+            year: number;
+            poster: string;
+            raw_data: Readonly<{
+                genres: readonly Readonly<{
+                    genre: string;
+                }>[];
+                name_en: string;
+                name_ru: string | null;
+                description: string | null;
+            }>;
+        }>[];
     };
     const $gd_player_api_movie_data_short: ((val: {
         name_original: string | null;
@@ -5115,21 +5153,33 @@ declare namespace $ {
             }>[];
         }>;
     };
-    const $gd_player_api_player_data: ((val: {
+    const $gd_player_api_player_data: ((val: readonly {
         name: string;
         iframe: string;
-    }) => Readonly<{
+    }[]) => readonly Readonly<{
         name: string;
         iframe: string;
-    }>) & {
-        config: {
-            name: (val: string) => string;
-            iframe: (val: string) => string;
-        };
-        Value: Readonly<{
+    }>[]) & {
+        config: ((val: {
             name: string;
             iframe: string;
-        }>;
+        }) => Readonly<{
+            name: string;
+            iframe: string;
+        }>) & {
+            config: {
+                name: (val: string) => string;
+                iframe: (val: string) => string;
+            };
+            Value: Readonly<{
+                name: string;
+                iframe: string;
+            }>;
+        };
+        Value: readonly Readonly<{
+            name: string;
+            iframe: string;
+        }>[];
     };
     class $gd_player_api extends $mol_object {
         static search(query: string): Map<number, $gd_player_api_movie>;
@@ -5190,7 +5240,7 @@ declare namespace $ {
         players(): Map<string, $gd_player_api_player>;
     }
     class $gd_player_api_player extends $mol_object {
-        data(): typeof $gd_player_api_player_data.Value;
+        data(): (typeof $gd_player_api_player_data.Value)[number];
         title(): string;
         uri(): string;
     }
