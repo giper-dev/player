@@ -241,6 +241,8 @@
     "$mol_check_list",
     "$mol_book2",
     "$mol_fetch",
+    "$mol_rest_code",
+    "$mol_rest",
     "$mol_dom_parse",
     "$gd_player_m3u",
     "$mol_compare_text",
