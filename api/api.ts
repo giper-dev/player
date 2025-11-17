@@ -1,6 +1,6 @@
 namespace $ {
 	
-	export const $gd_player_api_search_movie_data = $mol_data_array( $mol_data_record({
+	export const $giper_player_api_search_movie_data = $mol_data_array( $mol_data_record({
 		id: $mol_data_integer,
 		year: $mol_data_pipe( $mol_data_string, Number ),
 		poster: $mol_data_string,
@@ -14,19 +14,19 @@ namespace $ {
 		})
 	}) )
 	
-	export const $gd_player_api_movie_data_short = $mol_data_record({
+	export const $giper_player_api_movie_data_short = $mol_data_record({
 		name_original: $mol_data_nullable( $mol_data_string ),
 		name_en: $mol_data_nullable( $mol_data_string ),
 		name_ru: $mol_data_nullable( $mol_data_string ),
 		poster_url_preview: $mol_data_string,
 	})
 	
-	export const $gd_player_api_similar_data = $mol_data_record({
-		... $gd_player_api_movie_data_short.config,
+	export const $giper_player_api_similar_data = $mol_data_record({
+		... $giper_player_api_movie_data_short.config,
 		film_id: $mol_data_integer,
 	})
 	
-	export const $gd_player_api_member = $mol_data_record({
+	export const $giper_player_api_member = $mol_data_record({
 		description: $mol_data_nullable( $mol_data_string ),
 		name_en: $mol_data_string,
 		name_ru: $mol_data_string,
@@ -36,8 +36,8 @@ namespace $ {
 		staff_id: $mol_data_integer,
 	})
 	
-	export const $gd_player_api_movie_data_full = $mol_data_record({
-		... $gd_player_api_movie_data_short.config,
+	export const $giper_player_api_movie_data_full = $mol_data_record({
+		... $giper_player_api_movie_data_short.config,
 		imdb_id: $mol_data_nullable( $mol_data_string ),
 		year: $mol_data_integer,
 		description: $mol_data_nullable( $mol_data_string ),
@@ -45,29 +45,29 @@ namespace $ {
 		genres: $mol_data_array( $mol_data_record({
 			genre: $mol_data_string,
 		}) ),
-		sequels_and_prequels: $mol_data_array( $gd_player_api_similar_data ),
-		similars: $mol_data_array( $gd_player_api_similar_data ),
-		staff: $mol_data_array( $gd_player_api_member ),
+		sequels_and_prequels: $mol_data_array( $giper_player_api_similar_data ),
+		similars: $mol_data_array( $giper_player_api_similar_data ),
+		staff: $mol_data_array( $giper_player_api_member ),
 	})
 	
-	export const $gd_player_api_player_data = $mol_data_array( $mol_data_record({
+	export const $giper_player_api_player_data = $mol_data_array( $mol_data_record({
 		name: $mol_data_string,
 		iframe: $mol_data_string,
 	}) )
 	
-	export class $gd_player_api extends $mol_object {
+	export class $giper_player_api extends $mol_object {
 		
 		@ $mol_mem_key
-		static search( query: string ): Map< number, $gd_player_api_movie > {
+		static search( query: string ): Map< number, $giper_player_api_movie > {
 			
 			if( !query.trim() ) return new Map
 			
-			const resp = $gd_player_api_search_movie_data(
+			const resp = $giper_player_api_search_movie_data(
 				this.$.$mol_fetch.json( `https://api4.rhhhhhhh.live/search/${ encodeURIComponent( query ) }` ) as any[]
 			)
 			
 			return new Map(
-				resp.map( data => [ data.id, $gd_player_api_movie.make({
+				resp.map( data => [ data.id, $giper_player_api_movie.make({
 					id: $mol_const( data.id ),
 					title: $mol_const( data.raw_data.name_ru || data.raw_data.name_en || `#${data.id}` ),
 					poster: $mol_const( data.poster ),
@@ -81,7 +81,7 @@ namespace $ {
 		
 	}
 	
-	export class $gd_player_api_movie extends $mol_object {
+	export class $giper_player_api_movie extends $mol_object {
 		
 		id() {
 			return 0
@@ -97,7 +97,7 @@ namespace $ {
 		
 		@ $mol_mem
 		data() {
-			return $gd_player_api_movie_data_full(
+			return $giper_player_api_movie_data_full(
 				this.$.$mol_fetch.json( `https://api4.rhhhhhhh.live/kp_info2/${ this.id() }` )  as any
 			) 
 		}
@@ -131,7 +131,7 @@ namespace $ {
 		similars() {
 			return new Map(
 				[ ... this.data().sequels_and_prequels, ... this.data().similars ]
-				.map( sim => [ sim.film_id, $gd_player_api_movie.make({
+				.map( sim => [ sim.film_id, $giper_player_api_movie.make({
 					id: $mol_const( sim.film_id ),
 					title: $mol_const( sim.name_ru || sim.name_en || sim.name_original || '???' ),
 					poster: $mol_const( sim.poster_url_preview ),
@@ -166,7 +166,7 @@ namespace $ {
 		@ $mol_mem
 		players() {
 			
-			const resp = $gd_player_api_player_data( this.$.$mol_fetch.json( `https://api4.rhhhhhhh.live/cache`, {
+			const resp = $giper_player_api_player_data( this.$.$mol_fetch.json( `https://api4.rhhhhhhh.live/cache`, {
 					method: 'POST',
 					headers: {
 						'content-type': 'application/x-www-form-urlencoded',
@@ -178,15 +178,15 @@ namespace $ {
 				} ) as any[]
 			).toSorted( $mol_compare_text(  data => data.name ) )
 			
-			return new Map( resp.map( data => [ data.name, $gd_player_api_player.make({ data: $mol_const( data ) }) ] ) )
+			return new Map( resp.map( data => [ data.name, $giper_player_api_player.make({ data: $mol_const( data ) }) ] ) )
 		}
 		
 	}
 	
-	export class $gd_player_api_player extends $mol_object {
+	export class $giper_player_api_player extends $mol_object {
 		
 		data() {
-			return null as any as ( typeof $gd_player_api_player_data.Value )[ number ]
+			return null as any as ( typeof $giper_player_api_player_data.Value )[ number ]
 		}
 		
 		title() {

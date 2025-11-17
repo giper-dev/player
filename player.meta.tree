@@ -1,5 +1,5 @@
-deploy \/gd/player/logo/logo.svg
-deploy \/gd/player/logo/logo_512.png
-deploy \/gd/player/manifest.json
+deploy \/giper/player/logo/logo.svg
+deploy \/giper/player/logo/logo_512.png
+deploy \/giper/player/manifest.json
 
 include \/mol/offline/install

@@ -1,4 +1,4 @@
-name: $gd_player
+name: $giper_player
 
 on:
   workflow_dispatch:
@@ -16,9 +16,9 @@ jobs:
     - uses: hyoo-ru/mam_build@master2
       with:
         token: ${{ secrets.GH_PAT }}
-        package: 'gd/player'
+        package: 'giper/player'
     
     - uses: hyoo-ru/gh-deploy@v4.4.1
       if: github.ref == 'refs/heads/master'
       with:
-        folder: 'gd/player/-'
+        folder: 'giper/player/-'

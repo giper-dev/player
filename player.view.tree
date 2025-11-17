@@ -1,4 +1,4 @@
-$gd_player $mol_drop
+$giper_player $mol_drop
 	playlist? \
 	files?next /
 	file_current?val null
@@ -9,7 +9,7 @@ $gd_player $mol_drop
 		plugins /
 			<= Theme $mol_theme_auto
 		pages <= pages /
-			<= Space $gd_web_frame
+			<= Space $giper_web_frame
 			<= Queue $mol_page
 				title @ \Giper Player
 				head /

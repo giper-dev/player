@@ -2,12 +2,12 @@ namespace $ {
 	
 	const { begin, end, from, line_end, decimal_only, char_any, repeat, repeat_greedy } = $mol_regexp
 	
-	export let $gd_player_m3u_prolog = from([
+	export let $giper_player_m3u_prolog = from([
 		'#EXTM3U',
 		repeat_greedy( line_end ),
 	])
 	
-	export let $gd_player_m3u_entry = from([
+	export let $giper_player_m3u_entry = from([
 		'#EXTINF:',
 		{ duration: repeat( decimal_only ) },
 		',',
@@ -17,10 +17,10 @@ namespace $ {
 		repeat_greedy( line_end, 1 ),
 	])
 	
-	export let $gd_player_m3u = from([
+	export let $giper_player_m3u = from([
 		begin,
-		$gd_player_m3u_prolog,
-		repeat_greedy( $gd_player_m3u_entry ),
+		$giper_player_m3u_prolog,
+		repeat_greedy( $giper_player_m3u_entry ),
 		end,
 	])
 	
