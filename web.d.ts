@@ -1436,7 +1436,7 @@ declare namespace $ {
 }
 
 declare namespace $.$$ {
-    class $gd_web_frame extends $.$gd_web_frame {
+    class $giper_web_frame extends $.$giper_web_frame {
         uri(): string;
     }
 }
@@ -1446,7 +1446,7 @@ declare namespace $ {
 
 declare namespace $ {
 
-	export class $gd_web_frame extends $mol_frame {
+	export class $giper_web_frame extends $mol_frame {
 		uri( ): string
 		query( ): string
 	}
@@ -4510,12 +4510,12 @@ declare namespace $ {
 
 //# sourceMappingURL=list.view.tree.d.ts.map
 declare namespace $ {
-    let $gd_player_m3u_prolog: $mol_regexp<{
+    let $giper_player_m3u_prolog: $mol_regexp<{
         [x: string]: string;
         readonly win_end: string;
         readonly mac_end: string;
     }>;
-    let $gd_player_m3u_entry: $mol_regexp<{
+    let $giper_player_m3u_entry: $mol_regexp<{
         [x: string]: string;
         readonly win_end: string;
         readonly mac_end: string;
@@ -4523,7 +4523,7 @@ declare namespace $ {
         readonly title: string;
         readonly uri: string;
     }>;
-    let $gd_player_m3u: $mol_regexp<{
+    let $giper_player_m3u: $mol_regexp<{
         [x: string]: string;
         readonly win_end: string;
         readonly mac_end: string;
@@ -4640,7 +4640,7 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    const $gd_player_api_search_movie_data: ((val: readonly {
+    const $giper_player_api_search_movie_data: ((val: readonly {
         id: number;
         year: string;
         poster: string;
@@ -4787,7 +4787,7 @@ declare namespace $ {
             }>;
         }>[];
     };
-    const $gd_player_api_movie_data_short: ((val: {
+    const $giper_player_api_movie_data_short: ((val: {
         name_original: string | null;
         name_en: string | null;
         name_ru: string | null;
@@ -4820,7 +4820,7 @@ declare namespace $ {
             poster_url_preview: string;
         }>;
     };
-    const $gd_player_api_similar_data: ((val: {
+    const $giper_player_api_similar_data: ((val: {
         name_original: string | null;
         name_en: string | null;
         name_ru: string | null;
@@ -4857,7 +4857,7 @@ declare namespace $ {
             film_id: number;
         }>;
     };
-    const $gd_player_api_member: ((val: {
+    const $giper_player_api_member: ((val: {
         name_en: string;
         name_ru: string;
         description: string | null;
@@ -4896,7 +4896,7 @@ declare namespace $ {
             staff_id: number;
         }>;
     };
-    const $gd_player_api_movie_data_full: ((val: {
+    const $giper_player_api_movie_data_full: ((val: {
         year: number;
         slogan: string | null;
         genres: readonly {
@@ -5235,7 +5235,7 @@ declare namespace $ {
             }>[];
         }>;
     };
-    const $gd_player_api_player_data: ((val: readonly {
+    const $giper_player_api_player_data: ((val: readonly {
         name: string;
         iframe: string;
     }[]) => readonly Readonly<{
@@ -5263,10 +5263,10 @@ declare namespace $ {
             iframe: string;
         }>[];
     };
-    class $gd_player_api extends $mol_object {
-        static search(query: string): Map<number, $gd_player_api_movie>;
+    class $giper_player_api extends $mol_object {
+        static search(query: string): Map<number, $giper_player_api_movie>;
     }
-    class $gd_player_api_movie extends $mol_object {
+    class $giper_player_api_movie extends $mol_object {
         id(): number;
         uri_kp(): string;
         uri_imdb(): string | null;
@@ -5312,17 +5312,17 @@ declare namespace $ {
         descr(): string;
         slogan(): string;
         genres(): string[];
-        similars(): Map<number, $gd_player_api_movie>;
+        similars(): Map<number, $giper_player_api_movie>;
         members(): Map<number, {
             name: string;
             photo: string;
             link: string;
             roles: Set<string>;
         }>;
-        players(): Map<string, $gd_player_api_player>;
+        players(): Map<string, $giper_player_api_player>;
     }
-    class $gd_player_api_player extends $mol_object {
-        data(): (typeof $gd_player_api_player_data.Value)[number];
+    class $giper_player_api_player extends $mol_object {
+        data(): (typeof $giper_player_api_player_data.Value)[number];
         title(): string;
         uri(): string;
     }
@@ -5344,382 +5344,382 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $mol_search__hint_gd_player_1 = $mol_type_enforce<
+	type $mol_search__hint_giper_player_1 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_search['hint'] >
 	>
-	type $mol_search__query_gd_player_2 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_search'] >
+	type $mol_search__query_giper_player_2 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_search'] >
 		,
 		ReturnType< $mol_search['query'] >
 	>
-	type $mol_button_open__hint_gd_player_3 = $mol_type_enforce<
+	type $mol_button_open__hint_giper_player_3 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_open['hint'] >
 	>
-	type $mol_button_open__files_gd_player_4 = $mol_type_enforce<
-		ReturnType< $gd_player['files_add'] >
+	type $mol_button_open__files_giper_player_4 = $mol_type_enforce<
+		ReturnType< $giper_player['files_add'] >
 		,
 		ReturnType< $mol_button_open['files'] >
 	>
-	type $mol_paragraph__title_gd_player_5 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_title'] >
+	type $mol_paragraph__title_giper_player_5 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_title'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_image__minimal_height_gd_player_6 = $mol_type_enforce<
+	type $mol_image__minimal_height_giper_player_6 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $mol_image['minimal_height'] >
 	>
-	type $mol_image__uri_gd_player_7 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_poster'] >
+	type $mol_image__uri_giper_player_7 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_poster'] >
 		,
 		ReturnType< $mol_image['uri'] >
 	>
-	type $mol_text__text_gd_player_8 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_genres'] >
+	type $mol_text__text_giper_player_8 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_genres'] >
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_link__hint_gd_player_9 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_title'] >
+	type $mol_link__hint_giper_player_9 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_title'] >
 		,
 		ReturnType< $mol_link['hint'] >
 	>
-	type $mol_link__arg_gd_player_10 = $mol_type_enforce<
+	type $mol_link__arg_giper_player_10 = $mol_type_enforce<
 		({ 
-			'movie': ReturnType< $gd_player['movie_id'] >,
+			'movie': ReturnType< $giper_player['movie_id'] >,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_gd_player_11 = $mol_type_enforce<
+	type $mol_link__sub_giper_player_11 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_button_minor__title_gd_player_12 = $mol_type_enforce<
-		ReturnType< $gd_player['file_title'] >
+	type $mol_button_minor__title_giper_player_12 = $mol_type_enforce<
+		ReturnType< $giper_player['file_title'] >
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__enabled_gd_player_13 = $mol_type_enforce<
-		ReturnType< $gd_player['file_enabled'] >
+	type $mol_button_minor__enabled_giper_player_13 = $mol_type_enforce<
+		ReturnType< $giper_player['file_enabled'] >
 		,
 		ReturnType< $mol_button_minor['enabled'] >
 	>
-	type $mol_button_minor__click_gd_player_14 = $mol_type_enforce<
-		ReturnType< $gd_player['file_play'] >
+	type $mol_button_minor__click_giper_player_14 = $mol_type_enforce<
+		ReturnType< $giper_player['file_play'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__click_gd_player_15 = $mol_type_enforce<
-		ReturnType< $gd_player['file_drop'] >
+	type $mol_button_minor__click_giper_player_15 = $mol_type_enforce<
+		ReturnType< $giper_player['file_drop'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_gd_player_16 = $mol_type_enforce<
+	type $mol_button_minor__sub_giper_player_16 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_gd_player_17 = $mol_type_enforce<
+	type $mol_view__sub_giper_player_17 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_list__rows_gd_player_18 = $mol_type_enforce<
-		ReturnType< $gd_player['queue_items'] >
+	type $mol_list__rows_giper_player_18 = $mol_type_enforce<
+		ReturnType< $giper_player['queue_items'] >
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_link_source__uri_gd_player_19 = $mol_type_enforce<
+	type $mol_link_source__uri_giper_player_19 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_source['uri'] >
 	>
-	type $mol_link_donate__uri_gd_player_20 = $mol_type_enforce<
+	type $mol_link_donate__uri_giper_player_20 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_donate['uri'] >
 	>
-	type $mol_link_support__uri_gd_player_21 = $mol_type_enforce<
+	type $mol_link_support__uri_giper_player_21 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_support['uri'] >
 	>
-	type $mol_page__title_gd_player_22 = $mol_type_enforce<
+	type $mol_page__title_giper_player_22 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_page['title'] >
 	>
-	type $mol_page__head_gd_player_23 = $mol_type_enforce<
+	type $mol_page__head_giper_player_23 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['head'] >
 	>
-	type $mol_page__body_gd_player_24 = $mol_type_enforce<
-		ReturnType< $gd_player['queue_body'] >
+	type $mol_page__body_giper_player_24 = $mol_type_enforce<
+		ReturnType< $giper_player['queue_body'] >
 		,
 		ReturnType< $mol_page['body'] >
 	>
-	type $mol_page__foot_gd_player_25 = $mol_type_enforce<
+	type $mol_page__foot_giper_player_25 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['foot'] >
 	>
-	type __gd_player_26 = $mol_type_enforce<
-		Parameters< $gd_player['playing'] >[0]
+	type __giper_player_26 = $mol_type_enforce<
+		Parameters< $giper_player['playing'] >[0]
 		,
-		Parameters< ReturnType< $gd_player['Player'] >['playing'] >[0]
+		Parameters< ReturnType< $giper_player['Player'] >['playing'] >[0]
 	>
-	type $mol_video_player__title_gd_player_27 = $mol_type_enforce<
-		ReturnType< $gd_player['play_title'] >
+	type $mol_video_player__title_giper_player_27 = $mol_type_enforce<
+		ReturnType< $giper_player['play_title'] >
 		,
 		ReturnType< $mol_video_player['title'] >
 	>
-	type $mol_video_player__uri_gd_player_28 = $mol_type_enforce<
-		ReturnType< $gd_player['play_uri'] >
+	type $mol_video_player__uri_giper_player_28 = $mol_type_enforce<
+		ReturnType< $giper_player['play_uri'] >
 		,
 		ReturnType< $mol_video_player['uri'] >
 	>
-	type $mol_video_player__poster_gd_player_29 = $mol_type_enforce<
+	type $mol_video_player__poster_giper_player_29 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_video_player['poster'] >
 	>
-	type __gd_player_30 = $mol_type_enforce<
-		Parameters< $gd_player['Moview_page_title'] >[0]
+	type __giper_player_30 = $mol_type_enforce<
+		Parameters< $giper_player['Moview_page_title'] >[0]
 		,
-		Parameters< $gd_player['Movie_page'] >[0]
+		Parameters< $giper_player['Movie_page'] >[0]
 	>
-	type __gd_player_31 = $mol_type_enforce<
-		Parameters< $gd_player['Moview_page_tools'] >[0]
+	type __giper_player_31 = $mol_type_enforce<
+		Parameters< $giper_player['Moview_page_tools'] >[0]
 		,
-		Parameters< $gd_player['Movie_page'] >[0]
+		Parameters< $giper_player['Movie_page'] >[0]
 	>
-	type $mol_check_icon__hint_gd_player_32 = $mol_type_enforce<
+	type $mol_check_icon__hint_giper_player_32 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_check_icon['hint'] >
 	>
-	type $mol_check_icon__checked_gd_player_33 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_bookmark'] >
+	type $mol_check_icon__checked_giper_player_33 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_bookmark'] >
 		,
 		ReturnType< $mol_check_icon['checked'] >
 	>
-	type $mol_check_icon__Icon_gd_player_34 = $mol_type_enforce<
-		ReturnType< $gd_player['Movie_bookmark_icon'] >
+	type $mol_check_icon__Icon_giper_player_34 = $mol_type_enforce<
+		ReturnType< $giper_player['Movie_bookmark_icon'] >
 		,
 		ReturnType< $mol_check_icon['Icon'] >
 	>
-	type $mol_link__arg_gd_player_35 = $mol_type_enforce<
+	type $mol_link__arg_giper_player_35 = $mol_type_enforce<
 		({ 
 			'movie': any,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_gd_player_36 = $mol_type_enforce<
+	type $mol_link__sub_giper_player_36 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_frame__uri_gd_player_37 = $mol_type_enforce<
-		ReturnType< $gd_player['player_uri'] >
+	type $mol_frame__uri_giper_player_37 = $mol_type_enforce<
+		ReturnType< $giper_player['player_uri'] >
 		,
 		ReturnType< $mol_frame['uri'] >
 	>
-	type $mol_text__text_gd_player_38 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_descr'] >
+	type $mol_text__text_giper_player_38 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_descr'] >
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_link_iconed__title_gd_player_39 = $mol_type_enforce<
+	type $mol_link_iconed__title_giper_player_39 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_iconed['title'] >
 	>
-	type $mol_link_iconed__uri_gd_player_40 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_uri_kp'] >
+	type $mol_link_iconed__uri_giper_player_40 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_uri_kp'] >
 		,
 		ReturnType< $mol_link_iconed['uri'] >
 	>
-	type $mol_link_iconed__title_gd_player_41 = $mol_type_enforce<
+	type $mol_link_iconed__title_giper_player_41 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_iconed['title'] >
 	>
-	type $mol_link_iconed__uri_gd_player_42 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_uri_imdb'] >
+	type $mol_link_iconed__uri_giper_player_42 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_uri_imdb'] >
 		,
 		ReturnType< $mol_link_iconed['uri'] >
 	>
-	type $mol_row__sub_gd_player_43 = $mol_type_enforce<
+	type $mol_row__sub_giper_player_43 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_row['sub'] >
 	>
-	type $mol_paragraph__title_gd_player_44 = $mol_type_enforce<
-		ReturnType< $gd_player['member_name'] >
+	type $mol_paragraph__title_giper_player_44 = $mol_type_enforce<
+		ReturnType< $giper_player['member_name'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_image__uri_gd_player_45 = $mol_type_enforce<
-		ReturnType< $gd_player['member_photo'] >
+	type $mol_image__uri_giper_player_45 = $mol_type_enforce<
+		ReturnType< $giper_player['member_photo'] >
 		,
 		ReturnType< $mol_image['uri'] >
 	>
-	type $mol_paragraph__title_gd_player_46 = $mol_type_enforce<
-		ReturnType< $gd_player['member_role'] >
+	type $mol_paragraph__title_giper_player_46 = $mol_type_enforce<
+		ReturnType< $giper_player['member_role'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_link__uri_gd_player_47 = $mol_type_enforce<
-		ReturnType< $gd_player['member_link'] >
+	type $mol_link__uri_giper_player_47 = $mol_type_enforce<
+		ReturnType< $giper_player['member_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_gd_player_48 = $mol_type_enforce<
+	type $mol_link__sub_giper_player_48 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_row__sub_gd_player_49 = $mol_type_enforce<
-		ReturnType< $gd_player['members'] >
+	type $mol_row__sub_giper_player_49 = $mol_type_enforce<
+		ReturnType< $giper_player['members'] >
 		,
 		ReturnType< $mol_row['sub'] >
 	>
-	type $mol_expander__title_gd_player_50 = $mol_type_enforce<
+	type $mol_expander__title_giper_player_50 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_expander['title'] >
 	>
-	type $mol_expander__content_gd_player_51 = $mol_type_enforce<
+	type $mol_expander__content_giper_player_51 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_expander['content'] >
 	>
-	type $mol_paragraph__title_gd_player_52 = $mol_type_enforce<
-		ReturnType< $gd_player['similar_title'] >
+	type $mol_paragraph__title_giper_player_52 = $mol_type_enforce<
+		ReturnType< $giper_player['similar_title'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_image__uri_gd_player_53 = $mol_type_enforce<
-		ReturnType< $gd_player['similar_poster'] >
+	type $mol_image__uri_giper_player_53 = $mol_type_enforce<
+		ReturnType< $giper_player['similar_poster'] >
 		,
 		ReturnType< $mol_image['uri'] >
 	>
-	type $mol_link__arg_gd_player_54 = $mol_type_enforce<
+	type $mol_link__arg_giper_player_54 = $mol_type_enforce<
 		({ 
 			'search': any,
-			'movie': ReturnType< $gd_player['similar_id'] >,
+			'movie': ReturnType< $giper_player['similar_id'] >,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_gd_player_55 = $mol_type_enforce<
+	type $mol_link__sub_giper_player_55 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_row__sub_gd_player_56 = $mol_type_enforce<
-		ReturnType< $gd_player['similars'] >
+	type $mol_row__sub_giper_player_56 = $mol_type_enforce<
+		ReturnType< $giper_player['similars'] >
 		,
 		ReturnType< $mol_row['sub'] >
 	>
-	type $mol_expander__title_gd_player_57 = $mol_type_enforce<
+	type $mol_expander__title_giper_player_57 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_expander['title'] >
 	>
-	type $mol_expander__content_gd_player_58 = $mol_type_enforce<
+	type $mol_expander__content_giper_player_58 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_expander['content'] >
 	>
-	type $mol_list__rows_gd_player_59 = $mol_type_enforce<
+	type $mol_list__rows_giper_player_59 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_page__title_gd_player_60 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_current_title'] >
+	type $mol_page__title_giper_player_60 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_current_title'] >
 		,
 		ReturnType< $mol_page['title'] >
 	>
-	type $mol_page__head_gd_player_61 = $mol_type_enforce<
+	type $mol_page__head_giper_player_61 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['head'] >
 	>
-	type $mol_page__tools_gd_player_62 = $mol_type_enforce<
+	type $mol_page__tools_giper_player_62 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['tools'] >
 	>
-	type $mol_page__body_content_gd_player_63 = $mol_type_enforce<
-		ReturnType< $gd_player['movie_content'] >
+	type $mol_page__body_content_giper_player_63 = $mol_type_enforce<
+		ReturnType< $giper_player['movie_content'] >
 		,
 		ReturnType< $mol_page['body_content'] >
 	>
-	type $mol_switch__value_gd_player_64 = $mol_type_enforce<
-		ReturnType< $gd_player['player_id'] >
+	type $mol_switch__value_giper_player_64 = $mol_type_enforce<
+		ReturnType< $giper_player['player_id'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__keys_gd_player_65 = $mol_type_enforce<
-		ReturnType< $gd_player['player_options'] >
+	type $mol_switch__keys_giper_player_65 = $mol_type_enforce<
+		ReturnType< $giper_player['player_options'] >
 		,
 		ReturnType< $mol_switch['keys'] >
 	>
-	type $mol_switch__option_title_gd_player_66 = $mol_type_enforce<
-		ReturnType< $gd_player['player_name'] >
+	type $mol_switch__option_title_giper_player_66 = $mol_type_enforce<
+		ReturnType< $giper_player['player_name'] >
 		,
 		ReturnType< $mol_switch['option_title'] >
 	>
-	type $mol_text__text_gd_player_67 = $mol_type_enforce<
+	type $mol_text__text_giper_player_67 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_page__title_gd_player_68 = $mol_type_enforce<
+	type $mol_page__title_giper_player_68 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_page['title'] >
 	>
-	type $mol_page__body_gd_player_69 = $mol_type_enforce<
+	type $mol_page__body_giper_player_69 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['body'] >
 	>
-	type $mol_page__foot_gd_player_70 = $mol_type_enforce<
+	type $mol_page__foot_giper_player_70 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['foot'] >
 	>
-	type $mol_book2__plugins_gd_player_71 = $mol_type_enforce<
+	type $mol_book2__plugins_giper_player_71 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_book2['plugins'] >
 	>
-	type $mol_book2__pages_gd_player_72 = $mol_type_enforce<
-		ReturnType< $gd_player['pages'] >
+	type $mol_book2__pages_giper_player_72 = $mol_type_enforce<
+		ReturnType< $giper_player['pages'] >
 		,
 		ReturnType< $mol_book2['pages'] >
 	>
-	type $mol_book2__placeholders_gd_player_73 = $mol_type_enforce<
-		ReturnType< $gd_player['sidebars'] >
+	type $mol_book2__placeholders_giper_player_73 = $mol_type_enforce<
+		ReturnType< $giper_player['sidebars'] >
 		,
 		ReturnType< $mol_book2['placeholders'] >
 	>
-	export class $gd_player extends $mol_drop {
+	export class $giper_player extends $mol_drop {
 		cover( ): string
 		Theme( ): $mol_theme_auto
-		Space( ): $gd_web_frame
+		Space( ): $giper_web_frame
 		movie_search( next?: string ): string
 		Movie_search( ): $mol_search
 		files_add( next?: readonly(any)[] ): readonly(any)[]
@@ -5752,11 +5752,11 @@ declare namespace $ {
 		Queue( ): $mol_page
 		play_title( ): string
 		play_uri( ): string
-		playing( next?: ReturnType< ReturnType< $gd_player['Player'] >['playing'] > ): ReturnType< ReturnType< $gd_player['Player'] >['playing'] >
+		playing( next?: ReturnType< ReturnType< $giper_player['Player'] >['playing'] > ): ReturnType< ReturnType< $giper_player['Player'] >['playing'] >
 		Player( ): $mol_video_player
 		movie_current_title( ): string
-		Moview_page_title( id: any): ReturnType< ReturnType< $gd_player['Movie_page'] >['Title'] >
-		Moview_page_tools( id: any): ReturnType< ReturnType< $gd_player['Movie_page'] >['Tools'] >
+		Moview_page_title( id: any): ReturnType< ReturnType< $giper_player['Movie_page'] >['Title'] >
+		Moview_page_tools( id: any): ReturnType< ReturnType< $giper_player['Movie_page'] >['Tools'] >
 		movie_bookmark( id: any, next?: boolean ): boolean
 		Movie_bookmark_icon( id: any): $mol_icon_bookmark
 		Movie_bookmark( id: any): $mol_check_icon
@@ -5798,7 +5798,7 @@ declare namespace $ {
 		player_id( next?: string ): string
 		player_options( ): readonly(any)[]
 		player_name_none( ): string
-		player_name( id: any): ReturnType< $gd_player['player_name_none'] >
+		player_name( id: any): ReturnType< $giper_player['player_name_none'] >
 		Player_id( ): $mol_switch
 		Thanks( ): $mol_text
 		Source( id: any): $mol_page
@@ -5808,9 +5808,9 @@ declare namespace $ {
 		files( next?: readonly(any)[] ): readonly(any)[]
 		file_current( next?: any ): any
 		style( ): ({ 
-			'backgroundImage': ReturnType< $gd_player['cover'] >,
+			'backgroundImage': ReturnType< $giper_player['cover'] >,
 		})  & ReturnType< $mol_drop['style'] >
-		Sub( ): ReturnType< $gd_player['Book'] >
+		Sub( ): ReturnType< $giper_player['Book'] >
 	}
 	
 }
@@ -5821,7 +5821,7 @@ declare namespace $.$$ {
         title: string;
         uri: string;
     };
-    export class $gd_player extends $.$gd_player {
+    export class $giper_player extends $.$giper_player {
         playlist(next?: string | null): string;
         playlist_files(): {
             title: string;
@@ -5842,16 +5842,16 @@ declare namespace $.$$ {
         player_id(next?: string): string;
         player_options(): string[];
         player_name(id: number): string;
-        movies(): Map<number, $gd_player_api_movie>;
-        movie_current(): $gd_player_api_movie | null;
-        movies_found(): Map<number, $gd_player_api_movie>;
+        movies(): Map<number, $giper_player_api_movie>;
+        movie_current(): $giper_player_api_movie | null;
+        movies_found(): Map<number, $giper_player_api_movie>;
         queue_movies(): $.$mol_link[];
         queue_items(): $mol_view[];
         movie_poster(id: number): string;
         movie_id(id: number): string;
         movie_title(id: number): string;
         sidebars(): $mol_page[];
-        pages(): ($.$gd_web_frame | $.$mol_video_player | $mol_page)[];
+        pages(): ($.$giper_web_frame | $.$mol_video_player | $mol_page)[];
         play_title(): any;
         play_uri(): any;
         jump_next(): void;

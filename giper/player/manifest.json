@@ -4,7 +4,7 @@
 	"categories": [ "multimedia", "video" ],
 	"icons": [
 		{
-			"src": "../../gd/player/logo/logo_512.png",
+			"src": "../../giper/player/logo/logo_512.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		}

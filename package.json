@@ -1,5 +1,5 @@
 {
-  "name": "gd_player",
+  "name": "giper_player",
   "version": "0.0.1",
   "exports": {
     "node": {
@@ -15,8 +15,8 @@
   "browser": "./web.js",
   "types": "./web.d.ts",
   "keywords": [
-    "$gd_player",
-    "$gd",
+    "$giper_player",
+    "$giper",
     "$mol_drop",
     "$mol",
     "$mol_ghost",
@@ -140,8 +140,8 @@
     "$mol_type_keys_extract",
     "$mol_type_keys",
     "$mol_theme_auto",
-    "$gd_web_frame",
-    "$gd_web",
+    "$giper_web_frame",
+    "$giper_web",
     "$mol_frame",
     "$mol_embed_native",
     "$mol_embed",
@@ -245,9 +245,9 @@
     "$mol_rest_code",
     "$mol_rest",
     "$mol_dom_parse",
-    "$gd_player_m3u",
+    "$giper_player_m3u",
     "$mol_compare_text",
-    "$gd_player_api",
+    "$giper_player_api",
     "$mol_data_array",
     "$mol_data",
     "$mol_data_value",

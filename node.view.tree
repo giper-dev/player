@@ -80,9 +80,9 @@ $mol_frame $mol_embed_native
 	clipboard_read true
 	clipboard_write true
 
-$gd_web_frame $mol_frame
+$giper_web_frame $mol_frame
 	uri \https://web.giper.dev/#mol_lights={lights}/current={current}/query={query}
-	- uri \http://localhost:9080/gd/web/bar/-/test.html#mol_lights={lights}/current={current}/query={query}
+	- uri \http://localhost:9080/giper/web/bar/-/test.html#mol_lights={lights}/current={current}/query={query}
 	query \
 
 $mol_pop $mol_view
@@ -804,7 +804,7 @@ $mol_text_list_item $mol_paragraph
 		^
 		mol_text_list_item_index <= index 0
 
-$gd_player $mol_drop
+$giper_player $mol_drop
 	playlist? \
 	files?next /
 	file_current?val null
@@ -815,7 +815,7 @@ $gd_player $mol_drop
 		plugins /
 			<= Theme $mol_theme_auto
 		pages <= pages /
-			<= Space $gd_web_frame
+			<= Space $giper_web_frame
 			<= Queue $mol_page
 				title @ \Giper Player
 				head /

@@ -4525,7 +4525,7 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$gd_web_frame) = class $gd_web_frame extends ($.$mol_frame) {
+	($.$giper_web_frame) = class $giper_web_frame extends ($.$mol_frame) {
 		uri(){
 			return "https://web.giper.dev/#mol_lights={lights}/current={current}/query={query}";
 		}
@@ -4541,7 +4541,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        class $gd_web_frame extends $.$gd_web_frame {
+        class $giper_web_frame extends $.$giper_web_frame {
             uri() {
                 return super.uri()
                     .replace('{lights}', String(this.$.$mol_lights()))
@@ -4551,8 +4551,8 @@ var $;
         }
         __decorate([
             $mol_mem
-        ], $gd_web_frame.prototype, "uri", null);
-        $$.$gd_web_frame = $gd_web_frame;
+        ], $giper_web_frame.prototype, "uri", null);
+        $$.$giper_web_frame = $giper_web_frame;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
@@ -4560,7 +4560,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("gd/web/frame/frame.view.css", "/* @keyframes gd_web_frame_show {\n\tfrom {\n\t\topacity: 0;\n\t}\n}\n\n[gd_web_frame] {\n\tanimation: 5s -1s ease-in gd_web_frame_show;\n} */\n");
+    $mol_style_attach("giper/web/frame/frame.view.css", "/* @keyframes giper_web_frame_show {\n\tfrom {\n\t\topacity: 0;\n\t}\n}\n\n[giper_web_frame] {\n\tanimation: 5s -1s ease-in giper_web_frame_show;\n} */\n");
 })($ || ($ = {}));
 
 ;
@@ -4572,7 +4572,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        $mol_style_define($gd_web_frame, {
+        $mol_style_define($giper_web_frame, {
             flex: {
                 basis: '4rem',
                 shrink: 0,
@@ -11198,7 +11198,7 @@ var $;
 "use strict";
 
 ;
-	($.$gd_player) = class $gd_player extends ($.$mol_drop) {
+	($.$giper_player) = class $giper_player extends ($.$mol_drop) {
 		cover(){
 			return "";
 		}
@@ -11207,7 +11207,7 @@ var $;
 			return obj;
 		}
 		Space(){
-			const obj = new this.$.$gd_web_frame();
+			const obj = new this.$.$giper_web_frame();
 			return obj;
 		}
 		movie_search(next){
@@ -11216,7 +11216,7 @@ var $;
 		}
 		Movie_search(){
 			const obj = new this.$.$mol_search();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$gd_player_Movie_search_hint")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$giper_player_Movie_search_hint")));
 			(obj.query) = (next) => ((this.movie_search(next)));
 			return obj;
 		}
@@ -11226,7 +11226,7 @@ var $;
 		}
 		Open(){
 			const obj = new this.$.$mol_button_open();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$gd_player_Open_hint")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$giper_player_Open_hint")));
 			(obj.files) = (next) => ((this.files_add(next)));
 			return obj;
 		}
@@ -11343,7 +11343,7 @@ var $;
 		}
 		Queue(){
 			const obj = new this.$.$mol_page();
-			(obj.title) = () => ((this.$.$mol_locale.text("$gd_player_Queue_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$giper_player_Queue_title")));
 			(obj.head) = () => ([(this.Movie_search()), (this.Open())]);
 			(obj.body) = () => ((this.queue_body()));
 			(obj.foot) = () => ([
@@ -11389,7 +11389,7 @@ var $;
 		}
 		Movie_bookmark(id){
 			const obj = new this.$.$mol_check_icon();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$gd_player_Movie_bookmark_hint")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$giper_player_Movie_bookmark_hint")));
 			(obj.checked) = (next) => ((this.movie_bookmark(id, next)));
 			(obj.Icon) = () => ((this.Movie_bookmark_icon(id)));
 			return obj;
@@ -11490,7 +11490,7 @@ var $;
 		}
 		Members_block(){
 			const obj = new this.$.$mol_expander();
-			(obj.title) = () => ((this.$.$mol_locale.text("$gd_player_Members_block_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$giper_player_Members_block_title")));
 			(obj.content) = () => ([(this.Members())]);
 			return obj;
 		}
@@ -11529,7 +11529,7 @@ var $;
 		}
 		Similars_block(){
 			const obj = new this.$.$mol_expander();
-			(obj.title) = () => ((this.$.$mol_locale.text("$gd_player_Similars_block_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$giper_player_Similars_block_title")));
 			(obj.content) = () => ([(this.Similars())]);
 			return obj;
 		}
@@ -11574,7 +11574,7 @@ var $;
 			return [];
 		}
 		player_name_none(){
-			return (this.$.$mol_locale.text("$gd_player_player_name_none"));
+			return (this.$.$mol_locale.text("$giper_player_player_name_none"));
 		}
 		player_name(id){
 			return (this.player_name_none());
@@ -11593,7 +11593,7 @@ var $;
 		}
 		Source(id){
 			const obj = new this.$.$mol_page();
-			(obj.title) = () => ((this.$.$mol_locale.text("$gd_player_Source_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$giper_player_Source_title")));
 			(obj.body) = () => ([(this.Player_id())]);
 			(obj.foot) = () => ([(this.Thanks())]);
 			return obj;
@@ -11627,60 +11627,60 @@ var $;
 			return (this.Book());
 		}
 	};
-	($mol_mem(($.$gd_player.prototype), "Theme"));
-	($mol_mem(($.$gd_player.prototype), "Space"));
-	($mol_mem(($.$gd_player.prototype), "movie_search"));
-	($mol_mem(($.$gd_player.prototype), "Movie_search"));
-	($mol_mem(($.$gd_player.prototype), "files_add"));
-	($mol_mem(($.$gd_player.prototype), "Open"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_title"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_poster"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_genres"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie"));
-	($mol_mem_key(($.$gd_player.prototype), "file_play"));
-	($mol_mem_key(($.$gd_player.prototype), "File_play"));
-	($mol_mem_key(($.$gd_player.prototype), "file_drop"));
-	($mol_mem_key(($.$gd_player.prototype), "File_drop_icon"));
-	($mol_mem_key(($.$gd_player.prototype), "File_drop"));
-	($mol_mem_key(($.$gd_player.prototype), "File"));
-	($mol_mem(($.$gd_player.prototype), "Queue_files"));
-	($mol_mem(($.$gd_player.prototype), "Sources"));
-	($mol_mem(($.$gd_player.prototype), "Donate"));
-	($mol_mem(($.$gd_player.prototype), "Support"));
-	($mol_mem(($.$gd_player.prototype), "Share"));
-	($mol_mem(($.$gd_player.prototype), "Queue"));
-	($mol_mem(($.$gd_player.prototype), "Player"));
-	($mol_mem_key(($.$gd_player.prototype), "movie_bookmark"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_bookmark_icon"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_bookmark"));
-	($mol_mem(($.$gd_player.prototype), "Moview_close_icon"));
-	($mol_mem(($.$gd_player.prototype), "Movie_close"));
-	($mol_mem_key(($.$gd_player.prototype), "Player_ext"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_descr"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_kp"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_imdb"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_links"));
-	($mol_mem_key(($.$gd_player.prototype), "Member_name"));
-	($mol_mem_key(($.$gd_player.prototype), "Member_photo"));
-	($mol_mem_key(($.$gd_player.prototype), "Member_role"));
-	($mol_mem_key(($.$gd_player.prototype), "Member"));
-	($mol_mem(($.$gd_player.prototype), "Members"));
-	($mol_mem(($.$gd_player.prototype), "Members_block"));
-	($mol_mem_key(($.$gd_player.prototype), "Similar_title"));
-	($mol_mem_key(($.$gd_player.prototype), "Similar_poster"));
-	($mol_mem_key(($.$gd_player.prototype), "Similar"));
-	($mol_mem(($.$gd_player.prototype), "Similars"));
-	($mol_mem(($.$gd_player.prototype), "Similars_block"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_info"));
-	($mol_mem_key(($.$gd_player.prototype), "Movie_page"));
-	($mol_mem(($.$gd_player.prototype), "player_id"));
-	($mol_mem(($.$gd_player.prototype), "Player_id"));
-	($mol_mem(($.$gd_player.prototype), "Thanks"));
-	($mol_mem_key(($.$gd_player.prototype), "Source"));
-	($mol_mem(($.$gd_player.prototype), "Book"));
-	($mol_mem(($.$gd_player.prototype), "playlist"));
-	($mol_mem(($.$gd_player.prototype), "files"));
-	($mol_mem(($.$gd_player.prototype), "file_current"));
+	($mol_mem(($.$giper_player.prototype), "Theme"));
+	($mol_mem(($.$giper_player.prototype), "Space"));
+	($mol_mem(($.$giper_player.prototype), "movie_search"));
+	($mol_mem(($.$giper_player.prototype), "Movie_search"));
+	($mol_mem(($.$giper_player.prototype), "files_add"));
+	($mol_mem(($.$giper_player.prototype), "Open"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_title"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_poster"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_genres"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie"));
+	($mol_mem_key(($.$giper_player.prototype), "file_play"));
+	($mol_mem_key(($.$giper_player.prototype), "File_play"));
+	($mol_mem_key(($.$giper_player.prototype), "file_drop"));
+	($mol_mem_key(($.$giper_player.prototype), "File_drop_icon"));
+	($mol_mem_key(($.$giper_player.prototype), "File_drop"));
+	($mol_mem_key(($.$giper_player.prototype), "File"));
+	($mol_mem(($.$giper_player.prototype), "Queue_files"));
+	($mol_mem(($.$giper_player.prototype), "Sources"));
+	($mol_mem(($.$giper_player.prototype), "Donate"));
+	($mol_mem(($.$giper_player.prototype), "Support"));
+	($mol_mem(($.$giper_player.prototype), "Share"));
+	($mol_mem(($.$giper_player.prototype), "Queue"));
+	($mol_mem(($.$giper_player.prototype), "Player"));
+	($mol_mem_key(($.$giper_player.prototype), "movie_bookmark"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_bookmark_icon"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_bookmark"));
+	($mol_mem(($.$giper_player.prototype), "Moview_close_icon"));
+	($mol_mem(($.$giper_player.prototype), "Movie_close"));
+	($mol_mem_key(($.$giper_player.prototype), "Player_ext"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_descr"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_kp"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_imdb"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_links"));
+	($mol_mem_key(($.$giper_player.prototype), "Member_name"));
+	($mol_mem_key(($.$giper_player.prototype), "Member_photo"));
+	($mol_mem_key(($.$giper_player.prototype), "Member_role"));
+	($mol_mem_key(($.$giper_player.prototype), "Member"));
+	($mol_mem(($.$giper_player.prototype), "Members"));
+	($mol_mem(($.$giper_player.prototype), "Members_block"));
+	($mol_mem_key(($.$giper_player.prototype), "Similar_title"));
+	($mol_mem_key(($.$giper_player.prototype), "Similar_poster"));
+	($mol_mem_key(($.$giper_player.prototype), "Similar"));
+	($mol_mem(($.$giper_player.prototype), "Similars"));
+	($mol_mem(($.$giper_player.prototype), "Similars_block"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_info"));
+	($mol_mem_key(($.$giper_player.prototype), "Movie_page"));
+	($mol_mem(($.$giper_player.prototype), "player_id"));
+	($mol_mem(($.$giper_player.prototype), "Player_id"));
+	($mol_mem(($.$giper_player.prototype), "Thanks"));
+	($mol_mem_key(($.$giper_player.prototype), "Source"));
+	($mol_mem(($.$giper_player.prototype), "Book"));
+	($mol_mem(($.$giper_player.prototype), "playlist"));
+	($mol_mem(($.$giper_player.prototype), "files"));
+	($mol_mem(($.$giper_player.prototype), "file_current"));
 
 
 ;
@@ -11688,11 +11688,11 @@ var $;
 var $;
 (function ($) {
     const { begin, end, from, line_end, decimal_only, char_any, repeat, repeat_greedy } = $mol_regexp;
-    $.$gd_player_m3u_prolog = from([
+    $.$giper_player_m3u_prolog = from([
         '#EXTM3U',
         repeat_greedy(line_end),
     ]);
-    $.$gd_player_m3u_entry = from([
+    $.$giper_player_m3u_entry = from([
         '#EXTINF:',
         { duration: repeat(decimal_only) },
         ',',
@@ -11701,10 +11701,10 @@ var $;
         { uri: repeat(char_any) },
         repeat_greedy(line_end, 1),
     ]);
-    $.$gd_player_m3u = from([
+    $.$giper_player_m3u = from([
         begin,
-        $.$gd_player_m3u_prolog,
-        repeat_greedy($.$gd_player_m3u_entry),
+        $.$giper_player_m3u_prolog,
+        repeat_greedy($.$giper_player_m3u_entry),
         end,
     ]);
 })($ || ($ = {}));
@@ -11965,7 +11965,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$gd_player_api_search_movie_data = $mol_data_array($mol_data_record({
+    $.$giper_player_api_search_movie_data = $mol_data_array($mol_data_record({
         id: $mol_data_integer,
         year: $mol_data_pipe($mol_data_string, Number),
         poster: $mol_data_string,
@@ -11978,17 +11978,17 @@ var $;
             }))
         })
     }));
-    $.$gd_player_api_movie_data_short = $mol_data_record({
+    $.$giper_player_api_movie_data_short = $mol_data_record({
         name_original: $mol_data_nullable($mol_data_string),
         name_en: $mol_data_nullable($mol_data_string),
         name_ru: $mol_data_nullable($mol_data_string),
         poster_url_preview: $mol_data_string,
     });
-    $.$gd_player_api_similar_data = $mol_data_record({
-        ...$.$gd_player_api_movie_data_short.config,
+    $.$giper_player_api_similar_data = $mol_data_record({
+        ...$.$giper_player_api_movie_data_short.config,
         film_id: $mol_data_integer,
     });
-    $.$gd_player_api_member = $mol_data_record({
+    $.$giper_player_api_member = $mol_data_record({
         description: $mol_data_nullable($mol_data_string),
         name_en: $mol_data_string,
         name_ru: $mol_data_string,
@@ -11997,8 +11997,8 @@ var $;
         profession_text: $mol_data_string,
         staff_id: $mol_data_integer,
     });
-    $.$gd_player_api_movie_data_full = $mol_data_record({
-        ...$.$gd_player_api_movie_data_short.config,
+    $.$giper_player_api_movie_data_full = $mol_data_record({
+        ...$.$giper_player_api_movie_data_short.config,
         imdb_id: $mol_data_nullable($mol_data_string),
         year: $mol_data_integer,
         description: $mol_data_nullable($mol_data_string),
@@ -12006,20 +12006,20 @@ var $;
         genres: $mol_data_array($mol_data_record({
             genre: $mol_data_string,
         })),
-        sequels_and_prequels: $mol_data_array($.$gd_player_api_similar_data),
-        similars: $mol_data_array($.$gd_player_api_similar_data),
-        staff: $mol_data_array($.$gd_player_api_member),
+        sequels_and_prequels: $mol_data_array($.$giper_player_api_similar_data),
+        similars: $mol_data_array($.$giper_player_api_similar_data),
+        staff: $mol_data_array($.$giper_player_api_member),
     });
-    $.$gd_player_api_player_data = $mol_data_array($mol_data_record({
+    $.$giper_player_api_player_data = $mol_data_array($mol_data_record({
         name: $mol_data_string,
         iframe: $mol_data_string,
     }));
-    class $gd_player_api extends $mol_object {
+    class $giper_player_api extends $mol_object {
         static search(query) {
             if (!query.trim())
                 return new Map;
-            const resp = $.$gd_player_api_search_movie_data(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/search/${encodeURIComponent(query)}`));
-            return new Map(resp.map(data => [data.id, $gd_player_api_movie.make({
+            const resp = $.$giper_player_api_search_movie_data(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/search/${encodeURIComponent(query)}`));
+            return new Map(resp.map(data => [data.id, $giper_player_api_movie.make({
                     id: $mol_const(data.id),
                     title: $mol_const(data.raw_data.name_ru || data.raw_data.name_en || `#${data.id}`),
                     poster: $mol_const(data.poster),
@@ -12031,9 +12031,9 @@ var $;
     }
     __decorate([
         $mol_mem_key
-    ], $gd_player_api, "search", null);
-    $.$gd_player_api = $gd_player_api;
-    class $gd_player_api_movie extends $mol_object {
+    ], $giper_player_api, "search", null);
+    $.$giper_player_api = $giper_player_api;
+    class $giper_player_api_movie extends $mol_object {
         id() {
             return 0;
         }
@@ -12044,7 +12044,7 @@ var $;
             return this.data().imdb_id && `https://imdb.com/title/${this.data().imdb_id}/`;
         }
         data() {
-            return $.$gd_player_api_movie_data_full(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/kp_info2/${this.id()}`));
+            return $.$giper_player_api_movie_data_full(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/kp_info2/${this.id()}`));
         }
         title() {
             return this.data().name_ru || this.data().name_en || this.data().name_original || '???';
@@ -12066,7 +12066,7 @@ var $;
         }
         similars() {
             return new Map([...this.data().sequels_and_prequels, ...this.data().similars]
-                .map(sim => [sim.film_id, $gd_player_api_movie.make({
+                .map(sim => [sim.film_id, $giper_player_api_movie.make({
                     id: $mol_const(sim.film_id),
                     title: $mol_const(sim.name_ru || sim.name_en || sim.name_original || '???'),
                     poster: $mol_const(sim.poster_url_preview),
@@ -12093,7 +12093,7 @@ var $;
             ]));
         }
         players() {
-            const resp = $.$gd_player_api_player_data(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/cache`, {
+            const resp = $.$giper_player_api_player_data(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/cache`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
@@ -12103,26 +12103,26 @@ var $;
                     kinopoisk: String(this.id()),
                 }).toString(),
             })).toSorted($mol_compare_text(data => data.name));
-            return new Map(resp.map(data => [data.name, $gd_player_api_player.make({ data: $mol_const(data) })]));
+            return new Map(resp.map(data => [data.name, $giper_player_api_player.make({ data: $mol_const(data) })]));
         }
     }
     __decorate([
         $mol_mem
-    ], $gd_player_api_movie.prototype, "data", null);
+    ], $giper_player_api_movie.prototype, "data", null);
     __decorate([
         $mol_mem
-    ], $gd_player_api_movie.prototype, "genres", null);
+    ], $giper_player_api_movie.prototype, "genres", null);
     __decorate([
         $mol_mem
-    ], $gd_player_api_movie.prototype, "similars", null);
+    ], $giper_player_api_movie.prototype, "similars", null);
     __decorate([
         $mol_mem
-    ], $gd_player_api_movie.prototype, "members", null);
+    ], $giper_player_api_movie.prototype, "members", null);
     __decorate([
         $mol_mem
-    ], $gd_player_api_movie.prototype, "players", null);
-    $.$gd_player_api_movie = $gd_player_api_movie;
-    class $gd_player_api_player extends $mol_object {
+    ], $giper_player_api_movie.prototype, "players", null);
+    $.$giper_player_api_movie = $giper_player_api_movie;
+    class $giper_player_api_player extends $mol_object {
         data() {
             return null;
         }
@@ -12133,7 +12133,7 @@ var $;
             return this.data().iframe;
         }
     }
-    $.$gd_player_api_player = $gd_player_api_player;
+    $.$giper_player_api_player = $giper_player_api_player;
 })($ || ($ = {}));
 
 ;
@@ -12254,7 +12254,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("gd/player/player.view.css", "[gd_player] {\n\tbackground-size: cover;\n\tbackground-position: center;;\n}\n\n[gd_player_queue_body_content] {\n\tgap: var(--mol_gap_block);\n}\n\n[gd_player_queue],\n[gd_player_chat_page] {\n\tflex: 0 0 25rem;\n}\n\n[gd_player_file] {\n\talign-items: flex-start;\n}\n\n[gd_player_file_play][disabled=\"true\"] {\n\tcolor: var(--mol_theme_current);\n}\n\n[gd_player_file_play] {\n\tflex: 1 1 auto;\n}\n\n\n[gd_player_player] {\n\tflex: 1 0 calc( 100% - 25rem );\n\tobject-position: top;\n}\n\n[gd_player_movie_search] {\n\talign-self: stretch;\n\tjustify-self: flex-start;\n}\n\n[gd_player_movie] {\n\tflex-direction: column;\n\tgap: 0;\n\ttext-align: center;\n}\n\n[gd_player_movie_title] {\n\tflex: 1 1 auto;\n\tpadding: var(--mol_gap_text);\n\tjustify-content: center;\n}\n\n[gd_player_movie_poster] {\n\twidth: auto;\n\tmax-height: 50vh;\n\talign-self: center;\n\taspect-ratio: .67;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n[gd_player_movie][mol_link_current] [gd_player_movie_poster] {\n\tbox-shadow: 0 0 0 2px var(--mol_theme_current), 0 0 1rem black;\n}\n\n[gd_player_source] {\n\tflex: 0 0 10rem;\n}\n\n[gd_player_movie_page] {\n\tflex: 1 0 max( 50rem, calc( 100% - 35rem ) );\n}\n\n[gd_player_movie_page_head] {\n\tflex-wrap: nowrap;\n\talign-items: flex-start;\n}\n\n[gd_player_player_ext] {\n\tjustify-self: stretch;\n}\n\n[gd_player_player_id] {\n\tflex-direction: column;\n}\n\n[gd_player_player_id_option] {\n\ttext-transform: capitalize;\n}\n\n[gd_player_movie_genres] {\n\tcolor: var(--mol_theme_shade);\n\ttext-align: center;\n}\n\n[gd_player_movie_info] {\n\tpadding: var(--mol_gap_block);\n}\n\n[gd_player_similars] {\n\talign-items: flex-end;\n\tpadding: 0;\n}\n\n[gd_player_similar] {\n\tflex-direction: column;\n\twidth: 10rem;\n\ttext-align: center;\n\tpadding: var(--mol_gap_block);\n}\n\n[gd_player_similar_title] {\n\tjustify-content: center;\n}\n\n[gd_player_similar_poster] {\n\twidth: auto;\n\taspect-ratio: .67;\n\tmax-height: 50vh;\n    align-self: center;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n\n[gd_player_members] {\n\tpadding: 0;\n}\n\n[gd_player_member] {\n\tflex-direction: column;\n\twidth: 10.5rem;\n\ttext-align: center;\n}\n\n[gd_player_member_name] {\n\tjustify-content: center;\n    height: 3rem;\n    align-items: flex-end;\n}\n\n[gd_player_member_role] {\n\tjustify-content: center;\n\tcolor: var(--mol_theme_shade);\n}\n\n[gd_player_member_photo] {\n\twidth: 10rem;\n\taspect-ratio: .67;\n\tmax-height: 50vh;\n    align-self: center;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n\n");
+    $mol_style_attach("giper/player/player.view.css", "[giper_player] {\n\tbackground-size: cover;\n\tbackground-position: center;;\n}\n\n[giper_player_queue_body_content] {\n\tgap: var(--mol_gap_block);\n}\n\n[giper_player_queue],\n[giper_player_chat_page] {\n\tflex: 0 0 25rem;\n}\n\n[giper_player_file] {\n\talign-items: flex-start;\n}\n\n[giper_player_file_play][disabled=\"true\"] {\n\tcolor: var(--mol_theme_current);\n}\n\n[giper_player_file_play] {\n\tflex: 1 1 auto;\n}\n\n\n[giper_player_player] {\n\tflex: 1 0 calc( 100% - 25rem );\n\tobject-position: top;\n}\n\n[giper_player_movie_search] {\n\talign-self: stretch;\n\tjustify-self: flex-start;\n}\n\n[giper_player_movie] {\n\tflex-direction: column;\n\tgap: 0;\n\ttext-align: center;\n}\n\n[giper_player_movie_title] {\n\tflex: 1 1 auto;\n\tpadding: var(--mol_gap_text);\n\tjustify-content: center;\n}\n\n[giper_player_movie_poster] {\n\twidth: auto;\n\tmax-height: 50vh;\n\talign-self: center;\n\taspect-ratio: .67;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n[giper_player_movie][mol_link_current] [giper_player_movie_poster] {\n\tbox-shadow: 0 0 0 2px var(--mol_theme_current), 0 0 1rem black;\n}\n\n[giper_player_source] {\n\tflex: 0 0 10rem;\n}\n\n[giper_player_movie_page] {\n\tflex: 1 0 max( 50rem, calc( 100% - 35rem ) );\n}\n\n[giper_player_movie_page_head] {\n\tflex-wrap: nowrap;\n\talign-items: flex-start;\n}\n\n[giper_player_player_ext] {\n\tjustify-self: stretch;\n}\n\n[giper_player_player_id] {\n\tflex-direction: column;\n}\n\n[giper_player_player_id_option] {\n\ttext-transform: capitalize;\n}\n\n[giper_player_movie_genres] {\n\tcolor: var(--mol_theme_shade);\n\ttext-align: center;\n}\n\n[giper_player_movie_info] {\n\tpadding: var(--mol_gap_block);\n}\n\n[giper_player_similars] {\n\talign-items: flex-end;\n\tpadding: 0;\n}\n\n[giper_player_similar] {\n\tflex-direction: column;\n\twidth: 10rem;\n\ttext-align: center;\n\tpadding: var(--mol_gap_block);\n}\n\n[giper_player_similar_title] {\n\tjustify-content: center;\n}\n\n[giper_player_similar_poster] {\n\twidth: auto;\n\taspect-ratio: .67;\n\tmax-height: 50vh;\n    align-self: center;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n\n[giper_player_members] {\n\tpadding: 0;\n}\n\n[giper_player_member] {\n\tflex-direction: column;\n\twidth: 10.5rem;\n\ttext-align: center;\n}\n\n[giper_player_member_name] {\n\tjustify-content: center;\n    height: 3rem;\n    align-items: flex-end;\n}\n\n[giper_player_member_role] {\n\tjustify-content: center;\n\tcolor: var(--mol_theme_shade);\n}\n\n[giper_player_member_photo] {\n\twidth: 10rem;\n\taspect-ratio: .67;\n\tmax-height: 50vh;\n    align-self: center;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line), 0 0 .5rem black;\n}\n\n");
 })($ || ($ = {}));
 
 ;
@@ -12266,7 +12266,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        class $gd_player extends $.$gd_player {
+        class $giper_player extends $.$giper_player {
             playlist(next) {
                 return this.$.$mol_state_arg.value('playlist', next) ?? super.playlist();
             }
@@ -12275,7 +12275,7 @@ var $;
                 if (!uri)
                     return [];
                 const text = this.$.$mol_fetch.text(uri);
-                const files = [...text.matchAll($gd_player_m3u_entry)]
+                const files = [...text.matchAll($giper_player_m3u_entry)]
                     .map(cap => cap.groups)
                     .filter($mol_guard_defined)
                     .map(({ title, uri }) => ({ title, uri }));
@@ -12359,13 +12359,13 @@ var $;
                 const current = this.movie_current_id();
                 if (!current)
                     return null;
-                return $gd_player_api_movie.make({ id: $mol_const(current) });
+                return $giper_player_api_movie.make({ id: $mol_const(current) });
             }
             movies_found() {
                 if (!this.movie_search())
-                    return new Map(this.bookmarks().toReversed().map(id => [id, this.$.$gd_player_api_movie.make({ id: $mol_const(id) })]));
+                    return new Map(this.bookmarks().toReversed().map(id => [id, this.$.$giper_player_api_movie.make({ id: $mol_const(id) })]));
                 this.$.$mol_wait_timeout(500);
-                return this.$.$gd_player_api.search(this.movie_search());
+                return this.$.$giper_player_api.search(this.movie_search());
             }
             queue_movies() {
                 return [...this.movies().keys()].map(id => this.Movie(id));
@@ -12521,95 +12521,95 @@ var $;
         }
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "playlist", null);
+        ], $giper_player.prototype, "playlist", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "playlist_files", null);
+        ], $giper_player.prototype, "playlist_files", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "files", null);
+        ], $giper_player.prototype, "files", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "queue_files", null);
+        ], $giper_player.prototype, "queue_files", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "player_uri", null);
+        ], $giper_player.prototype, "player_uri", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "player_id", null);
+        ], $giper_player.prototype, "player_id", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "player_options", null);
+        ], $giper_player.prototype, "player_options", null);
         __decorate([
             $mol_mem_key
-        ], $gd_player.prototype, "player_name", null);
+        ], $giper_player.prototype, "player_name", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "movies", null);
+        ], $giper_player.prototype, "movies", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "movie_current", null);
+        ], $giper_player.prototype, "movie_current", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "movies_found", null);
+        ], $giper_player.prototype, "movies_found", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "queue_movies", null);
+        ], $giper_player.prototype, "queue_movies", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "queue_items", null);
+        ], $giper_player.prototype, "queue_items", null);
         __decorate([
             $mol_mem_key
-        ], $gd_player.prototype, "movie_title", null);
+        ], $giper_player.prototype, "movie_title", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "sidebars", null);
+        ], $giper_player.prototype, "sidebars", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "pages", null);
+        ], $giper_player.prototype, "pages", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "play_title", null);
+        ], $giper_player.prototype, "play_title", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "play_uri", null);
+        ], $giper_player.prototype, "play_uri", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "auto_switch", null);
+        ], $giper_player.prototype, "auto_switch", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "handle_files", null);
+        ], $giper_player.prototype, "handle_files", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "handle_actions", null);
+        ], $giper_player.prototype, "handle_actions", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "bookmarks", null);
+        ], $giper_player.prototype, "bookmarks", null);
         __decorate([
             $mol_mem_key
-        ], $gd_player.prototype, "movie_bookmark", null);
+        ], $giper_player.prototype, "movie_bookmark", null);
         __decorate([
             $mol_mem_key
-        ], $gd_player.prototype, "movie_content", null);
+        ], $giper_player.prototype, "movie_content", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "movie_uri_kp", null);
+        ], $giper_player.prototype, "movie_uri_kp", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "movie_uri_imdb", null);
+        ], $giper_player.prototype, "movie_uri_imdb", null);
         __decorate([
             $mol_mem_key
-        ], $gd_player.prototype, "movie_descr", null);
+        ], $giper_player.prototype, "movie_descr", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "cover", null);
+        ], $giper_player.prototype, "cover", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "similars", null);
+        ], $giper_player.prototype, "similars", null);
         __decorate([
             $mol_mem
-        ], $gd_player.prototype, "members", null);
-        $$.$gd_player = $gd_player;
+        ], $giper_player.prototype, "members", null);
+        $$.$giper_player = $giper_player;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
