@@ -12634,7 +12634,7 @@ var $;
             return this.data().imdb_id && `https://imdb.com/title/${this.data().imdb_id}/`;
         }
         data() {
-            return $.$giper_player_api_movie_data_full(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/kp_info2/${this.id()}`));
+            return $.$giper_player_api_movie_data_full(this.$.$mol_fetch.json(`https://api4.rhserv.vu/kp_info2/${this.id()}`));
         }
         title() {
             return this.data().name_ru || this.data().name_en || this.data().name_original || '???';
@@ -12683,7 +12683,7 @@ var $;
             ]));
         }
         players() {
-            const resp = $.$giper_player_api_player_data(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/cache`, {
+            const resp = $.$giper_player_api_player_data(this.$.$mol_fetch.json(`https://api4.rhserv.vu/cache`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
