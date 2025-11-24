@@ -12608,7 +12608,7 @@ var $;
         static search(query) {
             if (!query.trim())
                 return new Map;
-            const resp = $.$giper_player_api_search_movie_data(this.$.$mol_fetch.json(`https://api4.rhhhhhhh.live/search/${encodeURIComponent(query)}`));
+            const resp = $.$giper_player_api_search_movie_data(this.$.$mol_fetch.json(`https://api4.rhserv.vu/search/${encodeURIComponent(query)}`));
             return new Map(resp.map(data => [data.id, $giper_player_api_movie.make({
                     id: $mol_const(data.id),
                     title: $mol_const(data.raw_data.name_ru || data.raw_data.name_en || `#${data.id}`),
