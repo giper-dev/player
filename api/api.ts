@@ -63,7 +63,7 @@ namespace $ {
 			if( !query.trim() ) return new Map
 			
 			const resp = $giper_player_api_search_movie_data(
-				this.$.$mol_fetch.json( `https://api4.rhhhhhhh.live/search/${ encodeURIComponent( query ) }` ) as any[]
+				this.$.$mol_fetch.json( `https://api4.rhserv.vu/search/${ encodeURIComponent( query ) }` ) as any[]
 			)
 			
 			return new Map(
