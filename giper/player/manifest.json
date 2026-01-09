@@ -9,6 +9,12 @@
 			"sizes": "512x512"
 		}
 	],
+<<<<<<< HEAD
+	"launch_handler": {
+		"client_mode": "focus-existing"
+	},
+=======
+>>>>>>> ea2e61570cb3941eefe8a94c4e650dc596b27cd1
 	"file_handlers": [
 		{
 			"action": "../..",
