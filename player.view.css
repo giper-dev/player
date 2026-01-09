@@ -63,7 +63,7 @@
 }
 
 [giper_player_movie_page] {
-	flex: 1 0 max( 50rem, calc( 100% - 35rem ) );
+	flex: 1 0 max( 50rem, calc( 100% - 40rem ) );
 }
 
 [giper_player_movie_page_head] {
