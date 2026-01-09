@@ -9,6 +9,9 @@
 			"sizes": "512x512"
 		}
 	],
+	"launch_handler": {
+		"client_mode": "focus-existing"
+	},
 	"file_handlers": [
 		{
 			"action": "../..",
