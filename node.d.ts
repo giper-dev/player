@@ -4760,9 +4760,29 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    type $mol_type_partial_undefined<Val> = $mol_type_merge<$mol_type_override<Partial<Val>, Pick<Val, {
+        [Field in keyof Val]: undefined extends Val[Field] ? never : Field;
+    }[keyof Val]>>>;
+}
+
+declare namespace $ {
     function $mol_data_setup<Value extends $mol_data_value, Config = never>(value: Value, config: Config): Value & {
         config: Config;
         Value: ReturnType<Value>;
+    };
+}
+
+declare namespace $ {
+    function $mol_data_record<Sub extends Record<string, $mol_data_value>>(sub: Sub): ((val: $mol_type_merge<$mol_type_override<Partial<{ [key in keyof Sub]: Parameters<Sub[key]>[0]; }>, Pick<{ [key in keyof Sub]: Parameters<Sub[key]>[0]; }, { [Field in keyof { [key in keyof Sub]: Parameters<Sub[key]>[0]; }]: undefined extends { [key in keyof Sub]: Parameters<Sub[key]>[0]; }[Field] ? never : Field; }[keyof Sub]>>>) => Readonly<$mol_type_merge<$mol_type_override<Partial<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }>, Pick<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }, { [Field_1 in keyof { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }]: undefined extends { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }[Field_1] ? never : Field_1; }[keyof Sub]>>>>) & {
+        config: Sub;
+        Value: Readonly<$mol_type_merge<$mol_type_override<Partial<{ [key in keyof Sub]: ReturnType<Sub[key]>; }>, Pick<{ [key in keyof Sub]: ReturnType<Sub[key]>; }, { [Field in keyof { [key in keyof Sub]: ReturnType<Sub[key]>; }]: undefined extends { [key in keyof Sub]: ReturnType<Sub[key]>; }[Field] ? never : Field; }[keyof Sub]>>>>;
+    };
+}
+
+declare namespace $ {
+    function $mol_data_nullable<Sub extends $mol_data_value>(sub: Sub): ((val: Parameters<Sub>[0] | null) => ReturnType<Sub> | null) & {
+        config: Sub;
+        Value: ReturnType<Sub> | null;
     };
 }
 
@@ -4772,23 +4792,7 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    function $mol_data_array<Sub extends $mol_data_value>(sub: Sub): ((val: readonly Parameters<Sub>[0][]) => readonly ReturnType<Sub>[]) & {
-        config: Sub;
-        Value: readonly ReturnType<Sub>[];
-    };
-}
-
-declare namespace $ {
-    type $mol_type_partial_undefined<Val> = $mol_type_merge<$mol_type_override<Partial<Val>, Pick<Val, {
-        [Field in keyof Val]: undefined extends Val[Field] ? never : Field;
-    }[keyof Val]>>>;
-}
-
-declare namespace $ {
-    function $mol_data_record<Sub extends Record<string, $mol_data_value>>(sub: Sub): ((val: $mol_type_merge<$mol_type_override<Partial<{ [key in keyof Sub]: Parameters<Sub[key]>[0]; }>, Pick<{ [key in keyof Sub]: Parameters<Sub[key]>[0]; }, { [Field in keyof { [key in keyof Sub]: Parameters<Sub[key]>[0]; }]: undefined extends { [key in keyof Sub]: Parameters<Sub[key]>[0]; }[Field] ? never : Field; }[keyof Sub]>>>) => Readonly<$mol_type_merge<$mol_type_override<Partial<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }>, Pick<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }, { [Field_1 in keyof { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }]: undefined extends { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }[Field_1] ? never : Field_1; }[keyof Sub]>>>>) & {
-        config: Sub;
-        Value: Readonly<$mol_type_merge<$mol_type_override<Partial<{ [key in keyof Sub]: ReturnType<Sub[key]>; }>, Pick<{ [key in keyof Sub]: ReturnType<Sub[key]>; }, { [Field in keyof { [key in keyof Sub]: ReturnType<Sub[key]>; }]: undefined extends { [key in keyof Sub]: ReturnType<Sub[key]>; }[Field] ? never : Field; }[keyof Sub]>>>>;
-    };
+    let $mol_data_string: (val: string) => string;
 }
 
 declare namespace $ {
@@ -4800,139 +4804,190 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    type $mol_type_unary_func = ((param: any) => any);
-    type $mol_type_unary_class = new (param: any) => any;
-    type $mol_type_unary = $mol_type_unary_func | $mol_type_unary_class;
-}
-
-declare namespace $ {
-    type $mol_type_param<Func, Index extends number> = Func extends (...params: infer Params) => any ? Params[Index] : Func extends new (...params: infer Params2) => any ? Params2[Index] : never;
-}
-
-declare namespace $ {
-    function $mol_func_is_class<Func extends Function>(func: Func): func is Func & (new (...args: any[]) => any);
-}
-
-declare namespace $ {
-    type $mol_type_result<Func> = Func extends (...params: any) => infer Result ? Result : Func extends new (...params: any) => infer Result ? Result : never;
-}
-
-declare namespace $ {
-    type Guard_value<Funcs extends $mol_type_unary[], Index extends keyof Funcs> = $mol_type_param<Index extends keyof $mol_type_tail<Funcs> ? $mol_type_tail<Funcs>[Index] : any, 0>;
-    type Guard<Funcs extends $mol_type_unary[]> = {
-        [Index in keyof Funcs]: (Funcs[Index] extends $mol_type_unary_func ? (input: $mol_type_param<Funcs[Index], 0>) => Guard_value<Funcs, Index> : new (input: $mol_type_param<Funcs[Index], 0>) => Guard_value<Funcs, Index>);
-    };
-    export function $mol_data_pipe<Funcs extends $mol_type_unary[]>(...funcs: Funcs & Guard<Funcs>): ((this: any, input: $mol_type_param<Funcs[0], 0>) => $mol_type_result<$mol_type_foot<Funcs>>) & {
-        config: {
-            funcs: Funcs & Guard<Funcs>;
-        };
-        Value: $mol_type_result<$mol_type_foot<Funcs>>;
-    };
-    export {};
-}
-
-declare namespace $ {
-    let $mol_data_string: (val: string) => string;
-}
-
-declare namespace $ {
-    function $mol_data_nullable<Sub extends $mol_data_value>(sub: Sub): ((val: Parameters<Sub>[0] | null) => ReturnType<Sub> | null) & {
+    function $mol_data_array<Sub extends $mol_data_value>(sub: Sub): ((val: readonly Parameters<Sub>[0][]) => readonly ReturnType<Sub>[]) & {
         config: Sub;
-        Value: ReturnType<Sub> | null;
+        Value: readonly ReturnType<Sub>[];
     };
 }
 
 declare namespace $ {
-    function $mol_array_groups<Item, Groups extends string>(all: readonly Item[], group: (item: Item) => Groups): Readonly<Record<Groups, Item[] | undefined>>;
-}
-
-declare namespace $ {
-    const $giper_player_api_search_movie_data: ((val: readonly {
-        id: number;
-        year: string;
-        poster: string;
-        raw_data: {
-            genres: readonly {
+    const $giper_player_api_movie_data_short: ((val: {
+        year: number | null;
+        genres: readonly {
+            genre: string;
+        }[];
+        nameOriginal: string | null;
+        nameEn: string | null;
+        nameRu: string | null;
+        posterUrlPreview: string;
+        kinopoiskId: number;
+        imdbId: string | null;
+    }) => Readonly<{
+        year: number | null;
+        genres: readonly Readonly<{
+            genre: string;
+        }>[];
+        nameOriginal: string | null;
+        nameEn: string | null;
+        nameRu: string | null;
+        posterUrlPreview: string;
+        kinopoiskId: number;
+        imdbId: string | null;
+    }>) & {
+        config: {
+            nameOriginal: ((val: string | null) => string | null) & {
+                config: (val: string) => string;
+                Value: string | null;
+            };
+            nameEn: ((val: string | null) => string | null) & {
+                config: (val: string) => string;
+                Value: string | null;
+            };
+            nameRu: ((val: string | null) => string | null) & {
+                config: (val: string) => string;
+                Value: string | null;
+            };
+            posterUrlPreview: (val: string) => string;
+            kinopoiskId: typeof $mol_data_integer;
+            imdbId: ((val: string | null) => string | null) & {
+                config: (val: string) => string;
+                Value: string | null;
+            };
+            year: ((val: number | null) => number | null) & {
+                config: typeof $mol_data_integer;
+                Value: number | null;
+            };
+            genres: ((val: readonly {
                 genre: string;
-            }[];
-            name_en: string | null;
-            name_ru: string | null;
-            description: string | null;
+            }[]) => readonly Readonly<{
+                genre: string;
+            }>[]) & {
+                config: ((val: {
+                    genre: string;
+                }) => Readonly<{
+                    genre: string;
+                }>) & {
+                    config: {
+                        genre: (val: string) => string;
+                    };
+                    Value: Readonly<{
+                        genre: string;
+                    }>;
+                };
+                Value: readonly Readonly<{
+                    genre: string;
+                }>[];
+            };
         };
-    }[]) => readonly Readonly<{
-        id: number;
-        year: number;
-        poster: string;
-        raw_data: Readonly<{
+        Value: Readonly<{
+            year: number | null;
             genres: readonly Readonly<{
                 genre: string;
             }>[];
-            name_en: string | null;
-            name_ru: string | null;
-            description: string | null;
+            nameOriginal: string | null;
+            nameEn: string | null;
+            nameRu: string | null;
+            posterUrlPreview: string;
+            kinopoiskId: number;
+            imdbId: string | null;
         }>;
-    }>[]) & {
-        config: ((val: {
-            id: number;
-            year: string;
-            poster: string;
-            raw_data: {
+    };
+    const $giper_player_api_search_movie_data: ((val: {
+        items: readonly {
+            year: number | null;
+            genres: readonly {
+                genre: string;
+            }[];
+            nameOriginal: string | null;
+            nameEn: string | null;
+            nameRu: string | null;
+            posterUrlPreview: string;
+            kinopoiskId: number;
+            imdbId: string | null;
+        }[];
+    }) => Readonly<{
+        items: readonly Readonly<{
+            year: number | null;
+            genres: readonly Readonly<{
+                genre: string;
+            }>[];
+            nameOriginal: string | null;
+            nameEn: string | null;
+            nameRu: string | null;
+            posterUrlPreview: string;
+            kinopoiskId: number;
+            imdbId: string | null;
+        }>[];
+    }>) & {
+        config: {
+            items: ((val: readonly {
+                year: number | null;
                 genres: readonly {
                     genre: string;
                 }[];
-                name_en: string | null;
-                name_ru: string | null;
-                description: string | null;
-            };
-        }) => Readonly<{
-            id: number;
-            year: number;
-            poster: string;
-            raw_data: Readonly<{
+                nameOriginal: string | null;
+                nameEn: string | null;
+                nameRu: string | null;
+                posterUrlPreview: string;
+                kinopoiskId: number;
+                imdbId: string | null;
+            }[]) => readonly Readonly<{
+                year: number | null;
                 genres: readonly Readonly<{
                     genre: string;
                 }>[];
-                name_en: string | null;
-                name_ru: string | null;
-                description: string | null;
-            }>;
-        }>) & {
-            config: {
-                id: typeof $mol_data_integer;
-                year: ((this: any, input: string) => number) & {
-                    config: {
-                        funcs: [(val: string) => string, NumberConstructor] & [(input: string) => any, (input: any) => unknown];
-                    };
-                    Value: number;
-                };
-                poster: (val: string) => string;
-                raw_data: ((val: {
+                nameOriginal: string | null;
+                nameEn: string | null;
+                nameRu: string | null;
+                posterUrlPreview: string;
+                kinopoiskId: number;
+                imdbId: string | null;
+            }>[]) & {
+                config: ((val: {
+                    year: number | null;
                     genres: readonly {
                         genre: string;
                     }[];
-                    name_en: string | null;
-                    name_ru: string | null;
-                    description: string | null;
+                    nameOriginal: string | null;
+                    nameEn: string | null;
+                    nameRu: string | null;
+                    posterUrlPreview: string;
+                    kinopoiskId: number;
+                    imdbId: string | null;
                 }) => Readonly<{
+                    year: number | null;
                     genres: readonly Readonly<{
                         genre: string;
                     }>[];
-                    name_en: string | null;
-                    name_ru: string | null;
-                    description: string | null;
+                    nameOriginal: string | null;
+                    nameEn: string | null;
+                    nameRu: string | null;
+                    posterUrlPreview: string;
+                    kinopoiskId: number;
+                    imdbId: string | null;
                 }>) & {
                     config: {
-                        name_en: ((val: string | null) => string | null) & {
+                        nameOriginal: ((val: string | null) => string | null) & {
                             config: (val: string) => string;
                             Value: string | null;
                         };
-                        name_ru: ((val: string | null) => string | null) & {
+                        nameEn: ((val: string | null) => string | null) & {
                             config: (val: string) => string;
                             Value: string | null;
                         };
-                        description: ((val: string | null) => string | null) & {
+                        nameRu: ((val: string | null) => string | null) & {
                             config: (val: string) => string;
                             Value: string | null;
+                        };
+                        posterUrlPreview: (val: string) => string;
+                        kinopoiskId: typeof $mol_data_integer;
+                        imdbId: ((val: string | null) => string | null) & {
+                            config: (val: string) => string;
+                            Value: string | null;
+                        };
+                        year: ((val: number | null) => number | null) & {
+                            config: typeof $mol_data_integer;
+                            Value: number | null;
                         };
                         genres: ((val: readonly {
                             genre: string;
@@ -4957,236 +5012,116 @@ declare namespace $ {
                         };
                     };
                     Value: Readonly<{
+                        year: number | null;
                         genres: readonly Readonly<{
                             genre: string;
                         }>[];
-                        name_en: string | null;
-                        name_ru: string | null;
-                        description: string | null;
+                        nameOriginal: string | null;
+                        nameEn: string | null;
+                        nameRu: string | null;
+                        posterUrlPreview: string;
+                        kinopoiskId: number;
+                        imdbId: string | null;
                     }>;
                 };
-            };
-            Value: Readonly<{
-                id: number;
-                year: number;
-                poster: string;
-                raw_data: Readonly<{
+                Value: readonly Readonly<{
+                    year: number | null;
                     genres: readonly Readonly<{
                         genre: string;
                     }>[];
-                    name_en: string | null;
-                    name_ru: string | null;
-                    description: string | null;
-                }>;
-            }>;
+                    nameOriginal: string | null;
+                    nameEn: string | null;
+                    nameRu: string | null;
+                    posterUrlPreview: string;
+                    kinopoiskId: number;
+                    imdbId: string | null;
+                }>[];
+            };
         };
-        Value: readonly Readonly<{
-            id: number;
-            year: number;
-            poster: string;
-            raw_data: Readonly<{
+        Value: Readonly<{
+            items: readonly Readonly<{
+                year: number | null;
                 genres: readonly Readonly<{
                     genre: string;
                 }>[];
-                name_en: string | null;
-                name_ru: string | null;
-                description: string | null;
-            }>;
-        }>[];
-    };
-    const $giper_player_api_movie_data_short: ((val: {
-        name_original: string | null;
-        name_en: string | null;
-        name_ru: string | null;
-        poster_url_preview: string;
-    }) => Readonly<{
-        name_original: string | null;
-        name_en: string | null;
-        name_ru: string | null;
-        poster_url_preview: string;
-    }>) & {
-        config: {
-            name_original: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
-            };
-            name_en: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
-            };
-            name_ru: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
-            };
-            poster_url_preview: (val: string) => string;
-        };
-        Value: Readonly<{
-            name_original: string | null;
-            name_en: string | null;
-            name_ru: string | null;
-            poster_url_preview: string;
-        }>;
-    };
-    const $giper_player_api_similar_data: ((val: {
-        name_original: string | null;
-        name_en: string | null;
-        name_ru: string | null;
-        poster_url_preview: string;
-        film_id: number;
-    }) => Readonly<{
-        name_original: string | null;
-        name_en: string | null;
-        name_ru: string | null;
-        poster_url_preview: string;
-        film_id: number;
-    }>) & {
-        config: {
-            film_id: typeof $mol_data_integer;
-            name_original: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
-            };
-            name_en: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
-            };
-            name_ru: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
-            };
-            poster_url_preview: (val: string) => string;
-        };
-        Value: Readonly<{
-            name_original: string | null;
-            name_en: string | null;
-            name_ru: string | null;
-            poster_url_preview: string;
-            film_id: number;
-        }>;
-    };
-    const $giper_player_api_member: ((val: {
-        name_en: string;
-        name_ru: string;
-        description: string | null;
-        poster_url: string;
-        profession_key: string;
-        profession_text: string;
-        staff_id: number;
-    }) => Readonly<{
-        name_en: string;
-        name_ru: string;
-        description: string | null;
-        poster_url: string;
-        profession_key: string;
-        profession_text: string;
-        staff_id: number;
-    }>) & {
-        config: {
-            description: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
-            };
-            name_en: (val: string) => string;
-            name_ru: (val: string) => string;
-            poster_url: (val: string) => string;
-            profession_key: (val: string) => string;
-            profession_text: (val: string) => string;
-            staff_id: typeof $mol_data_integer;
-        };
-        Value: Readonly<{
-            name_en: string;
-            name_ru: string;
-            description: string | null;
-            poster_url: string;
-            profession_key: string;
-            profession_text: string;
-            staff_id: number;
+                nameOriginal: string | null;
+                nameEn: string | null;
+                nameRu: string | null;
+                posterUrlPreview: string;
+                kinopoiskId: number;
+                imdbId: string | null;
+            }>[];
         }>;
     };
     const $giper_player_api_movie_data_full: ((val: {
-        year: number;
+        year: number | null;
         slogan: string | null;
         genres: readonly {
             genre: string;
         }[];
-        similars: readonly {
-            name_original: string | null;
-            name_en: string | null;
-            name_ru: string | null;
-            poster_url_preview: string;
-            film_id: number;
-        }[];
-        name_original: string | null;
-        name_en: string | null;
-        name_ru: string | null;
-        poster_url_preview: string;
-        imdb_id: string | null;
+        nameOriginal: string | null;
+        nameEn: string | null;
+        nameRu: string | null;
+        posterUrlPreview: string;
+        kinopoiskId: number;
+        imdbId: string | null;
+        filmLength: number | null;
+        coverUrl: string | null;
         description: string | null;
-        sequels_and_prequels: readonly {
-            name_original: string | null;
-            name_en: string | null;
-            name_ru: string | null;
-            poster_url_preview: string;
-            film_id: number;
-        }[];
-        staff: readonly {
-            name_en: string;
-            name_ru: string;
-            description: string | null;
-            poster_url: string;
-            profession_key: string;
-            profession_text: string;
-            staff_id: number;
-        }[];
     }) => Readonly<{
-        year: number;
+        year: number | null;
         slogan: string | null;
         genres: readonly Readonly<{
             genre: string;
         }>[];
-        similars: readonly Readonly<{
-            name_original: string | null;
-            name_en: string | null;
-            name_ru: string | null;
-            poster_url_preview: string;
-            film_id: number;
-        }>[];
-        name_original: string | null;
-        name_en: string | null;
-        name_ru: string | null;
-        poster_url_preview: string;
-        imdb_id: string | null;
+        nameOriginal: string | null;
+        nameEn: string | null;
+        nameRu: string | null;
+        posterUrlPreview: string;
+        kinopoiskId: number;
+        imdbId: string | null;
+        filmLength: number | null;
+        coverUrl: string | null;
         description: string | null;
-        sequels_and_prequels: readonly Readonly<{
-            name_original: string | null;
-            name_en: string | null;
-            name_ru: string | null;
-            poster_url_preview: string;
-            film_id: number;
-        }>[];
-        staff: readonly Readonly<{
-            name_en: string;
-            name_ru: string;
-            description: string | null;
-            poster_url: string;
-            profession_key: string;
-            profession_text: string;
-            staff_id: number;
-        }>[];
     }>) & {
         config: {
-            imdb_id: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
+            filmLength: ((val: number | null) => number | null) & {
+                config: typeof $mol_data_integer;
+                Value: number | null;
             };
-            year: typeof $mol_data_integer;
-            description: ((val: string | null) => string | null) & {
+            coverUrl: ((val: string | null) => string | null) & {
                 config: (val: string) => string;
                 Value: string | null;
             };
             slogan: ((val: string | null) => string | null) & {
                 config: (val: string) => string;
                 Value: string | null;
+            };
+            description: ((val: string | null) => string | null) & {
+                config: (val: string) => string;
+                Value: string | null;
+            };
+            nameOriginal: ((val: string | null) => string | null) & {
+                config: (val: string) => string;
+                Value: string | null;
+            };
+            nameEn: ((val: string | null) => string | null) & {
+                config: (val: string) => string;
+                Value: string | null;
+            };
+            nameRu: ((val: string | null) => string | null) & {
+                config: (val: string) => string;
+                Value: string | null;
+            };
+            posterUrlPreview: (val: string) => string;
+            kinopoiskId: typeof $mol_data_integer;
+            imdbId: ((val: string | null) => string | null) & {
+                config: (val: string) => string;
+                Value: string | null;
+            };
+            year: ((val: number | null) => number | null) & {
+                config: typeof $mol_data_integer;
+                Value: number | null;
             };
             genres: ((val: readonly {
                 genre: string;
@@ -5209,237 +5144,22 @@ declare namespace $ {
                     genre: string;
                 }>[];
             };
-            sequels_and_prequels: ((val: readonly {
-                name_original: string | null;
-                name_en: string | null;
-                name_ru: string | null;
-                poster_url_preview: string;
-                film_id: number;
-            }[]) => readonly Readonly<{
-                name_original: string | null;
-                name_en: string | null;
-                name_ru: string | null;
-                poster_url_preview: string;
-                film_id: number;
-            }>[]) & {
-                config: ((val: {
-                    name_original: string | null;
-                    name_en: string | null;
-                    name_ru: string | null;
-                    poster_url_preview: string;
-                    film_id: number;
-                }) => Readonly<{
-                    name_original: string | null;
-                    name_en: string | null;
-                    name_ru: string | null;
-                    poster_url_preview: string;
-                    film_id: number;
-                }>) & {
-                    config: {
-                        film_id: typeof $mol_data_integer;
-                        name_original: ((val: string | null) => string | null) & {
-                            config: (val: string) => string;
-                            Value: string | null;
-                        };
-                        name_en: ((val: string | null) => string | null) & {
-                            config: (val: string) => string;
-                            Value: string | null;
-                        };
-                        name_ru: ((val: string | null) => string | null) & {
-                            config: (val: string) => string;
-                            Value: string | null;
-                        };
-                        poster_url_preview: (val: string) => string;
-                    };
-                    Value: Readonly<{
-                        name_original: string | null;
-                        name_en: string | null;
-                        name_ru: string | null;
-                        poster_url_preview: string;
-                        film_id: number;
-                    }>;
-                };
-                Value: readonly Readonly<{
-                    name_original: string | null;
-                    name_en: string | null;
-                    name_ru: string | null;
-                    poster_url_preview: string;
-                    film_id: number;
-                }>[];
-            };
-            similars: ((val: readonly {
-                name_original: string | null;
-                name_en: string | null;
-                name_ru: string | null;
-                poster_url_preview: string;
-                film_id: number;
-            }[]) => readonly Readonly<{
-                name_original: string | null;
-                name_en: string | null;
-                name_ru: string | null;
-                poster_url_preview: string;
-                film_id: number;
-            }>[]) & {
-                config: ((val: {
-                    name_original: string | null;
-                    name_en: string | null;
-                    name_ru: string | null;
-                    poster_url_preview: string;
-                    film_id: number;
-                }) => Readonly<{
-                    name_original: string | null;
-                    name_en: string | null;
-                    name_ru: string | null;
-                    poster_url_preview: string;
-                    film_id: number;
-                }>) & {
-                    config: {
-                        film_id: typeof $mol_data_integer;
-                        name_original: ((val: string | null) => string | null) & {
-                            config: (val: string) => string;
-                            Value: string | null;
-                        };
-                        name_en: ((val: string | null) => string | null) & {
-                            config: (val: string) => string;
-                            Value: string | null;
-                        };
-                        name_ru: ((val: string | null) => string | null) & {
-                            config: (val: string) => string;
-                            Value: string | null;
-                        };
-                        poster_url_preview: (val: string) => string;
-                    };
-                    Value: Readonly<{
-                        name_original: string | null;
-                        name_en: string | null;
-                        name_ru: string | null;
-                        poster_url_preview: string;
-                        film_id: number;
-                    }>;
-                };
-                Value: readonly Readonly<{
-                    name_original: string | null;
-                    name_en: string | null;
-                    name_ru: string | null;
-                    poster_url_preview: string;
-                    film_id: number;
-                }>[];
-            };
-            staff: ((val: readonly {
-                name_en: string;
-                name_ru: string;
-                description: string | null;
-                poster_url: string;
-                profession_key: string;
-                profession_text: string;
-                staff_id: number;
-            }[]) => readonly Readonly<{
-                name_en: string;
-                name_ru: string;
-                description: string | null;
-                poster_url: string;
-                profession_key: string;
-                profession_text: string;
-                staff_id: number;
-            }>[]) & {
-                config: ((val: {
-                    name_en: string;
-                    name_ru: string;
-                    description: string | null;
-                    poster_url: string;
-                    profession_key: string;
-                    profession_text: string;
-                    staff_id: number;
-                }) => Readonly<{
-                    name_en: string;
-                    name_ru: string;
-                    description: string | null;
-                    poster_url: string;
-                    profession_key: string;
-                    profession_text: string;
-                    staff_id: number;
-                }>) & {
-                    config: {
-                        description: ((val: string | null) => string | null) & {
-                            config: (val: string) => string;
-                            Value: string | null;
-                        };
-                        name_en: (val: string) => string;
-                        name_ru: (val: string) => string;
-                        poster_url: (val: string) => string;
-                        profession_key: (val: string) => string;
-                        profession_text: (val: string) => string;
-                        staff_id: typeof $mol_data_integer;
-                    };
-                    Value: Readonly<{
-                        name_en: string;
-                        name_ru: string;
-                        description: string | null;
-                        poster_url: string;
-                        profession_key: string;
-                        profession_text: string;
-                        staff_id: number;
-                    }>;
-                };
-                Value: readonly Readonly<{
-                    name_en: string;
-                    name_ru: string;
-                    description: string | null;
-                    poster_url: string;
-                    profession_key: string;
-                    profession_text: string;
-                    staff_id: number;
-                }>[];
-            };
-            name_original: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
-            };
-            name_en: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
-            };
-            name_ru: ((val: string | null) => string | null) & {
-                config: (val: string) => string;
-                Value: string | null;
-            };
-            poster_url_preview: (val: string) => string;
         };
         Value: Readonly<{
-            year: number;
+            year: number | null;
             slogan: string | null;
             genres: readonly Readonly<{
                 genre: string;
             }>[];
-            similars: readonly Readonly<{
-                name_original: string | null;
-                name_en: string | null;
-                name_ru: string | null;
-                poster_url_preview: string;
-                film_id: number;
-            }>[];
-            name_original: string | null;
-            name_en: string | null;
-            name_ru: string | null;
-            poster_url_preview: string;
-            imdb_id: string | null;
+            nameOriginal: string | null;
+            nameEn: string | null;
+            nameRu: string | null;
+            posterUrlPreview: string;
+            kinopoiskId: number;
+            imdbId: string | null;
+            filmLength: number | null;
+            coverUrl: string | null;
             description: string | null;
-            sequels_and_prequels: readonly Readonly<{
-                name_original: string | null;
-                name_en: string | null;
-                name_ru: string | null;
-                poster_url_preview: string;
-                film_id: number;
-            }>[];
-            staff: readonly Readonly<{
-                name_en: string;
-                name_ru: string;
-                description: string | null;
-                poster_url: string;
-                profession_key: string;
-                profession_text: string;
-                staff_id: number;
-            }>[];
         }>;
     };
     const $giper_player_api_player_data: ((val: {
@@ -5501,54 +5221,30 @@ declare namespace $ {
         uri_kp(): string;
         uri_imdb(): string | null;
         data(): Readonly<{
-            year: number;
+            year: number | null;
             slogan: string | null;
             genres: readonly Readonly<{
                 genre: string;
             }>[];
-            similars: readonly Readonly<{
-                name_original: string | null;
-                name_en: string | null;
-                name_ru: string | null;
-                poster_url_preview: string;
-                film_id: number;
-            }>[];
-            name_original: string | null;
-            name_en: string | null;
-            name_ru: string | null;
-            poster_url_preview: string;
-            imdb_id: string | null;
+            nameOriginal: string | null;
+            nameEn: string | null;
+            nameRu: string | null;
+            posterUrlPreview: string;
+            kinopoiskId: number;
+            imdbId: string | null;
+            filmLength: number | null;
+            coverUrl: string | null;
             description: string | null;
-            sequels_and_prequels: readonly Readonly<{
-                name_original: string | null;
-                name_en: string | null;
-                name_ru: string | null;
-                poster_url_preview: string;
-                film_id: number;
-            }>[];
-            staff: readonly Readonly<{
-                name_en: string;
-                name_ru: string;
-                description: string | null;
-                poster_url: string;
-                profession_key: string;
-                profession_text: string;
-                staff_id: number;
-            }>[];
         }>;
         title(): string;
-        year(): number;
+        year(): number | null;
         poster(): string;
+        cover(): string | null;
         descr(): string;
         slogan(): string;
         genres(): string[];
-        similars(): Map<number, $giper_player_api_movie>;
-        members(): Map<number, {
-            name: string;
-            photo: string;
-            link: string;
-            roles: Set<string>;
-        }>;
+        similars(): Map<any, any>;
+        members(): Map<any, any>;
         players(): Map<string, $giper_player_api_player>;
     }
     class $giper_player_api_player extends $mol_object {
@@ -5575,10 +5271,10 @@ declare namespace $ {
 		,
 		ReturnType< $mol_search['hint'] >
 	>
-	type $mol_search__query_giper_player_2 = $mol_type_enforce<
-		ReturnType< $giper_player['movie_search'] >
+	type $mol_search__submit_giper_player_2 = $mol_type_enforce<
+		ReturnType< $giper_player['search_start'] >
 		,
-		ReturnType< $mol_search['query'] >
+		ReturnType< $mol_search['submit'] >
 	>
 	type $mol_button_open__hint_giper_player_3 = $mol_type_enforce<
 		string
@@ -5789,155 +5485,77 @@ declare namespace $ {
 		,
 		ReturnType< $mol_row['sub'] >
 	>
-	type $mol_paragraph__title_giper_player_44 = $mol_type_enforce<
-		ReturnType< $giper_player['member_name'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_image__uri_giper_player_45 = $mol_type_enforce<
-		ReturnType< $giper_player['member_photo'] >
-		,
-		ReturnType< $mol_image['uri'] >
-	>
-	type $mol_paragraph__title_giper_player_46 = $mol_type_enforce<
-		ReturnType< $giper_player['member_role'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_link__uri_giper_player_47 = $mol_type_enforce<
-		ReturnType< $giper_player['member_link'] >
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__sub_giper_player_48 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_row__sub_giper_player_49 = $mol_type_enforce<
-		ReturnType< $giper_player['members'] >
-		,
-		ReturnType< $mol_row['sub'] >
-	>
-	type $mol_expander__title_giper_player_50 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_expander['title'] >
-	>
-	type $mol_expander__content_giper_player_51 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_expander['content'] >
-	>
-	type $mol_paragraph__title_giper_player_52 = $mol_type_enforce<
-		ReturnType< $giper_player['similar_title'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_image__uri_giper_player_53 = $mol_type_enforce<
-		ReturnType< $giper_player['similar_poster'] >
-		,
-		ReturnType< $mol_image['uri'] >
-	>
-	type $mol_link__arg_giper_player_54 = $mol_type_enforce<
-		({ 
-			'search': any,
-			'movie': ReturnType< $giper_player['similar_id'] >,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_giper_player_55 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_row__sub_giper_player_56 = $mol_type_enforce<
-		ReturnType< $giper_player['similars'] >
-		,
-		ReturnType< $mol_row['sub'] >
-	>
-	type $mol_expander__title_giper_player_57 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_expander['title'] >
-	>
-	type $mol_expander__content_giper_player_58 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_expander['content'] >
-	>
-	type $mol_list__rows_giper_player_59 = $mol_type_enforce<
+	type $mol_list__rows_giper_player_44 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_page__title_giper_player_60 = $mol_type_enforce<
+	type $mol_page__title_giper_player_45 = $mol_type_enforce<
 		ReturnType< $giper_player['movie_current_title'] >
 		,
 		ReturnType< $mol_page['title'] >
 	>
-	type $mol_page__head_giper_player_61 = $mol_type_enforce<
+	type $mol_page__head_giper_player_46 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['head'] >
 	>
-	type $mol_page__tools_giper_player_62 = $mol_type_enforce<
+	type $mol_page__tools_giper_player_47 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['tools'] >
 	>
-	type $mol_page__body_content_giper_player_63 = $mol_type_enforce<
+	type $mol_page__body_content_giper_player_48 = $mol_type_enforce<
 		ReturnType< $giper_player['movie_content'] >
 		,
 		ReturnType< $mol_page['body_content'] >
 	>
-	type $mol_switch__value_giper_player_64 = $mol_type_enforce<
+	type $mol_switch__value_giper_player_49 = $mol_type_enforce<
 		ReturnType< $giper_player['player_id'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__keys_giper_player_65 = $mol_type_enforce<
+	type $mol_switch__keys_giper_player_50 = $mol_type_enforce<
 		ReturnType< $giper_player['player_options'] >
 		,
 		ReturnType< $mol_switch['keys'] >
 	>
-	type $mol_switch__option_title_giper_player_66 = $mol_type_enforce<
+	type $mol_switch__option_title_giper_player_51 = $mol_type_enforce<
 		ReturnType< $giper_player['player_name'] >
 		,
 		ReturnType< $mol_switch['option_title'] >
 	>
-	type $mol_text__text_giper_player_67 = $mol_type_enforce<
+	type $mol_text__text_giper_player_52 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_page__title_giper_player_68 = $mol_type_enforce<
+	type $mol_page__title_giper_player_53 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_page['title'] >
 	>
-	type $mol_page__body_giper_player_69 = $mol_type_enforce<
+	type $mol_page__body_giper_player_54 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['body'] >
 	>
-	type $mol_page__foot_giper_player_70 = $mol_type_enforce<
+	type $mol_page__foot_giper_player_55 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['foot'] >
 	>
-	type $mol_book2__plugins_giper_player_71 = $mol_type_enforce<
+	type $mol_book2__plugins_giper_player_56 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_book2['plugins'] >
 	>
-	type $mol_book2__pages_giper_player_72 = $mol_type_enforce<
+	type $mol_book2__pages_giper_player_57 = $mol_type_enforce<
 		ReturnType< $giper_player['pages'] >
 		,
 		ReturnType< $mol_book2['pages'] >
 	>
-	type $mol_book2__placeholders_giper_player_73 = $mol_type_enforce<
+	type $mol_book2__placeholders_giper_player_58 = $mol_type_enforce<
 		ReturnType< $giper_player['sidebars'] >
 		,
 		ReturnType< $mol_book2['placeholders'] >
@@ -5946,7 +5564,7 @@ declare namespace $ {
 		cover( ): string
 		Theme( ): $mol_theme_auto
 		Space( ): $giper_web_frame
-		movie_search( next?: string ): string
+		search_start( next?: any ): any
 		Movie_search( ): $mol_search
 		files_add( next?: readonly(any)[] ): readonly(any)[]
 		Open( ): $mol_button_open
@@ -5997,26 +5615,6 @@ declare namespace $ {
 		movie_uri_imdb( ): string
 		Movie_imdb( id: any): $mol_link_iconed
 		Movie_links( id: any): $mol_row
-		member_link( id: any): string
-		member_name( id: any): string
-		Member_name( id: any): $mol_paragraph
-		member_photo( id: any): string
-		Member_photo( id: any): $mol_image
-		member_role( id: any): string
-		Member_role( id: any): $mol_paragraph
-		Member( id: any): $mol_link
-		members( ): readonly(any)[]
-		Members( ): $mol_row
-		Members_block( ): $mol_expander
-		similar_id( id: any): string
-		similar_title( id: any): string
-		Similar_title( id: any): $mol_paragraph
-		similar_poster( id: any): string
-		Similar_poster( id: any): $mol_image
-		Similar( id: any): $mol_link
-		similars( ): readonly(any)[]
-		Similars( ): $mol_row
-		Similars_block( ): $mol_expander
 		Movie_info( id: any): $mol_list
 		movie_content( id: any): readonly(any)[]
 		Movie_page( id: any): $mol_page
@@ -6062,6 +5660,7 @@ declare namespace $.$$ {
         file_play(file: Entry): void;
         file_drop(file: Entry): void;
         movie_search(next?: string): string;
+        search_start(): void;
         movie_current_id(): number;
         movie_current_title(): string;
         player_uri(): string;
@@ -6093,15 +5692,6 @@ declare namespace $.$$ {
         movie_descr(id: number): string;
         movie_genres(id: number): string;
         cover(): string;
-        similars(): $.$mol_link[];
-        similar_title(id: number): string;
-        similar_poster(id: number): string;
-        similar_id(id: number): string;
-        members(): $.$mol_link[];
-        member_name(id: number): string;
-        member_role(id: number): string;
-        member_photo(id: number): string;
-        member_link(id: number): string;
         auto(): void;
     }
     export {};

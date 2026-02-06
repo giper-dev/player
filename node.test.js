@@ -11828,14 +11828,14 @@ var $;
 			const obj = new this.$.$giper_web_frame();
 			return obj;
 		}
-		movie_search(next){
+		search_start(next){
 			if(next !== undefined) return next;
-			return "";
+			return null;
 		}
 		Movie_search(){
 			const obj = new this.$.$mol_search();
 			(obj.hint) = () => ((this.$.$mol_locale.text("$giper_player_Movie_search_hint")));
-			(obj.query) = (next) => ((this.movie_search(next)));
+			(obj.submit) = (next) => ((this.search_start(next)));
 			return obj;
 		}
 		files_add(next){
@@ -12061,104 +12061,9 @@ var $;
 			(obj.sub) = () => ([(this.Movie_kp(id)), (this.Movie_imdb(id))]);
 			return obj;
 		}
-		member_link(id){
-			return "";
-		}
-		member_name(id){
-			return "";
-		}
-		Member_name(id){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.member_name(id)));
-			return obj;
-		}
-		member_photo(id){
-			return "";
-		}
-		Member_photo(id){
-			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ((this.member_photo(id)));
-			return obj;
-		}
-		member_role(id){
-			return "";
-		}
-		Member_role(id){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.member_role(id)));
-			return obj;
-		}
-		Member(id){
-			const obj = new this.$.$mol_link();
-			(obj.uri) = () => ((this.member_link(id)));
-			(obj.sub) = () => ([
-				(this.Member_name(id)), 
-				(this.Member_photo(id)), 
-				(this.Member_role(id))
-			]);
-			return obj;
-		}
-		members(){
-			return [(this.Member("0"))];
-		}
-		Members(){
-			const obj = new this.$.$mol_row();
-			(obj.sub) = () => ((this.members()));
-			return obj;
-		}
-		Members_block(){
-			const obj = new this.$.$mol_expander();
-			(obj.title) = () => ((this.$.$mol_locale.text("$giper_player_Members_block_title")));
-			(obj.content) = () => ([(this.Members())]);
-			return obj;
-		}
-		similar_id(id){
-			return "";
-		}
-		similar_title(id){
-			return "";
-		}
-		Similar_title(id){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.similar_title(id)));
-			return obj;
-		}
-		similar_poster(id){
-			return "";
-		}
-		Similar_poster(id){
-			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ((this.similar_poster(id)));
-			return obj;
-		}
-		Similar(id){
-			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ({"search": null, "movie": (this.similar_id(id))});
-			(obj.sub) = () => ([(this.Similar_title(id)), (this.Similar_poster(id))]);
-			return obj;
-		}
-		similars(){
-			return [(this.Similar("0"))];
-		}
-		Similars(){
-			const obj = new this.$.$mol_row();
-			(obj.sub) = () => ((this.similars()));
-			return obj;
-		}
-		Similars_block(){
-			const obj = new this.$.$mol_expander();
-			(obj.title) = () => ((this.$.$mol_locale.text("$giper_player_Similars_block_title")));
-			(obj.content) = () => ([(this.Similars())]);
-			return obj;
-		}
 		Movie_info(id){
 			const obj = new this.$.$mol_list();
-			(obj.rows) = () => ([
-				(this.Movie_descr(id)), 
-				(this.Movie_links(id)), 
-				(this.Members_block()), 
-				(this.Similars_block())
-			]);
+			(obj.rows) = () => ([(this.Movie_descr(id)), (this.Movie_links(id))]);
 			return obj;
 		}
 		movie_content(id){
@@ -12206,7 +12111,7 @@ var $;
 		}
 		Thanks(){
 			const obj = new this.$.$mol_text();
-			(obj.text) = () => ("\\\\DataSource\\https://github.com/reyohoho/reyohoho\\\\");
+			(obj.text) = () => ("\\\\DataSource\\https://fbphdplay.top/\\\\");
 			return obj;
 		}
 		Source(id){
@@ -12247,7 +12152,7 @@ var $;
 	};
 	($mol_mem(($.$giper_player.prototype), "Theme"));
 	($mol_mem(($.$giper_player.prototype), "Space"));
-	($mol_mem(($.$giper_player.prototype), "movie_search"));
+	($mol_mem(($.$giper_player.prototype), "search_start"));
 	($mol_mem(($.$giper_player.prototype), "Movie_search"));
 	($mol_mem(($.$giper_player.prototype), "files_add"));
 	($mol_mem(($.$giper_player.prototype), "Open"));
@@ -12278,17 +12183,6 @@ var $;
 	($mol_mem_key(($.$giper_player.prototype), "Movie_kp"));
 	($mol_mem_key(($.$giper_player.prototype), "Movie_imdb"));
 	($mol_mem_key(($.$giper_player.prototype), "Movie_links"));
-	($mol_mem_key(($.$giper_player.prototype), "Member_name"));
-	($mol_mem_key(($.$giper_player.prototype), "Member_photo"));
-	($mol_mem_key(($.$giper_player.prototype), "Member_role"));
-	($mol_mem_key(($.$giper_player.prototype), "Member"));
-	($mol_mem(($.$giper_player.prototype), "Members"));
-	($mol_mem(($.$giper_player.prototype), "Members_block"));
-	($mol_mem_key(($.$giper_player.prototype), "Similar_title"));
-	($mol_mem_key(($.$giper_player.prototype), "Similar_poster"));
-	($mol_mem_key(($.$giper_player.prototype), "Similar"));
-	($mol_mem(($.$giper_player.prototype), "Similars"));
-	($mol_mem(($.$giper_player.prototype), "Similars_block"));
 	($mol_mem_key(($.$giper_player.prototype), "Movie_info"));
 	($mol_mem_key(($.$giper_player.prototype), "Movie_page"));
 	($mol_mem(($.$giper_player.prototype), "player_id"));
@@ -12590,6 +12484,9 @@ var $;
 
 ;
 "use strict";
+
+;
+"use strict";
 var $;
 (function ($) {
     function $mol_data_setup(value, config) {
@@ -12600,42 +12497,6 @@ var $;
     }
     $.$mol_data_setup = $mol_data_setup;
 })($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_data_error extends $mol_error_mix {
-    }
-    $.$mol_data_error = $mol_data_error;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_data_array(sub) {
-        return $mol_data_setup((val) => {
-            if (!Array.isArray(val))
-                return $mol_fail(new $mol_data_error(`${val} is not an array`));
-            return val.map((item, index) => {
-                try {
-                    return sub(item);
-                }
-                catch (error) {
-                    if (error instanceof Promise)
-                        return $mol_fail_hidden(error);
-                    error.message = `[${index}] ${error.message}`;
-                    return $mol_fail(error);
-                }
-            });
-        }, sub);
-    }
-    $.$mol_data_array = $mol_data_array;
-})($ || ($ = {}));
-
-;
-"use strict";
 
 ;
 "use strict";
@@ -12666,6 +12527,40 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    function $mol_data_nullable(sub) {
+        return $mol_data_setup((val) => {
+            if (val === null)
+                return null;
+            return sub(val);
+        }, sub);
+    }
+    $.$mol_data_nullable = $mol_data_nullable;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_data_error extends $mol_error_mix {
+    }
+    $.$mol_data_error = $mol_data_error;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_data_string = (val) => {
+        if (typeof val === 'string')
+            return val;
+        return $mol_fail(new $mol_data_error(`${val} is not a string`));
+    };
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
     $.$mol_data_number = (val) => {
         if (typeof val === 'number')
             return val;
@@ -12688,126 +12583,56 @@ var $;
 
 ;
 "use strict";
-
-;
-"use strict";
-
-;
-"use strict";
 var $;
 (function ($) {
-    function $mol_func_is_class(func) {
-        return Object.getOwnPropertyDescriptor(func, 'prototype')?.writable === false;
-    }
-    $.$mol_func_is_class = $mol_func_is_class;
-})($ || ($ = {}));
-
-;
-"use strict";
-
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_data_pipe(...funcs) {
-        return $mol_data_setup(function (input) {
-            let value = input;
-            for (const func of funcs)
-                value = $mol_func_is_class(func) ? new func(value) : func.call(this, value);
-            return value;
-        }, { funcs });
-    }
-    $.$mol_data_pipe = $mol_data_pipe;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_data_string = (val) => {
-        if (typeof val === 'string')
-            return val;
-        return $mol_fail(new $mol_data_error(`${val} is not a string`));
-    };
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_data_nullable(sub) {
+    function $mol_data_array(sub) {
         return $mol_data_setup((val) => {
-            if (val === null)
-                return null;
-            return sub(val);
+            if (!Array.isArray(val))
+                return $mol_fail(new $mol_data_error(`${val} is not an array`));
+            return val.map((item, index) => {
+                try {
+                    return sub(item);
+                }
+                catch (error) {
+                    if (error instanceof Promise)
+                        return $mol_fail_hidden(error);
+                    error.message = `[${index}] ${error.message}`;
+                    return $mol_fail(error);
+                }
+            });
         }, sub);
     }
-    $.$mol_data_nullable = $mol_data_nullable;
+    $.$mol_data_array = $mol_data_array;
 })($ || ($ = {}));
 
 ;
 "use strict";
 var $;
 (function ($) {
-    function $mol_array_groups(all, group) {
-        const res = {};
-        for (const item of all) {
-            const list = (res[group(item)] ||= []);
-            list.push(item);
-        }
-        return res;
-    }
-    $.$mol_array_groups = $mol_array_groups;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$giper_player_api_search_movie_data = $mol_data_array($mol_data_record({
-        id: $mol_data_integer,
-        year: $mol_data_pipe($mol_data_string, Number),
-        poster: $mol_data_string,
-        raw_data: $mol_data_record({
-            name_en: $mol_data_nullable($mol_data_string),
-            name_ru: $mol_data_nullable($mol_data_string),
-            description: $mol_data_nullable($mol_data_string),
-            genres: $mol_data_array($mol_data_record({
-                genre: $mol_data_string,
-            }))
-        })
-    }));
+    const kp_api_options = {
+        headers: { 'X-API-KEY': '3516f118-c2ee-4d16-9d16-e9a8d8512ec5' },
+    };
     $.$giper_player_api_movie_data_short = $mol_data_record({
-        name_original: $mol_data_nullable($mol_data_string),
-        name_en: $mol_data_nullable($mol_data_string),
-        name_ru: $mol_data_nullable($mol_data_string),
-        poster_url_preview: $mol_data_string,
-    });
-    $.$giper_player_api_similar_data = $mol_data_record({
-        ...$.$giper_player_api_movie_data_short.config,
-        film_id: $mol_data_integer,
-    });
-    $.$giper_player_api_member = $mol_data_record({
-        description: $mol_data_nullable($mol_data_string),
-        name_en: $mol_data_string,
-        name_ru: $mol_data_string,
-        poster_url: $mol_data_string,
-        profession_key: $mol_data_string,
-        profession_text: $mol_data_string,
-        staff_id: $mol_data_integer,
-    });
-    $.$giper_player_api_movie_data_full = $mol_data_record({
-        ...$.$giper_player_api_movie_data_short.config,
-        imdb_id: $mol_data_nullable($mol_data_string),
-        year: $mol_data_integer,
-        description: $mol_data_nullable($mol_data_string),
-        slogan: $mol_data_nullable($mol_data_string),
+        nameOriginal: $mol_data_nullable($mol_data_string),
+        nameEn: $mol_data_nullable($mol_data_string),
+        nameRu: $mol_data_nullable($mol_data_string),
+        posterUrlPreview: $mol_data_string,
+        kinopoiskId: $mol_data_integer,
+        imdbId: $mol_data_nullable($mol_data_string),
+        year: $mol_data_nullable($mol_data_integer),
         genres: $mol_data_array($mol_data_record({
             genre: $mol_data_string,
         })),
-        sequels_and_prequels: $mol_data_array($.$giper_player_api_similar_data),
-        similars: $mol_data_array($.$giper_player_api_similar_data),
-        staff: $mol_data_array($.$giper_player_api_member),
+    });
+    $.$giper_player_api_search_movie_data = $mol_data_record({
+        items: $mol_data_array($.$giper_player_api_movie_data_short)
+    });
+    $.$giper_player_api_movie_data_full = $mol_data_record({
+        ...$.$giper_player_api_movie_data_short.config,
+        filmLength: $mol_data_nullable($mol_data_integer),
+        coverUrl: $mol_data_nullable($mol_data_string),
+        slogan: $mol_data_nullable($mol_data_string),
+        description: $mol_data_nullable($mol_data_string),
     });
     $.$giper_player_api_player_data = $mol_data_record({
         data: $mol_data_array($mol_data_record({
@@ -12819,14 +12644,14 @@ var $;
         static search(query) {
             if (!query.trim())
                 return new Map;
-            const resp = $.$giper_player_api_search_movie_data(this.$.$mol_fetch.json(`https://api4.rhserv.vu/search/${encodeURIComponent(query)}`));
-            return new Map(resp.map(data => [data.id, $giper_player_api_movie.make({
-                    id: $mol_const(data.id),
-                    title: $mol_const(data.raw_data.name_ru || data.raw_data.name_en || `#${data.id}`),
-                    poster: $mol_const(data.poster),
+            const keyword = encodeURIComponent(query);
+            const resp = $.$giper_player_api_search_movie_data(this.$.$mol_fetch.json(`https://kinopoiskapiunofficial.tech/api/v2.2/films?keyword=${keyword}`, kp_api_options));
+            return new Map(resp.items.map(data => [data.kinopoiskId, $giper_player_api_movie.make({
+                    id: $mol_const(data.kinopoiskId),
+                    title: $mol_const(data.nameRu || data.nameEn || data.nameOriginal || `#${data.kinopoiskId}`),
+                    poster: $mol_const(data.posterUrlPreview),
                     year: $mol_const(data.year),
-                    descr: $mol_const(data.raw_data.description ?? ''),
-                    genres: $mol_const(data.raw_data.genres.map(g => g.genre)),
+                    genres: $mol_const(data.genres.map(g => g.genre)),
                 })]));
         }
     }
@@ -12842,19 +12667,22 @@ var $;
             return `https://kinopoisk.ru/film/${this.id()}/`;
         }
         uri_imdb() {
-            return this.data().imdb_id && `https://imdb.com/title/${this.data().imdb_id}/`;
+            return this.data().imdbId && `https://imdb.com/title/${this.data().imdbId}/`;
         }
         data() {
-            return $.$giper_player_api_movie_data_full(this.$.$mol_fetch.json(`https://api4.rhserv.vu/kp_info2/${this.id()}`));
+            return $.$giper_player_api_movie_data_full(this.$.$mol_fetch.json(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.id()}`, kp_api_options));
         }
         title() {
-            return this.data().name_ru || this.data().name_en || this.data().name_original || '???';
+            return this.data().nameRu || this.data().nameEn || this.data().nameOriginal || this.id().toString();
         }
         year() {
             return this.data().year;
         }
         poster() {
-            return this.data().poster_url_preview;
+            return this.data().posterUrlPreview;
+        }
+        cover() {
+            return this.data().coverUrl;
         }
         descr() {
             return this.data().description ?? '';
@@ -12866,32 +12694,10 @@ var $;
             return this.data().genres.map(g => g.genre);
         }
         similars() {
-            return new Map([...this.data().sequels_and_prequels, ...this.data().similars]
-                .map(sim => [sim.film_id, $giper_player_api_movie.make({
-                    id: $mol_const(sim.film_id),
-                    title: $mol_const(sim.name_ru || sim.name_en || sim.name_original || '???'),
-                    poster: $mol_const(sim.poster_url_preview),
-                })]));
+            return new Map();
         }
         members() {
-            const members = $mol_array_groups(this.data().staff, item => ' ' + item.staff_id);
-            return new Map([...Object.entries(members)].map(([id, items]) => [
-                parseInt(id),
-                items.reduce((res, item) => {
-                    res.name = item.name_ru || item.name_en || res.name;
-                    res.photo = item.poster_url || res.photo;
-                    if (item.profession_key) {
-                        const prof = item.profession_key.toLowerCase();
-                        res.roles.add(item.description ? `${prof} (${item.description})` : prof);
-                    }
-                    return res;
-                }, {
-                    name: 'Anonymous',
-                    photo: 'about:blank',
-                    link: `https://www.kinopoisk.ru/name/${parseInt(id)}/`,
-                    roles: new Set(),
-                })
-            ]));
+            return new Map();
         }
         players() {
             const resp = $.$giper_player_api_player_data(this.$.$mol_fetch.json(`https://fbphdplay.top/api/players?kinopoisk=${this.id()}`)).data
@@ -13025,7 +12831,10 @@ var $;
             movie_search(next) {
                 if (next)
                     this.playlist(null);
-                return this.$.$mol_state_arg.value('search', next) ?? '';
+                return next ?? '';
+            }
+            search_start() {
+                this.movie_search(this.Movie_search().query());
             }
             movie_current_id() {
                 return Number(this.$.$mol_state_arg.value('movie'));
@@ -13183,35 +12992,8 @@ var $;
                 return this.movies().get(id).genres().join(', ');
             }
             cover() {
-                const poster = this.movie_current()?.poster() || 'https://habrastorage.org/webt/6l/sw/vg/6lswvg5cbp8-_-xuhg-aeuehsb4.jpeg';
+                const poster = this.movie_current()?.cover() || 'https://habrastorage.org/webt/6l/sw/vg/6lswvg5cbp8-_-xuhg-aeuehsb4.jpeg';
                 return `linear-gradient( var(--mol_theme_spirit) ), url( ${JSON.stringify(poster)} )`;
-            }
-            similars() {
-                return [...this.movie_current().similars().keys()].map(id => this.Similar(id));
-            }
-            similar_title(id) {
-                return this.movie_current().similars().get(id).title();
-            }
-            similar_poster(id) {
-                return this.movie_current().similars().get(id).poster();
-            }
-            similar_id(id) {
-                return String(id);
-            }
-            members() {
-                return [...this.movie_current().members().keys()].map(id => this.Member(id));
-            }
-            member_name(id) {
-                return this.movie_current().members().get(id).name;
-            }
-            member_role(id) {
-                return [...this.movie_current().members().get(id).roles.values()].join(', ');
-            }
-            member_photo(id) {
-                return this.movie_current().members().get(id).photo;
-            }
-            member_link(id) {
-                return this.movie_current().members().get(id).link;
             }
             auto() {
                 this.auto_switch();
@@ -13231,6 +13013,9 @@ var $;
         __decorate([
             $mol_mem
         ], $giper_player.prototype, "queue_files", null);
+        __decorate([
+            $mol_mem
+        ], $giper_player.prototype, "movie_search", null);
         __decorate([
             $mol_mem
         ], $giper_player.prototype, "player_uri", null);
@@ -13303,12 +13088,6 @@ var $;
         __decorate([
             $mol_mem
         ], $giper_player.prototype, "cover", null);
-        __decorate([
-            $mol_mem
-        ], $giper_player.prototype, "similars", null);
-        __decorate([
-            $mol_mem
-        ], $giper_player.prototype, "members", null);
         $$.$giper_player = $giper_player;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -16843,6 +16622,9 @@ var $;
 
 ;
 "use strict";
+
+;
+"use strict";
 var $;
 (function ($) {
     $mol_test({
@@ -16873,38 +16655,6 @@ var $;
         },
     });
 })($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_test({
-        'Is empty array'() {
-            $mol_data_array($mol_data_number)([]);
-        },
-        'Is array'() {
-            $mol_data_array($mol_data_number)([1, 2]);
-        },
-        'Is not array'() {
-            $mol_assert_fail(() => {
-                $mol_data_array($mol_data_number)({ [0]: 1, length: 1, map: () => { } });
-            }, '[object Object] is not an array');
-        },
-        'Has wrong item'() {
-            $mol_assert_fail(() => {
-                $mol_data_array($mol_data_number)([1, '1']);
-            }, '[1] 1 is not a number');
-        },
-        'Has wrong deep item'() {
-            $mol_assert_fail(() => {
-                $mol_data_array($mol_data_array($mol_data_number))([[], [0, 0, false]]);
-            }, '[1] [2] false is not a number');
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
 
 ;
 "use strict";
@@ -16960,6 +16710,26 @@ var $;
 var $;
 (function ($) {
     $mol_test({
+        'Is null'() {
+            $mol_data_nullable($mol_data_number)(null);
+        },
+        'Is not null'() {
+            $mol_data_nullable($mol_data_number)(0);
+        },
+        'Is undefined'() {
+            $mol_assert_fail(() => {
+                const Type = $mol_data_nullable($mol_data_number);
+                Type(undefined);
+            }, 'undefined is not a number');
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_test({
         'Is integer'() {
             $mol_data_integer(0);
         },
@@ -16973,86 +16743,29 @@ var $;
 
 ;
 "use strict";
-
-;
-"use strict";
 var $;
 (function ($) {
     $mol_test({
-        'function'() {
-            $mol_assert_not($mol_func_is_class(function () { }));
+        'Is empty array'() {
+            $mol_data_array($mol_data_number)([]);
         },
-        'generator'() {
-            $mol_assert_not($mol_func_is_class(function* () { }));
+        'Is array'() {
+            $mol_data_array($mol_data_number)([1, 2]);
         },
-        'async'() {
-            $mol_assert_not($mol_func_is_class(async function () { }));
-        },
-        'arrow'() {
-            $mol_assert_not($mol_func_is_class(() => null));
-        },
-        'named class'() {
-            $mol_assert_ok($mol_func_is_class(class Foo {
-            }));
-        },
-        'unnamed class'() {
-            $mol_assert_ok($mol_func_is_class(class {
-            }));
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_test({
-        'single function'() {
-            const stringify = $mol_data_pipe((input) => input.toString());
-            $mol_assert_equal(stringify(5), '5');
-        },
-        'two functions'() {
-            const isLong = $mol_data_pipe((input) => input.toString(), (input) => input.length > 2);
-            $mol_assert_equal(isLong(5.0), false);
-            $mol_assert_equal(isLong(5.1), true);
-        },
-        'three functions'() {
-            const pattern = $mol_data_pipe((input) => input.toString(), (input) => new RegExp(input), (input) => input.toString());
-            $mol_assert_equal(pattern(5), '/5/');
-        },
-        'classes'() {
-            class Box {
-                value;
-                constructor(value) {
-                    this.value = value;
-                }
-            }
-            const boxify = $mol_data_pipe((input) => input.toString(), Box);
-            $mol_assert_ok(boxify(5) instanceof Box);
-            $mol_assert_like(boxify(5).value, '5');
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_test({
-        'Is null'() {
-            $mol_data_nullable($mol_data_number)(null);
-        },
-        'Is not null'() {
-            $mol_data_nullable($mol_data_number)(0);
-        },
-        'Is undefined'() {
+        'Is not array'() {
             $mol_assert_fail(() => {
-                const Type = $mol_data_nullable($mol_data_number);
-                Type(undefined);
-            }, 'undefined is not a number');
+                $mol_data_array($mol_data_number)({ [0]: 1, length: 1, map: () => { } });
+            }, '[object Object] is not an array');
+        },
+        'Has wrong item'() {
+            $mol_assert_fail(() => {
+                $mol_data_array($mol_data_number)([1, '1']);
+            }, '[1] 1 is not a number');
+        },
+        'Has wrong deep item'() {
+            $mol_assert_fail(() => {
+                $mol_data_array($mol_data_array($mol_data_number))([[], [0, 0, false]]);
+            }, '[1] [2] false is not a number');
         },
     });
 })($ || ($ = {}));

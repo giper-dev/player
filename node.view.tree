@@ -845,7 +845,7 @@ $giper_player $mol_drop
 						Icon <= Playing_icon $mol_icon_play
 					<= Movie_search $mol_search
 						hint @ \Movie search...
-						query? <=> movie_search? \
+						submit? <=> search_start? null
 					<= Open $mol_button_open
 						hint @ \Open files
 						files?next <=> files_add?next /
@@ -919,7 +919,7 @@ $giper_player $mol_drop
 							<= Movie_imdb* $mol_link_iconed
 								title \IMDB
 								uri <= movie_uri_imdb \
-						<= Members_block $mol_expander
+						- <= Members_block $mol_expander
 							title @ \Staff
 							content / <= Members $mol_row sub <= members /
 								<= Member*0 $mol_link
@@ -931,7 +931,7 @@ $giper_player $mol_drop
 											uri <= member_photo* \
 										<= Member_role* $mol_paragraph
 											title <= member_role* \
-						<= Similars_block $mol_expander
+						- <= Similars_block $mol_expander
 							title @ \Similars
 							content / <= Similars $mol_row sub <= similars /
 								<= Similar*0 $mol_link
@@ -953,4 +953,4 @@ $giper_player $mol_drop
 						option_title* <= player_name* <= player_name_none @ \Information
 				foot /
 					<= Thanks $mol_text
-						text \\\DataSource\https://github.com/reyohoho/reyohoho\\
+						text \\\DataSource\https://fbphdplay.top/\\
