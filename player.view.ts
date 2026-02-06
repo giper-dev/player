@@ -118,9 +118,14 @@ namespace $.$$ {
 			this.files( this.files().filter( f => f !== file ) )
 		}
 		
+		@ $mol_mem
 		movie_search( next?: string ) {
 			if( next ) this.playlist( null )
-			return this.$.$mol_state_arg.value( 'search', next ) ?? ''
+			return next ?? ''
+		}
+		
+		search_start() {
+			this.movie_search( this.Movie_search().query() )
 		}
 		
 		movie_current_id() {
@@ -349,47 +354,47 @@ namespace $.$$ {
 		
 		@ $mol_mem
 		cover() {
-			const poster = this.movie_current()?.poster() || 'https://habrastorage.org/webt/6l/sw/vg/6lswvg5cbp8-_-xuhg-aeuehsb4.jpeg'
+			const poster = this.movie_current()?.cover() || 'https://habrastorage.org/webt/6l/sw/vg/6lswvg5cbp8-_-xuhg-aeuehsb4.jpeg'
 			return `linear-gradient( var(--mol_theme_spirit) ), url( ${JSON.stringify( poster )} )`
 		}
 		
-		@ $mol_mem
-		similars() {
-			return [ ... this.movie_current()!.similars().keys() ].map( id => this.Similar( id ) )
-		}
+		// @ $mol_mem
+		// similars() {
+		// 	return [ ... this.movie_current()!.similars().keys() ].map( id => this.Similar( id ) )
+		// }
 		
-		similar_title( id: number ) {
-			return this.movie_current()!.similars().get( id )!.title()
-		}
+		// similar_title( id: number ) {
+		// 	return this.movie_current()!.similars().get( id )!.title()
+		// }
 		
-		similar_poster( id: number ) {
-			return this.movie_current()!.similars().get( id )!.poster()
-		}
+		// similar_poster( id: number ) {
+		// 	return this.movie_current()!.similars().get( id )!.poster()
+		// }
 		
-		similar_id( id: number ) {
-			return String( id )
-		}
+		// similar_id( id: number ) {
+		// 	return String( id )
+		// }
 		
-		@ $mol_mem
-		override members() {
-			return [ ... this.movie_current()!.members().keys() ].map( id => this.Member( id ) )
-		}
+		// @ $mol_mem
+		// override members() {
+		// 	return [ ... this.movie_current()!.members().keys() ].map( id => this.Member( id ) )
+		// }
 		
-		override member_name( id: number ) {
-			return this.movie_current()!.members().get( id )!.name
-		}
+		// override member_name( id: number ) {
+		// 	return this.movie_current()!.members().get( id )!.name
+		// }
 		
-		override member_role( id: number ) {
-			return [ ... this.movie_current()!.members().get( id )!.roles.values() ].join( ', ' )
-		}
+		// override member_role( id: number ) {
+		// 	return [ ... this.movie_current()!.members().get( id )!.roles.values() ].join( ', ' )
+		// }
 		
-		override member_photo( id: number ) {
-			return this.movie_current()!.members().get( id )!.photo
-		}
+		// override member_photo( id: number ) {
+		// 	return this.movie_current()!.members().get( id )!.photo
+		// }
 		
-		override member_link( id: number ) {
-			return this.movie_current()!.members().get( id )!.link
-		}
+		// override member_link( id: number ) {
+		// 	return this.movie_current()!.members().get( id )!.link
+		// }
 		
 		auto() {
 			this.auto_switch()
