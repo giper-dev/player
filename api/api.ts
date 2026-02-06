@@ -163,7 +163,10 @@ namespace $ {
 			)
 		}
 		
-		/** API: https://kinopoiskapiunofficial.tech/documentation/api/ */
+		/**
+		 * API: https://fbphdplay.top/api/players?kinopoisk=
+		 * B plan: https://p.ddbb.lol/api/players?kinopoisk=
+		 */
 		@ $mol_mem
 		players() {
 			
