@@ -12818,10 +12818,12 @@ var $;
         similars: $mol_data_array($.$giper_player_api_similar_data),
         staff: $mol_data_array($.$giper_player_api_member),
     });
-    $.$giper_player_api_player_data = $mol_data_array($mol_data_record({
-        name: $mol_data_string,
-        iframe: $mol_data_string,
-    }));
+    $.$giper_player_api_player_data = $mol_data_record({
+        data: $mol_data_array($mol_data_record({
+            type: $mol_data_string,
+            iframeUrl: $mol_data_nullable($mol_data_string),
+        }))
+    });
     class $giper_player_api extends $mol_object {
         static search(query) {
             if (!query.trim())
@@ -12901,17 +12903,10 @@ var $;
             ]));
         }
         players() {
-            const resp = $.$giper_player_api_player_data(this.$.$mol_fetch.json(`https://api4.rhserv.vu/cache`, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    type: 'movie',
-                    kinopoisk: String(this.id()),
-                }).toString(),
-            })).toSorted($mol_compare_text(data => data.name));
-            return new Map(resp.map(data => [data.name, $giper_player_api_player.make({ data: $mol_const(data) })]));
+            const resp = $.$giper_player_api_player_data(this.$.$mol_fetch.json(`https://fbphdplay.top/api/players?kinopoisk=${this.id()}`)).data
+                .filter(data => data.iframeUrl)
+                .toSorted($mol_compare_text(data => data.type));
+            return new Map(resp.map(data => [data.type, $giper_player_api_player.make({ data: $mol_const(data) })]));
         }
     }
     __decorate([
@@ -12935,10 +12930,10 @@ var $;
             return null;
         }
         title() {
-            return this.data().name;
+            return this.data().type;
         }
         uri() {
-            return this.data().iframe;
+            return this.data().iframeUrl;
         }
     }
     $.$giper_player_api_player = $giper_player_api_player;

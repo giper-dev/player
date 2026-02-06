@@ -5281,33 +5281,56 @@ declare namespace $ {
             }>[];
         }>;
     };
-    const $giper_player_api_player_data: ((val: readonly {
-        name: string;
-        iframe: string;
-    }[]) => readonly Readonly<{
-        name: string;
-        iframe: string;
-    }>[]) & {
-        config: ((val: {
-            name: string;
-            iframe: string;
-        }) => Readonly<{
-            name: string;
-            iframe: string;
-        }>) & {
-            config: {
-                name: (val: string) => string;
-                iframe: (val: string) => string;
-            };
-            Value: Readonly<{
-                name: string;
-                iframe: string;
-            }>;
-        };
-        Value: readonly Readonly<{
-            name: string;
-            iframe: string;
+    const $giper_player_api_player_data: ((val: {
+        data: readonly {
+            type: string;
+            iframeUrl: string | null;
+        }[];
+    }) => Readonly<{
+        data: readonly Readonly<{
+            type: string;
+            iframeUrl: string | null;
         }>[];
+    }>) & {
+        config: {
+            data: ((val: readonly {
+                type: string;
+                iframeUrl: string | null;
+            }[]) => readonly Readonly<{
+                type: string;
+                iframeUrl: string | null;
+            }>[]) & {
+                config: ((val: {
+                    type: string;
+                    iframeUrl: string | null;
+                }) => Readonly<{
+                    type: string;
+                    iframeUrl: string | null;
+                }>) & {
+                    config: {
+                        type: (val: string) => string;
+                        iframeUrl: ((val: string | null) => string | null) & {
+                            config: (val: string) => string;
+                            Value: string | null;
+                        };
+                    };
+                    Value: Readonly<{
+                        type: string;
+                        iframeUrl: string | null;
+                    }>;
+                };
+                Value: readonly Readonly<{
+                    type: string;
+                    iframeUrl: string | null;
+                }>[];
+            };
+        };
+        Value: Readonly<{
+            data: readonly Readonly<{
+                type: string;
+                iframeUrl: string | null;
+            }>[];
+        }>;
     };
     class $giper_player_api extends $mol_object {
         static search(query: string): Map<number, $giper_player_api_movie>;
@@ -5368,9 +5391,9 @@ declare namespace $ {
         players(): Map<string, $giper_player_api_player>;
     }
     class $giper_player_api_player extends $mol_object {
-        data(): (typeof $giper_player_api_player_data.Value)[number];
+        data(): (typeof $giper_player_api_player_data.Value.data)[number];
         title(): string;
-        uri(): string;
+        uri(): string | null;
     }
 }
 
