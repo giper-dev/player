@@ -1,8 +1,13 @@
 namespace $ {
 	
-	const kp_api_options = {
-		headers: { 'X-API-KEY': '3516f118-c2ee-4d16-9d16-e9a8d8512ec5' },
-	}
+	export const $giper_player_api_kp_keys = [
+		'3516f118-c2ee-4d16-9d16-e9a8d8512ec5',
+		'ea706cda-7aee-452b-b897-3f13cfbcd579',
+	]
+	
+	const kp_api_options = ()=> ({
+		headers: { 'X-API-KEY': $mol_wire_sync( $mol_array_lottery )( $giper_player_api_kp_keys ) },
+	})
 	
 	export const $giper_player_api_movie_data_short = $mol_data_record({
 		nameOriginal: $mol_data_nullable( $mol_data_string ),
@@ -60,7 +65,7 @@ namespace $ {
 			
 			const keyword = encodeURIComponent( query )
 			const resp = $giper_player_api_search_movie_data(
-				this.$.$mol_fetch.json( `https://kinopoiskapiunofficial.tech/api/v2.2/films?keyword=${keyword}`, kp_api_options ) as any
+				this.$.$mol_fetch.json( `https://kinopoiskapiunofficial.tech/api/v2.2/films?keyword=${keyword}`, kp_api_options() ) as any
 			)
 			
 			return new Map(
@@ -94,7 +99,7 @@ namespace $ {
 		@ $mol_mem
 		data() {
 			return $giper_player_api_movie_data_full(
-				this.$.$mol_fetch.json( `https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.id()}`, kp_api_options ) as any
+				this.$.$mol_fetch.json( `https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.id()}`, kp_api_options() ) as any
 			)
 		}
 		
