@@ -4756,6 +4756,10 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    function $mol_array_lottery<Value>(list: readonly Value[]): Value;
+}
+
+declare namespace $ {
     type $mol_data_value<Input = any, Output = any> = (val: Input) => Output;
 }
 
@@ -4811,6 +4815,7 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    const $giper_player_api_kp_keys: string[];
     const $giper_player_api_movie_data_short: ((val: {
         year: number | null;
         genres: readonly {

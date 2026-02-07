@@ -255,6 +255,7 @@
     "$giper_player_m3u",
     "$mol_compare_text",
     "$giper_player_api",
+    "$mol_array_lottery",
     "$mol_data_record",
     "$mol_data",
     "$mol_data_value",
