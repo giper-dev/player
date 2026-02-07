@@ -6,7 +6,7 @@ namespace $ {
 	]
 	
 	const kp_api_options = ()=> ({
-		headers: { 'X-API-KEY': $mol_wire_sync( $mol_array_lottery )( $giper_player_api_kp_keys ) },
+		headers: { 'X-API-KEY': $mol_wire_sync( $mol_array_lottery )( $giper_player_api_kp_keys ) as string },
 	})
 	
 	export const $giper_player_api_movie_data_short = $mol_data_record({
