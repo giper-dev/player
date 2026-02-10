@@ -3,6 +3,7 @@ namespace $ {
 	export const $giper_player_api_kp_keys = [
 		'3516f118-c2ee-4d16-9d16-e9a8d8512ec5',
 		'ea706cda-7aee-452b-b897-3f13cfbcd579',
+		'e7502905-63cc-4807-9eea-b1f8620bb79c',
 	]
 	
 	const kp_api_options = ()=> ({
