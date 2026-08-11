@@ -161,6 +161,7 @@
     "$mol_type_error",
     "$mol_style_sheet",
     "$mol_link",
+    "$mol_dom_safe",
     "$mol_wait_timeout",
     "$mol_type_enforce",
     "$mol_search",
