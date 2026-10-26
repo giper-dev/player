@@ -126,6 +126,7 @@
     "$mol_type_keys",
     "$mol_dom_event",
     "$mol_action",
+    "$mol_dom_transfer",
     "$mol_theme_auto",
     "$mol_lights",
     "$mol_state_arg",
